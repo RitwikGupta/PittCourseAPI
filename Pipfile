@@ -23,6 +23,7 @@ pre-commit = "*"
 pytest = "*"
 pytest-cov = "==4.1.0"
 pytest-xdist = "*"
+flake8 = "*"
 
 [dev-packages]
 
