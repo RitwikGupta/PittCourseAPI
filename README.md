@@ -2,66 +2,60 @@
 
 ![Build Status](https://travis-ci.org/Pitt-CSC/PittAPI.svg?branch=master)
 ![License](https://img.shields.io/badge/license-GPLv2-blue.svg)
-![Python Version](https://img.shields.io/badge/python-%3E%3D%203.6-green.svg)
+![Python Version](https://img.shields.io/badge/python-3.12-green.svg)
 
-Made by Ritwik Gupta at the University of Pittsburgh in an effort to get
-more open data from Pitt.
+The Pitt API is an unofficial Python API made by Ritwik Gupta at the University of Pittsburgh in an effort to get more open data from Pitt.
 
 ## Usage examples
 
 ```python
-from PittAPI import course, dining, lab, laundry, library, news, people, shuttle, textbook
+from pittapi import course, dining, lab, laundry, library, news, people, shuttle, textbook
 
 ### Courses
-# Will return a dictionary of all CS courses
+# Returns a dictionary of all courses for a given subject
 cs_subject = course.get_subject_courses(subject='CS')
 courses_dict = cs_subject.courses
 
-# Will return a list of sections of a course during a given term
+# Returns a list of sections of a course during a given term
 cs_course = course.get_course_details(term='2244', subject='CS', course='1501')
 section_list = cs_course.sections
 
 ### Textbook
-# Will return a list of dictionaries containing textbooks for a class
-# term number comes from pitt.verbacompare.com
+# Returns a list of dictionaries containing textbooks for a class
+# Term number comes from pitt.verbacompare.com
 small_dict = textbook.get_textbook(term="3150", department="CS", course="445", instructor="RAMIREZ")
 
 ### Library
-# Will return a dictionary containing results from query
+# Returns a dictionary containing results from query
 big_dict = library.get_documents(query="computer")
 
 ### News
-# Will return a list of dictionaries containing news from main news feed
+# Returns a list of dictionaries containing news from main news feed
 medium_dict = news.get_news()
 
 ### Laundry
-# Will return a dictionary with amount of washers and dryers
-# in use vs. total washers and dryers at building
+# Returns a dictionary with number of washers and dryers in use vs.
+# total washers and dryers in building
 small_dict = laundry.get_status_simple(building_name="TOWERS")
 
 ### Computer Lab
-# Will return a dictionary with status of the lab, and amount
-# of machines with a certain OS
+# Returns a dictionary with status of the lab and number of open machines
 small_dict = lab.get_status(lab_name="ALUMNI")
 
 ### Shuttle
-# Will return a list of dictionaries containing routes of shuttles
+# Returns a list of dictionaries containing routes of shuttles
 big_dict = shuttle.get_routes()
 
 ### People
-# Will return a list of people based on the query
+# Returns a list of people based on the query
 list_of_peeps = people.get_person(query="Smith")
 
 ### Dining
-# Will return a dictionary of dictionaries containing each dining location,
-# with its name, its open/closed status, and open times (if it exists)
+# Returns a dictionary of dictionaries containing each dining location with its
+# name and open/closed status
 medium_dict = dining.get_locations()
-medium_dict = dining.get_locations_by_status(status="open")
-medium_dict = dining.get_locations_by_status(status="closed")
-# Will return a single dictionary of a dining location,
-# with its name, its open/closed status, and open times (if it exists)
-one = dining.get_location_by_name("taco_bell-schenley_cafe")
-two = dining.get_location_by_name("cup_&_chaucer-hillman")
+# Returns a dictionary of a dining location with its hours for a given day
+hours = dining.get_location_hours("The Eatery", datetime.datetime(2024, 4, 12))
 ```
 
 ## Local Setup
@@ -69,11 +63,10 @@ Install Python 3.12 and ``pipenv``.
 
 Run ``pipenv install`` and ``pipenv shell`` to create and setup the virtual environment.
 
-## Tests
+## Contributing
 
-Run tests with
-  ``pytest --cov=pittapi tests/``
+Read our [contributing guidelines](/CONTRIBUTING.md) to learn how to contribute to the Pitt API.
 
 ## License
 
-This project is licensed under the terms of the [GPLv2 license](/LICENSE)
+This project is licensed under the terms of the [GPLv2 license](/LICENSE).
