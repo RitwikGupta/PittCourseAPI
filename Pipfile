@@ -15,7 +15,7 @@ nose-cov = "*"
 nose-timer = "*"
 typing = "*"
 virtualenv = "*"
-black = "==19.10b0"
+black = "*"
 sphinx = "*"
 requests-html = "*"
 parse = "*"
@@ -23,7 +23,6 @@ pre-commit = "*"
 pytest = "*"
 pytest-cov = "==4.1.0"
 pytest-xdist = "*"
-
 
 [dev-packages]
 
