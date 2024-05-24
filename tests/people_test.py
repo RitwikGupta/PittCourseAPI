@@ -113,8 +113,8 @@ class PeopleTest(unittest.TestCase):
 
         ans = people.get_person("John C Ramirez")
         self.assertIsInstance(ans, list)
-        self.assertTrue(ans[0]['name'] == "Ramirez, John C")
-        self.assertTrue(ans[0]['office_phone'] == "(412) 624-8441")
+        self.assertTrue(ans[0]["name"] == "Ramirez, John C")
+        self.assertTrue(ans[0]["office_phone"] == "(412) 624-8441")
 
     @responses.activate
     def test_people_get_person_too_many(self):
@@ -129,5 +129,5 @@ class PeopleTest(unittest.TestCase):
         responses.add(responses.POST, people.PEOPLE_SEARCH_URL, body=NONE_FOUND_TEST_DATA, status=200)
 
         ans = people.get_person("Lebron Iverson James Jordan Kobe")
-        self.assertIsInstance(ans,list)
-        self.assertEqual(ans, [{"ERROR":"No one found."}])
+        self.assertIsInstance(ans, list)
+        self.assertEqual(ans, [{"ERROR": "No one found."}])
