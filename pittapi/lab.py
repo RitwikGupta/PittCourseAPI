@@ -48,6 +48,7 @@ class Lab(NamedTuple):
     linux: int
 """
 
+
 def _fetch_labs():
     """Fetches dictionary of status of all labs."""
     labs = {}
@@ -80,12 +81,5 @@ def get_status():
         if key["name"] in labs:
             total = key["total"]
             in_use = key["active"]
-            statuses.append(
-                {
-                    "location": key["name"],
-                    "isOpen": labs[key["name"]],
-                    "total": total,
-                    "in_use": in_use
-                }
-            )
+            statuses.append({"location": key["name"], "isOpen": labs[key["name"]], "total": total, "in_use": in_use})
     return statuses

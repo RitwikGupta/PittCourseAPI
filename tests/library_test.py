@@ -25,23 +25,18 @@ import responses
 
 from pittapi import library
 
-SAMPLE_PATH = Path() / 'tests' / 'samples'
+SAMPLE_PATH = Path() / "tests" / "samples"
 
 
 class LibraryTest(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         unittest.TestCase.__init__(self, *args, **kwargs)
-        with (SAMPLE_PATH / 'library_mock_response_water.json').open() as f:
+        with (SAMPLE_PATH / "library_mock_response_water.json").open() as f:
             self.library_query = json.load(f)
 
     @responses.activate
     def test_get_documents(self):
-        responses.add(
-            responses.GET,
-            library.LIBRARY_URL + library.QUERY_START + "water",
-            json=self.library_query,
-            status=200
-        )
+        responses.add(responses.GET, library.LIBRARY_URL + library.QUERY_START + "water", json=self.library_query, status=200)
         query_result = library.get_documents("water")
         self.assertIsInstance(query_result, dict)
         self.assertEqual(query_result["pages"], 10)

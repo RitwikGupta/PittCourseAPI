@@ -23,9 +23,7 @@ from typing import Any, Dict, List, Union
 
 from bs4 import BeautifulSoup
 
-BASE_URL = (
-    "https://www.laundryview.com/api/currentRoomData?school_desc_key=197&location={}"
-)
+BASE_URL = "https://www.laundryview.com/api/currentRoomData?school_desc_key=197&location={}"
 
 LOCATION_LOOKUP = {
     "TOWERS": "2430136",
@@ -63,7 +61,7 @@ def get_status_simple(building_name: str) -> Dict[str, str]:
         -> SUTH_WEST
     """
     laundry_info = _get_laundry_info(building_name)
-    freeWashers, freeDryers, totalWashers, totalDryers = 0,0,0,0
+    freeWashers, freeDryers, totalWashers, totalDryers = 0, 0, 0, 0
 
     for obj in laundry_info["objects"]:
         if obj["type"] == "washFL":

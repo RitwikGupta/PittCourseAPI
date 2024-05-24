@@ -25,18 +25,16 @@ from pathlib import Path
 
 from pittapi import status
 
-SAMPLE_PATH = Path() / 'tests' / 'samples'
+SAMPLE_PATH = Path() / "tests" / "samples"
 
 
 class StatusTest(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         unittest.TestCase.__init__(self, *args, **kwargs)
-        with (SAMPLE_PATH / 'status.json').open() as f:
+        with (SAMPLE_PATH / "status.json").open() as f:
             self.status_data = json.load(f)
 
     @responses.activate
     def test_get_status(self):
-        responses.add(responses.GET,
-                      'https://status.pitt.edu/index.json',
-                      json=self.status_data, status=200)
+        responses.add(responses.GET, "https://status.pitt.edu/index.json", json=self.status_data, status=200)
         self.assertIsInstance(status.get_status(), dict)

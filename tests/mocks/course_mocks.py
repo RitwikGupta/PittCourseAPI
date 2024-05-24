@@ -1,20 +1,7 @@
-mocked_subject_data = {
-    "subjects" : [
-        {
-            "subject" : "CS",
-            "descr" : "Computer Science"
-        }
-    ]
-}
+mocked_subject_data = {"subjects": [{"subject": "CS", "descr": "Computer Science"}]}
 
 mocked_courses_data = {
-    "courses" : [
-        {
-            "catalog_nbr": "0007",
-            "descr": "INTRODUCTION TO COMPUTER PROGRAMMING",
-            "crse_id": "105611"
-        }
-    ]
+    "courses": [{"catalog_nbr": "0007", "descr": "INTRODUCTION TO COMPUTER PROGRAMMING", "crse_id": "105611"}]
 }
 
 mocked_courses_data_invalid = {}
@@ -30,29 +17,20 @@ mocked_course_info_data = {
         "course_title": "INTRODUCTION TO COMPUTER PROGRAMMING",
         "rqmnt_designtn": "",
         "effdt": "2018-06-30",
-        "components": [
-            {
-                "descr": "Lecture",
-                "optional": "N"
-            },
-            {
-                "descr": "Recitation",
-                "optional": "N"
-            }
-        ],
+        "components": [{"descr": "Lecture", "optional": "N"}, {"descr": "Recitation", "optional": "N"}],
         "attributes": [
             {
                 "crse_attribute": "DSGE",
                 "crse_attribute_descr": "*DSAS General Ed. Requirements",
                 "crse_attribute_value": "ALG",
-                "crse_attribute_value_descr": "Algebra"
+                "crse_attribute_value_descr": "Algebra",
             },
             {
                 "crse_attribute": "DSGE",
                 "crse_attribute_descr": "*DSAS General Ed. Requirements",
                 "crse_attribute_value": "QFR",
-                "crse_attribute_value_descr": "Quant.-Formal Reasoning"
-            }
+                "crse_attribute_value_descr": "Quant.-Formal Reasoning",
+            },
         ],
         "offerings": [
             {
@@ -67,35 +45,13 @@ mocked_course_info_data = {
                 "req_group": "",
                 "planner_message": "You have no active career, so you can not add this course to a planner.",
                 "open_terms": [
-                    {
-                        "strm": "2224",
-                        "descr": "Spring Term 2021-2022",
-                        "default_term": False
-                    },
-                    {
-                        "strm": "2227",
-                        "descr": "Summer Term 2021-2022",
-                        "default_term": False
-                    },
-                    {
-                        "strm": "2231",
-                        "descr": "Fall Term 2022-2023",
-                        "default_term": True
-                    }
+                    {"strm": "2224", "descr": "Spring Term 2021-2022", "default_term": False},
+                    {"strm": "2227", "descr": "Summer Term 2021-2022", "default_term": False},
+                    {"strm": "2231", "descr": "Fall Term 2022-2023", "default_term": True},
                 ],
-                "enrollable_terms": [
-                    {
-                        "strm": "2224"
-                    },
-                    {
-                        "strm": "2227"
-                    },
-                    {
-                        "strm": "2231"
-                    }
-                ]
+                "enrollable_terms": [{"strm": "2224"}, {"strm": "2227"}, {"strm": "2231"}],
             }
-        ]
+        ],
     }
 }
 
@@ -131,12 +87,7 @@ mocked_course_sections_data = {
             "end_dt": "12/09/2022",
             "units": "0",
             "topic": "",
-            "instructors": [
-                {
-                    "name": "Robert Fishel",
-                    "email": "rmf105@pitt.edu"
-                }
-            ],
+            "instructors": [{"name": "Robert Fishel", "email": "rmf105@pitt.edu"}],
             "section_type": "REC",
             "meetings": [
                 {
@@ -145,12 +96,12 @@ mocked_course_sections_data = {
                     "end_time": "10.50.00.000000-05:00",
                     "start_dt": "08/29/2022",
                     "end_dt": "12/09/2022",
-                    "instructor": "Robert Fishel"
+                    "instructor": "Robert Fishel",
                 }
             ],
-            "reserve_caps": []
+            "reserve_caps": [],
         }
-    ]
+    ],
 }
 
 mocked_section_details_data = {
@@ -181,7 +132,7 @@ mocked_section_details_data = {
             "campus_code": "PIT",
             "location": "Pittsburgh Campus",
             "topic": "",
-            "class_components": "<table class=\"PSTEXT\"><tr><td>Lecture Required, Recitation Required</td></tr></table>"
+            "class_components": '<table class="PSTEXT"><tr><td>Lecture Required, Recitation Required</td></tr></table>',
         },
         "meetings": [
             {
@@ -191,17 +142,12 @@ mocked_section_details_data = {
                 "meeting_time_end": "10:50AM",
                 "bldg_cd": "SENSQ",
                 "meeting_topic": "TBA",
-                "instructors": [
-                    {
-                        "name": "Robert Fishel",
-                        "email": "rmf105@pitt.edu"
-                    }
-                ],
+                "instructors": [{"name": "Robert Fishel", "email": "rmf105@pitt.edu"}],
                 "start_date": "08/29/2022",
                 "end_date": "12/09/2022",
                 "topic": "TBA",
                 "show_topic": False,
-                "date_range": "08/29/2022 - 12/09/2022"
+                "date_range": "08/29/2022 - 12/09/2022",
             }
         ],
         "enrollment_information": {
@@ -209,21 +155,18 @@ mocked_section_details_data = {
             "drop_consent": "",
             "enroll_requirements": "",
             "requirement_desig": "",
-            "class_attributes": "DSAS Algebra General Ed. Requirement \rDSAS Quant.-Formal Reason General Ed. Requirement \rAsian Studies"
+            "class_attributes": "DSAS Algebra General Ed. Requirement \rDSAS Quant.-Formal Reason General Ed. Requirement \rAsian Studies",
         },
         "class_availability": {
             "class_capacity": "28",
             "enrollment_total": "24",
             "enrollment_available": 4,
             "wait_list_capacity": "50",
-            "wait_list_total": "7"
+            "wait_list_total": "7",
         },
         "reserve_caps": [],
         "is_combined": False,
-        "notes": {
-            "class_notes": "",
-            "subject_notes": ""
-        },
+        "notes": {"class_notes": "", "subject_notes": ""},
         "catalog_descr": {
             "crse_catalog_description": "This is a first course in computer science programming. It is recommended for those students intending to major in computer science who do not have the required background for cs 0401. It may also be of interest to students majoring in one of the social sciences or humanities. The focus of the course is on problem analysis and the development of algorithms and computer programs in a modern high-level language."
         },
@@ -231,14 +174,11 @@ mocked_section_details_data = {
             "txb_none": "N",
             "txb_status": "P",
             "txb_special_instructions": "",
-            "textbooks_message": "Textbooks to be determined"
+            "textbooks_message": "Textbooks to be determined",
         },
-        "valid_to_enroll": "T"
+        "valid_to_enroll": "T",
     },
-    "class_enroll_info": {
-        "last_enrl_dt_passed": False,
-        "is_related": True
-    },
+    "class_enroll_info": {"last_enrl_dt_passed": False, "is_related": True},
     "additionalLinks": [],
     "cfg": {
         "is_related": False,
@@ -272,12 +212,12 @@ mocked_section_details_data = {
         "show_topic": False,
         "show_add_to_wish_list": False,
         "wish_list_enabled": False,
-        "show_actions": True
+        "show_actions": True,
     },
     "messages": {
         "shareLink": "Copy link to share the class with friends.",
         "shareSocial": "Or share on social media networks.",
         "reserveInfo": "Seats in this class have been reserved for students for the specified programs, majors or groups listed below. Reserved seats are subject to change without notice.",
-        "noMeetingInfo": "No meeting info found"
-    }
+        "noMeetingInfo": "No meeting info found",
+    },
 }

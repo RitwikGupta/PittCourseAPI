@@ -11,6 +11,11 @@ repos:
     rev: 7.0.0
     hooks:
     -   id: flake8
+        # GitHub editor is 127 chars wide, see workflows in .github/
+        args: [
+            "--select=E9,F63,F7,F82",
+            "--max-line-length=127"
+        ]
 
 # https://black.readthedocs.io/en/stable/integrations/source_version_control.html
 -   repo: https://github.com/psf/black-pre-commit-mirror
@@ -18,3 +23,5 @@ repos:
     hooks:
     -   id: black
         language_version: python3.12
+        # GitHub editor is 127 chars wide, see workflows in .github/
+        args: ["--line-length=127"]

@@ -34,6 +34,7 @@ SECTION_DETAILS_API = "https://pitcsprd.csps.pitt.edu/psc/pitcsprd/EMPLOYEE/SA/s
 TERM_REGEX = "2\d\d[147]"
 VALID_TERMS = re.compile(TERM_REGEX)
 
+
 class Instructor(NamedTuple):
     name: str
     email: Optional[str] = None
@@ -91,6 +92,7 @@ class Course(NamedTuple):
     course_id: str
     course_title: str
 
+
 class CourseDetails(NamedTuple):
     course: Course
     course_description: Optional[str] = None
@@ -99,6 +101,7 @@ class CourseDetails(NamedTuple):
     components: List[Component] = None
     attributes: List[Attribute] = None
     sections: Optional[List[Section]] = None
+
 
 class Subject(NamedTuple):
     subject_code: str
@@ -128,9 +131,7 @@ def get_subject_courses(subject: str) -> Subject:
     return Subject(subject_code=subject, courses=courses)
 
 
-def get_course_details(
-    term: Union[str, int], subject: str, course: Union[str, int]
-) -> CourseDetails:
+def get_course_details(term: Union[str, int], subject: str, course: Union[str, int]) -> CourseDetails:
     term = _validate_term(term)
     subject = _validate_subject(subject)
     course = _validate_course(course)
@@ -144,11 +145,7 @@ def get_course_details(
     credit_range = (json_response["units_minimum"], json_response["units_maximum"])
 
     requisites = None
-    if (
-        "offerings" in json_response
-        and len(json_response["offerings"]) != 0
-        and "req_group" in json_response["offerings"][0]
-    ):
+    if "offerings" in json_response and len(json_response["offerings"]) != 0 and "req_group" in json_response["offerings"][0]:
         requisites = json_response["offerings"][0]["req_group"]
 
     components = None
@@ -184,15 +181,10 @@ def get_course_details(
         status = section["enrl_stat_descr"]
 
         instructors = None
-        if (
-            len(section["instructors"]) != 0
-            and section["instructors"][0] != "To be Announced"
-        ):
+        if len(section["instructors"]) != 0 and section["instructors"][0] != "To be Announced":
             instructors = []
             for instructor in section["instructors"]:
-                instructors.append(
-                    Instructor(name=instructor["name"], email=instructor["email"])
-                )
+                instructors.append(Instructor(name=instructor["name"], email=instructor["email"]))
 
         meetings = None
         if len(section["meetings"]) != 0:
@@ -223,12 +215,7 @@ def get_course_details(
         )
 
     return CourseDetails(
-        course=Course(
-            subject_code=subject,
-            course_number=course,
-            course_id=internal_course_id,
-            course_title=course_title
-        ),
+        course=Course(subject_code=subject, course_number=course, course_id=internal_course_id, course_title=course_title),
         course_description=course_description,
         credit_range=credit_range,
         requisites=requisites,
@@ -238,9 +225,7 @@ def get_course_details(
     )
 
 
-def get_section_details(
-    term: Union[str, int], class_number: Union[str, int]
-) -> Section:
+def get_section_details(term: Union[str, int], class_number: Union[str, int]) -> Section:
     term = _validate_term(term)
 
     json_response = _get_section_details(term, class_number)
@@ -265,9 +250,7 @@ def get_section_details(
             date_range = meeting["date_range"].split(" - ")
 
             instructors = None
-            if len(meeting["instructors"]) != 0 and meeting["instructors"][0][
-                "name"
-            ] not in ["To be Announced", "-"]:
+            if len(meeting["instructors"]) != 0 and meeting["instructors"][0]["name"] not in ["To be Announced", "-"]:
                 instructors = []
                 for instructor in meeting["instructors"]:
                     name = instructor["name"]
@@ -328,9 +311,7 @@ def _validate_term(term: Union[str, int]) -> str:
     """Validates that the term entered follows the pattern that Pitt does for term codes."""
     if VALID_TERMS.match(str(term)):
         return str(term)
-    raise ValueError(
-        "Term entered isn't a valid Pitt term, must match regex " + TERM_REGEX
-    )
+    raise ValueError("Term entered isn't a valid Pitt term, must match regex " + TERM_REGEX)
 
 
 def _validate_subject(subject: str) -> str:
