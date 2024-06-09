@@ -242,9 +242,9 @@ def _validate_term(term: str) -> str:
 
 def _validate_course(course: str) -> str:
     """Validates course is a four digit number,
-     otherwise adds zero(s) to create four digit number or,
-     raises an exception.
-     """
+    otherwise adds zero(s) to create four digit number or,
+    raises an exception.
+    """
     if len(course) > 4 or not course.isdigit():
         raise ValueError("Invalid course number")
     elif len(course) == 4:
@@ -280,8 +280,8 @@ _find_course_id_by_section = _find_item("name", "id", "section")
 
 def _extract_id(response, course: str, instructor: str, section: str) -> str:
     """Gathers sections from departments and finds course id by
-     instructor name or section number.
-     """
+    instructor name or section number.
+    """
     sections = _find_sections(response.json(), course)
     error = 0
     try:

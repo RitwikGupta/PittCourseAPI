@@ -135,6 +135,7 @@ def _extract_facets(
 
     return facets
 
+
 def hillman_total_reserved():
     """Returns a simple count dictionary of the total amount of reserved rooms appointments"""
     count = {}
@@ -164,7 +165,7 @@ def reserved_hillman_times():
         bookings.append(
             {
                 "Room": reservation["itemName"],
-                "Reserved": [reservation["from"], reservation["to"]]
+                "Reserved": [reservation["from"], reservation["to"]],
             }
         )
     return bookings

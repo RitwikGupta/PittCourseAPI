@@ -63,7 +63,7 @@ def get_status_simple(building_name: str) -> Dict[str, str]:
         -> SUTH_WEST
     """
     laundry_info = _get_laundry_info(building_name)
-    freeWashers, freeDryers, totalWashers, totalDryers = 0,0,0,0
+    freeWashers, freeDryers, totalWashers, totalDryers = 0, 0, 0, 0
 
     for obj in laundry_info["objects"]:
         if obj["type"] == "washFL":

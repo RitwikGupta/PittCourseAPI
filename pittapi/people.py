@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
+
 from requests_html import HTMLSession
 from typing import List, Dict
 from parse import compile
@@ -66,7 +67,7 @@ def get_person(query: str) -> List[Dict[str, str]]:
     session = HTMLSession()
     resp = session.post(PEOPLE_SEARCH_URL, data=payload)
     if resp.text.__contains__("Too many people matched your criteria."):
-        return [{"ERROR":"Too many people matched your criteria."}]  # Return an error
+        return [{"ERROR": "Too many people matched your criteria."}]  # Return an error
     elements = resp.html.xpath("/html/div/section")
     result = []
     for entry in elements:
@@ -75,5 +76,5 @@ def get_person(query: str) -> List[Dict[str, str]]:
         _parse_segments(person, segments)
         result.append(person)
     if result == []:
-        return [{"ERROR":"No one found."}] # Return an error
+        return [{"ERROR": "No one found."}]  # Return an error
     return result

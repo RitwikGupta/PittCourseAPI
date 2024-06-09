@@ -19,23 +19,24 @@ from unittest.mock import MagicMock
 
 from pittapi import sports
 
+
 class LibraryTest(unittest.TestCase):
     def setUp(self):
         mocked_basketball_data = {
-            "team" : {
+            "team": {
                 "id": "221",
                 "record": {
                     "items": [
                         {
                             "description": "Overall Record",
                             "type": "total",
-                            "summary": "11-21"
+                            "summary": "11-21",
                         },
                         {
                             "description": "Home Record",
                             "type": "home",
                             "summary": "9-11",
-                        }
+                        },
                     ]
                 },
                 "nextEvent": [
@@ -45,49 +46,42 @@ class LibraryTest(unittest.TestCase):
                             {
                                 "venue": {
                                     "fullName": "Barclays Center",
-                                    "address": {
-                                        "city": "Brooklyn",
-                                        "state": "NY"
-                                    }
+                                    "address": {"city": "Brooklyn", "state": "NY"},
                                 },
                                 "competitors": [
                                     {
                                         "id": "221",
-                                        "homeAway" : "home",
-                                        "team" : {
+                                        "homeAway": "home",
+                                        "team": {
                                             "id": "221",
                                             "location": "Pittsburgh",
                                             "nickname": "Pittsburgh",
                                             "abbreviation": "PITT",
-                                            "displayName": "Pittsburgh Panthers"
-                                        }
+                                            "displayName": "Pittsburgh Panthers",
+                                        },
                                     },
                                     {
                                         "id": "103",
                                         "homeAway": "away",
-                                        "team" : {
+                                        "team": {
                                             "id": "103",
                                             "location": "Boston College",
                                             "nickname": "Boston College",
                                             "abbreviation": "BC",
-                                            "displayName": "Boston College Eagles"
-                                        }
-                                    }
+                                            "displayName": "Boston College Eagles",
+                                        },
+                                    },
                                 ],
-                                "status": {
-                                    "type": {
-                                        "name": "STATUS_FINAL"
-                                    }
-                                }
+                                "status": {"type": {"name": "STATUS_FINAL"}},
                             }
-                        ]
+                        ],
                     }
                 ],
-                "standingSummary": "12th in ACC"
+                "standingSummary": "12th in ACC",
             }
         }
         mocked_football_data = {
-            "team" : {
+            "team": {
                 "id": "221",
                 "name": "Pittsburgh",
                 "record": {
@@ -95,13 +89,13 @@ class LibraryTest(unittest.TestCase):
                         {
                             "description": "Overall Record",
                             "type": "total",
-                            "summary": "10-2"
+                            "summary": "10-2",
                         },
                         {
                             "description": "Home Record",
                             "type": "home",
                             "summary": "5-2",
-                        }
+                        },
                     ]
                 },
                 "nextEvent": [
@@ -113,74 +107,61 @@ class LibraryTest(unittest.TestCase):
                             {
                                 "venue": {
                                     "fullName": "Bank of America Stadium",
-                                    "address": {
-                                        "city": "Charlotte",
-                                        "state": "NC"
-                                    }
+                                    "address": {"city": "Charlotte", "state": "NC"},
                                 },
                                 "competitors": [
                                     {
                                         "id": "221",
-                                        "homeAway" : "away",
-                                        "team" : {
+                                        "homeAway": "away",
+                                        "team": {
                                             "id": "221",
                                             "location": "Pittsburgh",
                                             "nickname": "Pittsburgh",
                                             "abbreviation": "PITT",
-                                            "displayName": "Pittsburgh Panthers"
-                                        }
+                                            "displayName": "Pittsburgh Panthers",
+                                        },
                                     },
                                     {
                                         "id": "104",
                                         "homeAway": "away",
-                                        "team" : {
+                                        "team": {
                                             "id": "103",
                                             "location": "Wake Forest",
                                             "nickname": "Wake Forest",
                                             "abbreviation": "WAKE",
-                                            "displayName": "Wake Forest Deamon Deacons"
-                                        }
-                                    }
+                                            "displayName": "Wake Forest Deamon Deacons",
+                                        },
+                                    },
                                 ],
-                                "status": {
-                                    "type": {
-                                        "name": "STATUS_IN_PROGRESS"
-                                    }
-                                }
+                                "status": {"type": {"name": "STATUS_IN_PROGRESS"}},
                             }
-                        ]
+                        ],
                     }
                 ],
-                "standingSummary": "1st in ACC - Coastal"
+                "standingSummary": "1st in ACC - Coastal",
             }
         }
-        sports._get_mens_basketball_data = MagicMock(return_value=mocked_basketball_data)
+        sports._get_mens_basketball_data = MagicMock(
+            return_value=mocked_basketball_data
+        )
         sports._get_football_data = MagicMock(return_value=mocked_football_data)
 
     def test_get_mens_basketball_record(self):
         self.assertEqual("11-21", sports.get_mens_basketball_record())
 
     def test_get_mens_basketball_record_offseason(self):
-        offseason_data = {
-            "team": {
-                "id": "221",
-                "record": {}
-            }
-        }
+        offseason_data = {"team": {"id": "221", "record": {}}}
         sports._get_mens_basketball_data = MagicMock(return_value=offseason_data)
 
-        self.assertEqual("There's no record right now.", sports.get_mens_basketball_record())
+        self.assertEqual(
+            "There's no record right now.", sports.get_mens_basketball_record()
+        )
 
     def test_get_football_record(self):
         self.assertEqual("10-2", sports.get_football_record())
 
     def test_get_football_record_offseason(self):
-        offseason_data = {
-            "team": {
-                "id": "221",
-                "record": {}
-            }
-        }
+        offseason_data = {"team": {"id": "221", "record": {}}}
         sports._get_football_data = MagicMock(return_value=offseason_data)
 
         self.assertEqual("There's no record right now.", sports.get_football_record())
@@ -210,11 +191,7 @@ class LibraryTest(unittest.TestCase):
         self.assertNotEqual("NO_GAME_SCHEDULED", next_game_details["status"])
 
     def test_get_next_mens_basketball_game_offseason(self):
-        offseason_data = {
-            "team": {
-                "nextEvent": []
-            }
-        }
+        offseason_data = {"team": {"nextEvent": []}}
         sports._get_mens_basketball_data = MagicMock(return_value=offseason_data)
 
         next_game_details = sports.get_next_mens_basketball_game()
@@ -223,11 +200,7 @@ class LibraryTest(unittest.TestCase):
         self.assertEqual("NO_GAME_SCHEDULED", next_game_details["status"])
 
     def test_get_next_football_game_offseason(self):
-        offseason_data = {
-            "team": {
-                "nextEvent": []
-            }
-        }
+        offseason_data = {"team": {"nextEvent": []}}
         sports._get_football_data = MagicMock(return_value=offseason_data)
 
         next_game_details = sports.get_next_football_game()

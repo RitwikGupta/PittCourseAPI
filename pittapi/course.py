@@ -34,6 +34,7 @@ SECTION_DETAILS_API = "https://pitcsprd.csps.pitt.edu/psc/pitcsprd/EMPLOYEE/SA/s
 TERM_REGEX = "2\d\d[147]"
 VALID_TERMS = re.compile(TERM_REGEX)
 
+
 class Instructor(NamedTuple):
     name: str
     email: Optional[str] = None
@@ -91,6 +92,7 @@ class Course(NamedTuple):
     course_id: str
     course_title: str
 
+
 class CourseDetails(NamedTuple):
     course: Course
     course_description: Optional[str] = None
@@ -99,6 +101,7 @@ class CourseDetails(NamedTuple):
     components: List[Component] = None
     attributes: List[Attribute] = None
     sections: Optional[List[Section]] = None
+
 
 class Subject(NamedTuple):
     subject_code: str
@@ -227,7 +230,7 @@ def get_course_details(
             subject_code=subject,
             course_number=course,
             course_id=internal_course_id,
-            course_title=course_title
+            course_title=course_title,
         ),
         course_description=course_description,
         credit_range=credit_range,

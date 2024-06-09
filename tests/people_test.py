@@ -21,8 +21,7 @@ import unittest
 import responses
 from pittapi import people
 
-RAMIREZ_TEST_DATA = (
-    '''
+RAMIREZ_TEST_DATA = """
         <div id="searchResults">
             <section class="row scale-in-center">
                 <div class="col single-col">
@@ -66,10 +65,9 @@ RAMIREZ_TEST_DATA = (
         </div>
         <script>
         </script>
-    ''')
+    """
 
-TOO_MANY_TEST_DATA = (
-    '''
+TOO_MANY_TEST_DATA = """
         <div id="searchResults">
             <div class="alert-danger content-alert">
                 Too many people matched your criteria. Please try searching by username, phone, email, or by enclosing your
@@ -81,10 +79,9 @@ TOO_MANY_TEST_DATA = (
         </div>
         <script>
         </script>
-    ''')
+    """
 
-NONE_FOUND_TEST_DATA = (
-    '''
+NONE_FOUND_TEST_DATA = """
         <div id="searchResults">
             <script>
                 if ('0' == 1) {
@@ -106,34 +103,43 @@ NONE_FOUND_TEST_DATA = (
         </div>
         <script>
         </script>
-    ''')
+    """
 
 
 class PeopleTest(unittest.TestCase):
     @responses.activate
     def test_people_get_person(self):
-        responses.add(responses.POST, people.PEOPLE_SEARCH_URL,
-                      body=RAMIREZ_TEST_DATA, status=200)
+        responses.add(
+            responses.POST, people.PEOPLE_SEARCH_URL, body=RAMIREZ_TEST_DATA, status=200
+        )
 
         ans = people.get_person("John C Ramirez")
         self.assertIsInstance(ans, list)
-        self.assertTrue(ans[0]['name'] == "Ramirez, John C")
-        self.assertTrue(ans[0]['office_phone'] == "(412) 624-8441")
+        self.assertTrue(ans[0]["name"] == "Ramirez, John C")
+        self.assertTrue(ans[0]["office_phone"] == "(412) 624-8441")
 
     @responses.activate
     def test_people_get_person_too_many(self):
-        responses.add(responses.POST, people.PEOPLE_SEARCH_URL,
-                      body=TOO_MANY_TEST_DATA, status=200)
+        responses.add(
+            responses.POST,
+            people.PEOPLE_SEARCH_URL,
+            body=TOO_MANY_TEST_DATA,
+            status=200,
+        )
 
         ans = people.get_person("Smith")
-        self.assertIsInstance(ans,list)
-        self.assertEqual(ans, [{"ERROR":"Too many people matched your criteria."}])
+        self.assertIsInstance(ans, list)
+        self.assertEqual(ans, [{"ERROR": "Too many people matched your criteria."}])
 
     @responses.activate
     def test_people_get_person_none(self):
-        responses.add(responses.POST, people.PEOPLE_SEARCH_URL,
-                      body=NONE_FOUND_TEST_DATA, status=200)
+        responses.add(
+            responses.POST,
+            people.PEOPLE_SEARCH_URL,
+            body=NONE_FOUND_TEST_DATA,
+            status=200,
+        )
 
         ans = people.get_person("Lebron Iverson James Jordan Kobe")
-        self.assertIsInstance(ans,list)
-        self.assertEqual(ans, [{"ERROR":"No one found."}])
+        self.assertIsInstance(ans, list)
+        self.assertEqual(ans, [{"ERROR": "No one found."}])

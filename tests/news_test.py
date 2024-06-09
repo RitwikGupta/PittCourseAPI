@@ -21,6 +21,7 @@ import unittest
 
 from pittapi import news
 
+
 @unittest.skip
 class NewsTest(unittest.TestCase):
     def test_get_news_default(self):
