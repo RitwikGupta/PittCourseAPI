@@ -86,7 +86,8 @@ def get_status():
                     "location": key["name"],
                     "isOpen": labs[key["name"]],
                     "total": total,
-                    "in_use": in_use}
+                    "in_use": in_use
+                }
             )
 
     return statuses
