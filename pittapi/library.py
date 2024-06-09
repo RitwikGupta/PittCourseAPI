@@ -122,16 +122,12 @@ def _extract_documents(documents: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     return new_docs
 
 
-def _extract_facets(
-    facet_fields: List[Dict[str, Any]]
-) -> Dict[str, List[Dict[str, Any]]]:
+def _extract_facets(facet_fields: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
     facets = {}  # type: Dict[str,List[Dict[str,Any]]]
     for facet in facet_fields:
         facets[facet["display_name"]] = []
         for count in facet["counts"]:
-            facets[facet["display_name"]].append(
-                {"value": count["value"], "count": count["count"]}
-            )
+            facets[facet["display_name"]].append({"value": count["value"], "count": count["count"]})
 
     return facets
 
