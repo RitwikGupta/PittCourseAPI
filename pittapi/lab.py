@@ -25,7 +25,6 @@ import requests
 import urllib3
 
 LABS_URL = "https://pitt-keyserve-prod.univ.pitt.edu/maps/std/avail.json"
-HILLMAN_URL = "https://pitt.libcal.com/spaces/bookings/search?lid=917&gid=1558&eid=0&seat=0&d=1&customDate=&q=&daily=0&draw=1&order%5B0%5D%5Bcolumn%5D=1&order%5B0%5D%5Bdir%5D=asc&start=0&length=25&search%5Bvalue%5D=&_=1717907260661"
 
 """
 Lab API is insecure for some reason (it's official Pitt one
@@ -93,34 +92,3 @@ def get_lab_status():
                 }
             )
     return statuses
-
-
-def hillman_total_reserved():
-    """Returns a simple count dictionary of the total amount of reserved rooms appointments"""
-    count = {}
-    resp = requests.get(HILLMAN_URL)
-    resp = resp.json()
-    total_records = resp["recordsTotal"]
-
-    count["Total Hillman Reservations"] = total_records
-    return count
-
-
-def reserved_hillman_times():
-    """Returns a dictionary with of reserved rooms of the Hillman with their respective times"""
-    bookings = {}
-
-    resp = requests.get(HILLMAN_URL)
-    resp = resp.json()
-    data = resp["data"]
-
-    if data is None:
-        return bookings
-
-    for reservation in data:
-        from_time = reservation["from"]
-        to_time = reservation["to"]
-        roomName = reservation["itemName"]
-        bookings[roomName] = [from_time, to_time]
-
-    return bookings

@@ -32,6 +32,9 @@ LIBRARY_URL = (
     "&sort=rank&tab=Everything&vid=01PITT_INST:01PITT_INST"
 )
 
+STUDY_ROOMS_URL = "https://pitt.libcal.com/spaces/bookings/search?lid=917&gid=1558&eid=0&seat=0&d=1&customDate=&q=&daily=0&draw=1&order%5B0%5D%5Bcolumn%5D=1&order%5B0%5D%5Bdir%5D=asc&start=0&length=25&search%5Bvalue%5D=&_=1717907260661"
+
+
 QUERY_START = "&q=any,contains,"
 
 sess = requests.session()
@@ -131,3 +134,37 @@ def _extract_facets(
             )
 
     return facets
+
+def hillman_total_reserved():
+    """Returns a simple count dictionary of the total amount of reserved rooms appointments"""
+    count = {}
+    resp = requests.get(STUDY_ROOMS_URL)
+    resp = resp.json()
+    # Total records is kept track of by default in the JSON
+    total_records = resp["recordsTotal"]
+
+    # Note: this must align with the amount of entries in reserved times function; renamed for further clarification
+    count["Total Hillman Reservations"] = total_records
+    return count
+
+
+def reserved_hillman_times():
+    """Returns a list of dictionaries of reserved rooms of the Hillman with their respective times"""
+    bookings = []
+
+    resp = requests.get(STUDY_ROOMS_URL)
+    resp = resp.json()
+    data = resp["data"]
+
+    if data is None:
+        return bookings
+
+    # Note: there can be multiple reservations in the same room, hence why we must use a list of maps, and cannot just use a singular map
+    for reservation in data:
+        bookings.append(
+            {
+                "Room": reservation["itemName"],
+                "Reserved": [reservation["from"], reservation["to"]]
+            }
+        )
+    return bookings
