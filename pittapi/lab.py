@@ -24,11 +24,15 @@ from parse import compile
 import requests
 import urllib3
 
-URL = "https://pitt-keyserve-prod.univ.pitt.edu/maps/std/avail.json"
+LABS_URL = "https://pitt-keyserve-prod.univ.pitt.edu/maps/std/avail.json"
+HILLMAN_URL = "https://pitt.libcal.com/spaces/bookings/search?lid=917&gid=1558&eid=0&seat=0&d=1&customDate=&q=&daily=0&draw=1&order%5B0%5D%5Bcolumn%5D=1&order%5B0%5D%5Bdir%5D=asc&start=0&length=25&search%5Bvalue%5D=&_=1717907260661"
 
 """
-Lab API is insecure for some reason (it's offical Pitt one
+Lab API is insecure for some reason (it's official Pitt one
 so no concern), just doing this to supress warnings
+
+Lab API now supports some additional features, supporting some aspects of fetching Hillman data, such as reserved times
+and total amount of reservations
 """
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -53,7 +57,7 @@ def _fetch_labs():
     labs = {}
 
     # get the full lab data from API
-    resp = requests.get(URL, verify=False)
+    resp = requests.get(LABS_URL, verify=False)
     resp = resp.json()
     data = resp["results"]["states"]
 
@@ -64,14 +68,14 @@ def _fetch_labs():
     return labs
 
 
-def get_status():
+def get_lab_status():
     """Returns a list with status and amount of open machines."""
     # get the list of all the labs (plus open status) at other
     statuses = []
     labs = _fetch_labs()
 
     # get all the different labs + printers at all Pitt campuses
-    resp = requests.get(URL, verify=False)
+    resp = requests.get(LABS_URL, verify=False)
     resp = resp.json()
     data = resp["results"]["divs"]
 
@@ -89,3 +93,34 @@ def get_status():
                 }
             )
     return statuses
+
+
+def hillman_total_reserved():
+    """Returns a simple count dictionary of the total amount of reserved rooms appointments"""
+    count = {}
+    resp = requests.get(HILLMAN_URL)
+    resp = resp.json()
+    total_records = resp["recordsTotal"]
+
+    count["Total Hillman Reservations"] = total_records
+    return count
+
+
+def reserved_hillman_times():
+    """Returns a dictionary with of reserved rooms of the Hillman with their respective times"""
+    bookings = {}
+
+    resp = requests.get(HILLMAN_URL)
+    resp = resp.json()
+    data = resp["data"]
+
+    if data is None:
+        return bookings
+
+    for reservation in data:
+        from_time = reservation["from"]
+        to_time = reservation["to"]
+        roomName = reservation["itemName"]
+        bookings[roomName] = [from_time, to_time]
+
+    return bookings
