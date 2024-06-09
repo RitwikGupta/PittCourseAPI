@@ -24,7 +24,6 @@ sess = requests.session()
 
 
 def get_map_vehicle_points(api_key: str = "8882812681") -> Dict[str, Any]:
-def get_map_vehicle_points(api_key: str = "8882812681") -> Dict[str, Any]:
     """Return the map location for all active vehicles."""
     payload = {"ApiKey": api_key}
     response = sess.get(
