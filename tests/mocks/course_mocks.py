@@ -1,6 +1,7 @@
 mocked_subject_data = {"subjects": [{"subject": "CS", "descr": "Computer Science"}]}
 
 mocked_courses_data = {
+<<<<<<< HEAD
     "courses": [
         {
             "catalog_nbr": "0007",
@@ -8,6 +9,9 @@ mocked_courses_data = {
             "crse_id": "105611",
         }
     ]
+=======
+    "courses": [{"catalog_nbr": "0007", "descr": "INTRODUCTION TO COMPUTER PROGRAMMING", "crse_id": "105611"}]
+>>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
 }
 
 mocked_courses_data_invalid = {}
@@ -23,10 +27,14 @@ mocked_course_info_data = {
         "course_title": "INTRODUCTION TO COMPUTER PROGRAMMING",
         "rqmnt_designtn": "",
         "effdt": "2018-06-30",
+<<<<<<< HEAD
         "components": [
             {"descr": "Lecture", "optional": "N"},
             {"descr": "Recitation", "optional": "N"},
         ],
+=======
+        "components": [{"descr": "Lecture", "optional": "N"}, {"descr": "Recitation", "optional": "N"}],
+>>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
         "attributes": [
             {
                 "crse_attribute": "DSGE",
@@ -54,6 +62,7 @@ mocked_course_info_data = {
                 "req_group": "",
                 "planner_message": "You have no active career, so you can not add this course to a planner.",
                 "open_terms": [
+<<<<<<< HEAD
                     {
                         "strm": "2224",
                         "descr": "Spring Term 2021-2022",
@@ -75,6 +84,13 @@ mocked_course_info_data = {
                     {"strm": "2227"},
                     {"strm": "2231"},
                 ],
+=======
+                    {"strm": "2224", "descr": "Spring Term 2021-2022", "default_term": False},
+                    {"strm": "2227", "descr": "Summer Term 2021-2022", "default_term": False},
+                    {"strm": "2231", "descr": "Fall Term 2022-2023", "default_term": True},
+                ],
+                "enrollable_terms": [{"strm": "2224"}, {"strm": "2227"}, {"strm": "2231"}],
+>>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
             }
         ],
     }

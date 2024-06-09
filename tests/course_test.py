@@ -21,6 +21,7 @@ import unittest
 from unittest.mock import MagicMock
 
 from pittapi import course
+<<<<<<< HEAD
 from pittapi.course import (
     Attribute,
     Component,
@@ -32,6 +33,9 @@ from pittapi.course import (
     SectionDetails,
     Subject,
 )
+=======
+from pittapi.course import Attribute, Component, Course, CourseDetails, Instructor, Meeting, Section, SectionDetails, Subject
+>>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
 from tests.mocks.course_mocks import (
     mocked_subject_data,
     mocked_courses_data,
@@ -126,9 +130,13 @@ class CourseTest(unittest.TestCase):
         test_attribute = course_sections.attributes[0]
         self.assertTrue(isinstance(test_attribute, Attribute))
         self.assertEqual(test_attribute.attribute, "DSGE")
+<<<<<<< HEAD
         self.assertEqual(
             test_attribute.attribute_description, "*DSAS General Ed. Requirements"
         )
+=======
+        self.assertEqual(test_attribute.attribute_description, "*DSAS General Ed. Requirements")
+>>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
         self.assertEqual(test_attribute.value, "ALG")
 
         self.assertEqual(test_attribute.value_description, "Algebra")
