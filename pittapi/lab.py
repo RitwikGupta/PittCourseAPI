@@ -24,14 +24,11 @@ from parse import compile
 import requests
 import urllib3
 
-LABS_URL = "https://pitt-keyserve-prod.univ.pitt.edu/maps/std/avail.json"
+URL = "https://pitt-keyserve-prod.univ.pitt.edu/maps/std/avail.json"
 
 """
-Lab API is insecure for some reason (it's official Pitt one
+Lab API is insecure for some reason (it's offical Pitt one
 so no concern), just doing this to supress warnings
-
-Lab API now supports some additional features, supporting some aspects of fetching Hillman data, such as reserved times
-and total amount of reservations
 """
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -51,12 +48,13 @@ class Lab(NamedTuple):
     linux: int
 """
 
+
 def _fetch_labs():
     """Fetches dictionary of status of all labs."""
     labs = {}
 
     # get the full lab data from API
-    resp = requests.get(LABS_URL, verify=False)
+    resp = requests.get(URL, verify=False)
     resp = resp.json()
     data = resp["results"]["states"]
 
@@ -67,14 +65,14 @@ def _fetch_labs():
     return labs
 
 
-def get_lab_status():
+def get_status():
     """Returns a list with status and amount of open machines."""
     # get the list of all the labs (plus open status) at other
     statuses = []
     labs = _fetch_labs()
 
     # get all the different labs + printers at all Pitt campuses
-    resp = requests.get(LABS_URL, verify=False)
+    resp = requests.get(URL, verify=False)
     resp = resp.json()
     data = resp["results"]["divs"]
 
@@ -83,12 +81,5 @@ def get_lab_status():
         if key["name"] in labs:
             total = key["total"]
             in_use = key["active"]
-            statuses.append(
-                {
-                    "location": key["name"],
-                    "isOpen": labs[key["name"]],
-                    "total": total,
-                    "in_use": in_use
-                }
-            )
+            statuses.append({"location": key["name"], "isOpen": labs[key["name"]], "total": total, "in_use": in_use})
     return statuses
