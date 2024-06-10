@@ -215,16 +215,12 @@ def get_course_details(term: Union[str, int], subject: str, course: Union[str, i
         )
 
     return CourseDetails(
-<<<<<<< HEAD
         course=Course(
             subject_code=subject,
             course_number=course,
             course_id=internal_course_id,
             course_title=course_title,
         ),
-=======
-        course=Course(subject_code=subject, course_number=course, course_id=internal_course_id, course_title=course_title),
->>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
         course_description=course_description,
         credit_range=credit_range,
         requisites=requisites,
