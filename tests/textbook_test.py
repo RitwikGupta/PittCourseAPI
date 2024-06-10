@@ -111,10 +111,10 @@ class TextbookTest(unittest.TestCase):
             "EXIST",
             None,
         )
+        
     @responses.activate
     def test_get_textbook_invalid_instructor(self):
         responses.add(
-<<<<<<< HEAD
             responses.GET,
             "http://pitt.verbacompare.com/compare/courses/?id=22457&term_id=1000",
             json=self.cs_data,
@@ -123,16 +123,10 @@ class TextbookTest(unittest.TestCase):
         self.assertRaises(
             LookupError, textbook.get_textbook, TERM, "CS", "447", "EXIST", None
         )
-=======
-            responses.GET, "http://pitt.verbacompare.com/compare/courses/?id=22457&term_id=1000", json=self.cs_data, status=200
-        )
-        self.assertRaises(LookupError, textbook.get_textbook, TERM, "CS", "447", "EXIST", None)
->>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
-
+        
     @responses.activate
     def test_get_textbook_invalid_section(self):
         responses.add(
-<<<<<<< HEAD
             responses.GET,
             "http://pitt.verbacompare.com/compare/courses/?id=22457&term_id=1000",
             json=self.cs_data,
@@ -141,16 +135,10 @@ class TextbookTest(unittest.TestCase):
         self.assertRaises(
             LookupError, textbook.get_textbook, TERM, "CS", "401", None, "9999"
         )
-=======
-            responses.GET, "http://pitt.verbacompare.com/compare/courses/?id=22457&term_id=1000", json=self.cs_data, status=200
-        )
-        self.assertRaises(LookupError, textbook.get_textbook, TERM, "CS", "401", None, "9999")
->>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
 
     @responses.activate
     def test_get_textbook_invalid_section_and_instructor(self):
         responses.add(
-<<<<<<< HEAD
             responses.GET,
             "http://pitt.verbacompare.com/compare/courses/?id=22457&term_id=1000",
             json=self.cs_data,
@@ -159,11 +147,6 @@ class TextbookTest(unittest.TestCase):
         self.assertRaises(
             TypeError, textbook.get_textbook, TERM, "CS", "401", None, None
         )
-=======
-            responses.GET, "http://pitt.verbacompare.com/compare/courses/?id=22457&term_id=1000", json=self.cs_data, status=200
-        )
-        self.assertRaises(TypeError, textbook.get_textbook, TERM, "CS", "401", None, None)
->>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
 
     def test_term_validation(self):
         self.assertEqual(self.validate_term(TERM), TERM)
@@ -204,7 +187,6 @@ class TextbookTest(unittest.TestCase):
 
     def test_find_item(self):
         find = textbook._find_item("id", "key", "test")
-<<<<<<< HEAD
         test_data = [
             {"id": 1, "key": 1},
             {"id": 2, "key": 4},
@@ -212,10 +194,7 @@ class TextbookTest(unittest.TestCase):
             {"id": 4, "key": 16},
             {"id": 5, "key": 25},
         ]
-=======
-        test_data = [{"id": 1, "key": 1}, {"id": 2, "key": 4}, {"id": 3, "key": 9}, {"id": 4, "key": 16}, {"id": 5, "key": 25}]
->>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
-
+        
         for i in range(1, 6):
             self.assertEqual(find(test_data, i), i**2)
 
@@ -224,20 +203,15 @@ class TextbookTest(unittest.TestCase):
     @responses.activate
     def test_extract_id(self):
         responses.add(
-<<<<<<< HEAD
             responses.GET,
             "http://pitt.verbacompare.com/compare/courses/?id=22457&term_id=1000",
             json=self.cs_data,
             status=201,
-=======
-            responses.GET, "http://pitt.verbacompare.com/compare/courses/?id=22457&term_id=1000", json=self.cs_data, status=201
->>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
         )
 
     def test_filter_dictionary(self):
         test_dict = {"a": 1, "b": 2, "c": 3}
         test_key = ["a", "c"]
-<<<<<<< HEAD
         self.assertEqual(
             textbook._filter_dictionary(test_dict, test_key), {"a": 1, "c": 3}
         )
@@ -246,9 +220,4 @@ class TextbookTest(unittest.TestCase):
         self.assertRaises(
             ValueError, textbook.get_textbook, TERM, "TEST", "000", "EXIST", None
         )
-=======
         self.assertEqual(textbook._filter_dictionary(test_dict, test_key), {"a": 1, "c": 3})
-
-    def test_invalid_department_code(self):
-        self.assertRaises(ValueError, textbook.get_textbook, TERM, "TEST", "000", "EXIST", None)
->>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
