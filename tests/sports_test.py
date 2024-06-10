@@ -27,15 +27,11 @@ class LibraryTest(unittest.TestCase):
                 "id": "221",
                 "record": {
                     "items": [
-<<<<<<< HEAD
                         {
                             "description": "Overall Record",
                             "type": "total",
                             "summary": "11-21",
                         },
-=======
-                        {"description": "Overall Record", "type": "total", "summary": "11-21"},
->>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
                         {
                             "description": "Home Record",
                             "type": "home",
@@ -48,14 +44,10 @@ class LibraryTest(unittest.TestCase):
                         "date": "2022-03-08T19:00Z",
                         "competitions": [
                             {
-<<<<<<< HEAD
                                 "venue": {
                                     "fullName": "Barclays Center",
                                     "address": {"city": "Brooklyn", "state": "NY"},
                                 },
-=======
-                                "venue": {"fullName": "Barclays Center", "address": {"city": "Brooklyn", "state": "NY"}},
->>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
                                 "competitors": [
                                     {
                                         "id": "221",
@@ -94,15 +86,11 @@ class LibraryTest(unittest.TestCase):
                 "name": "Pittsburgh",
                 "record": {
                     "items": [
-<<<<<<< HEAD
                         {
                             "description": "Overall Record",
                             "type": "total",
                             "summary": "10-2",
                         },
-=======
-                        {"description": "Overall Record", "type": "total", "summary": "10-2"},
->>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
                         {
                             "description": "Home Record",
                             "type": "home",
