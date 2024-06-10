@@ -61,15 +61,16 @@ To run all unit tests, run
 pytest --cov=pittapi tests/
 ```
 
-### Code Styling
+### Code Quality
 
-To ensure consistent and readable code, we use the `black` formatter to help our code adhere to [PEP 8](https://peps.python.org/pep-0008/) style guidelines.
-`black` is also installed automatically when you set up `pipenv`, and it's also included in our pre-commit hooks.
-If you have pre-commit set up correctly, pre-commit should run `black` automatically when you make a commit.
+To ensure consistent and readable code, we use the `flake8` linter and `black` formatter to help our code adhere to [PEP 8](https://peps.python.org/pep-0008/) style guidelines.
+`flake8` and `black` are also installed automatically when you set up `pipenv`, and they're also included in our pre-commit hooks.
+This means that if you have pre-commit set up correctly, pre-commit should run `flake8` and `black` automatically when you make a commit.
 
-To format the whole codebase on your own, simply run
+However, if you wish to run the linter and formatter yourself, simply run these commands:
 ```sh
-black .
+flake8 --max-line-length=127 .
+black --line-length=127 .
 ```
 
 Apart from general code styling, you should also document and comment your code based on general best practices.
@@ -82,5 +83,6 @@ In terms of writing style, we expect you to write in a professional manner and f
 ### GitHub Workflows
 
 Note that we use automated GitHub workflows to check incoming PRs.
-For you as a contributor, this means that GitHub will run `black` and `pytest` on your PR.
+For you as a contributor, this means that GitHub will run `flake8`, `black`, and `pytest` on your PR.
+For more information on the commands that we run as part of our workflows, please see our [workflows directory](.github/workflows).
 Make sure your code pass all workflows before requesting a review.
