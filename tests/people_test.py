@@ -109,14 +109,9 @@ NONE_FOUND_TEST_DATA = """
 class PeopleTest(unittest.TestCase):
     @responses.activate
     def test_people_get_person(self):
-<<<<<<< HEAD
         responses.add(
             responses.POST, people.PEOPLE_SEARCH_URL, body=RAMIREZ_TEST_DATA, status=200
         )
-=======
-        responses.add(responses.POST, people.PEOPLE_SEARCH_URL, body=RAMIREZ_TEST_DATA, status=200)
->>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
-
         ans = people.get_person("John C Ramirez")
         self.assertIsInstance(ans, list)
         self.assertTrue(ans[0]["name"] == "Ramirez, John C")
@@ -124,34 +119,24 @@ class PeopleTest(unittest.TestCase):
 
     @responses.activate
     def test_people_get_person_too_many(self):
-<<<<<<< HEAD
         responses.add(
             responses.POST,
             people.PEOPLE_SEARCH_URL,
             body=TOO_MANY_TEST_DATA,
             status=200,
         )
-=======
-        responses.add(responses.POST, people.PEOPLE_SEARCH_URL, body=TOO_MANY_TEST_DATA, status=200)
->>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
-
         ans = people.get_person("Smith")
         self.assertIsInstance(ans, list)
         self.assertEqual(ans, [{"ERROR": "Too many people matched your criteria."}])
 
     @responses.activate
     def test_people_get_person_none(self):
-<<<<<<< HEAD
         responses.add(
             responses.POST,
             people.PEOPLE_SEARCH_URL,
             body=NONE_FOUND_TEST_DATA,
             status=200,
         )
-=======
-        responses.add(responses.POST, people.PEOPLE_SEARCH_URL, body=NONE_FOUND_TEST_DATA, status=200)
->>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
-
         ans = people.get_person("Lebron Iverson James Jordan Kobe")
         self.assertIsInstance(ans, list)
         self.assertEqual(ans, [{"ERROR": "No one found."}])
