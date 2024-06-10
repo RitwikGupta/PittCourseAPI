@@ -36,14 +36,10 @@ class StatusTest(unittest.TestCase):
 
     @responses.activate
     def test_get_status(self):
-<<<<<<< HEAD
         responses.add(
             responses.GET,
             "https://status.pitt.edu/index.json",
             json=self.status_data,
             status=200,
         )
-=======
-        responses.add(responses.GET, "https://status.pitt.edu/index.json", json=self.status_data, status=200)
->>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
         self.assertIsInstance(status.get_status(), dict)
