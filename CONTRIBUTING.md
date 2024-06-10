@@ -84,5 +84,5 @@ In terms of writing style, we expect you to write in a professional manner and f
 
 Note that we use automated GitHub workflows to check incoming PRs.
 For you as a contributor, this means that GitHub will run `flake8`, `black`, and `pytest` on your PR.
-For more information on the commands that we run as part of our workflows, please see our [workflows directory](.github/workflows).
+For more information on the commands that we run as part of our workflows, please see our [workflows directory](/.github/workflows).
 Make sure your code pass all workflows before requesting a review.
