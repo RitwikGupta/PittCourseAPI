@@ -36,16 +36,12 @@ class LibraryTest(unittest.TestCase):
 
     @responses.activate
     def test_get_documents(self):
-<<<<<<< HEAD
         responses.add(
             responses.GET,
             library.LIBRARY_URL + library.QUERY_START + "water",
             json=self.library_query,
             status=200,
         )
-=======
-        responses.add(responses.GET, library.LIBRARY_URL + library.QUERY_START + "water", json=self.library_query, status=200)
->>>>>>> 5707e24e2f881755bb429b3b1a0f2245940b46d6
         query_result = library.get_documents("water")
         self.assertIsInstance(query_result, dict)
         self.assertEqual(query_result["pages"], 10)
