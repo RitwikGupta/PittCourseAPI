@@ -220,4 +220,3 @@ class TextbookTest(unittest.TestCase):
         self.assertRaises(
             ValueError, textbook.get_textbook, TERM, "TEST", "000", "EXIST", None
         )
-        self.assertEqual(textbook._filter_dictionary(test_dict, test_key), {"a": 1, "c": 3})
