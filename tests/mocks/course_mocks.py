@@ -1,3 +1,4 @@
+mocked_subject_data = {"subjects": [{"subject": "CS", "descr": "Computer Science"}]}
 mocked_courses_data = {
     "courses": [
         {
