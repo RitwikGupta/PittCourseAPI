@@ -147,21 +147,19 @@ def hillman_total_reserved():
 
 def reserved_hillman_times():
     """Returns a list of dictionaries of reserved rooms of the Hillman with their respective times"""
-    bookings = []
-
     resp = requests.get(STUDY_ROOMS_URL)
     resp = resp.json()
     data = resp["data"]
 
     if data is None:
-        return bookings
+        return []
 
     # Note: there can be multiple reservations in the same room, hence why we must use a list of maps, and cannot just use a singular map
-    for reservation in data:
-        bookings.append(
-            {
-                "Room": reservation["itemName"],
-                "Reserved": [reservation["from"], reservation["to"]],
-            }
-        )
+    bookings = [
+        {
+            "Room": reservation["itemName"],
+            "Reserved": [reservation["from"], reservation["to"]],
+        }
+        for reservation in data
+    ]
     return bookings
