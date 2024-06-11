@@ -88,3 +88,4 @@ class DiningTest(unittest.TestCase):
         locations = dining.get_location_menu(
             "The Eatery", datetime.datetime(2024, 4, 12), "Breakfast"
         )
+        self.assertIsInstance(locations, dict)
