@@ -130,7 +130,6 @@ class CourseTest(unittest.TestCase):
         self.assertEqual(
             test_attribute.attribute_description, "*DSAS General Ed. Requirements"
         )
-        self.assertEqual(test_attribute.attribute_description, "*DSAS General Ed. Requirements")
         self.assertEqual(test_attribute.value, "ALG")
         self.assertEqual(test_attribute.value_description, "Algebra")
         test_section = course_sections.sections[0]
