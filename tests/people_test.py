@@ -109,9 +109,7 @@ NONE_FOUND_TEST_DATA = """
 class PeopleTest(unittest.TestCase):
     @responses.activate
     def test_people_get_person(self):
-        responses.add(
-            responses.POST, people.PEOPLE_SEARCH_URL, body=RAMIREZ_TEST_DATA, status=200
-        )
+        responses.add(responses.POST, people.PEOPLE_SEARCH_URL, body=RAMIREZ_TEST_DATA, status=200)
         ans = people.get_person("John C Ramirez")
         self.assertIsInstance(ans, list)
         self.assertTrue(ans[0]["name"] == "Ramirez, John C")

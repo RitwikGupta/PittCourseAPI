@@ -23,9 +23,7 @@ from typing import Any, Dict, List, Union
 
 from bs4 import BeautifulSoup
 
-BASE_URL = (
-    "https://www.laundryview.com/api/currentRoomData?school_desc_key=197&location={}"
-)
+BASE_URL = "https://www.laundryview.com/api/currentRoomData?school_desc_key=197&location={}"
 
 LOCATION_LOOKUP = {
     "TOWERS": "2430136",

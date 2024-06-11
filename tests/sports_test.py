@@ -141,9 +141,7 @@ class LibraryTest(unittest.TestCase):
                 "standingSummary": "1st in ACC - Coastal",
             }
         }
-        sports._get_mens_basketball_data = MagicMock(
-            return_value=mocked_basketball_data
-        )
+        sports._get_mens_basketball_data = MagicMock(return_value=mocked_basketball_data)
         sports._get_football_data = MagicMock(return_value=mocked_football_data)
 
     def test_get_mens_basketball_record(self):
@@ -153,9 +151,7 @@ class LibraryTest(unittest.TestCase):
         offseason_data = {"team": {"id": "221", "record": {}}}
         sports._get_mens_basketball_data = MagicMock(return_value=offseason_data)
 
-        self.assertEqual(
-            "There's no record right now.", sports.get_mens_basketball_record()
-        )
+        self.assertEqual("There's no record right now.", sports.get_mens_basketball_record())
 
     def test_get_football_record(self):
         self.assertEqual("10-2", sports.get_football_record())

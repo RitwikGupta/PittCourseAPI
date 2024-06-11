@@ -37,9 +37,7 @@ def _load_n_items(feed: str, max_news_items: int):
     request_objs = []
     for i in range(int(math.ceil(max_news_items / 10))):
         payload["start"] = i * 10
-        request_objs.append(
-            grequests.get("https://m.pitt.edu/news/index.json", params=payload)
-        )
+        request_objs.append(grequests.get("https://m.pitt.edu/news/index.json", params=payload))
 
     responses = grequests.imap(request_objs)
 

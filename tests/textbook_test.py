@@ -49,14 +49,10 @@ class TextbookTest(unittest.TestCase):
             json=self.cs_data,
             status=200,
         )
-        instructor_test = textbook.get_textbook(
-            term=TERM, department="CS", course="445", instructor="GARRISON III"
-        )
+        instructor_test = textbook.get_textbook(term=TERM, department="CS", course="445", instructor="GARRISON III")
         instructor_test = textbook.get_textbook(term=TERM, department="CS", course="445", instructor="GARRISON III")
 
-        section_test = textbook.get_textbook(
-            term=TERM, department="CS", course="445", section="1030"
-        )
+        section_test = textbook.get_textbook(term=TERM, department="CS", course="445", section="1030")
         self.assertIsInstance(instructor_test, list)
         self.assertIsInstance(section_test, list)
 
@@ -111,7 +107,7 @@ class TextbookTest(unittest.TestCase):
             "EXIST",
             None,
         )
-        
+
     @responses.activate
     def test_get_textbook_invalid_instructor(self):
         responses.add(
@@ -120,10 +116,8 @@ class TextbookTest(unittest.TestCase):
             json=self.cs_data,
             status=200,
         )
-        self.assertRaises(
-            LookupError, textbook.get_textbook, TERM, "CS", "447", "EXIST", None
-        )
-        
+        self.assertRaises(LookupError, textbook.get_textbook, TERM, "CS", "447", "EXIST", None)
+
     @responses.activate
     def test_get_textbook_invalid_section(self):
         responses.add(
@@ -132,9 +126,7 @@ class TextbookTest(unittest.TestCase):
             json=self.cs_data,
             status=200,
         )
-        self.assertRaises(
-            LookupError, textbook.get_textbook, TERM, "CS", "401", None, "9999"
-        )
+        self.assertRaises(LookupError, textbook.get_textbook, TERM, "CS", "401", None, "9999")
 
     @responses.activate
     def test_get_textbook_invalid_section_and_instructor(self):
@@ -144,9 +136,7 @@ class TextbookTest(unittest.TestCase):
             json=self.cs_data,
             status=200,
         )
-        self.assertRaises(
-            TypeError, textbook.get_textbook, TERM, "CS", "401", None, None
-        )
+        self.assertRaises(TypeError, textbook.get_textbook, TERM, "CS", "401", None, None)
 
     def test_term_validation(self):
         self.assertEqual(self.validate_term(TERM), TERM)
@@ -194,7 +184,7 @@ class TextbookTest(unittest.TestCase):
             {"id": 4, "key": 16},
             {"id": 5, "key": 25},
         ]
-        
+
         for i in range(1, 6):
             self.assertEqual(find(test_data, i), i**2)
 
@@ -212,11 +202,7 @@ class TextbookTest(unittest.TestCase):
     def test_filter_dictionary(self):
         test_dict = {"a": 1, "b": 2, "c": 3}
         test_key = ["a", "c"]
-        self.assertEqual(
-            textbook._filter_dictionary(test_dict, test_key), {"a": 1, "c": 3}
-        )
+        self.assertEqual(textbook._filter_dictionary(test_dict, test_key), {"a": 1, "c": 3})
 
     def test_invalid_department_code(self):
-        self.assertRaises(
-            ValueError, textbook.get_textbook, TERM, "TEST", "000", "EXIST", None
-        )
+        self.assertRaises(ValueError, textbook.get_textbook, TERM, "TEST", "000", "EXIST", None)

@@ -19,9 +19,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 import requests
 
-FOOTBALL_URL = (
-    "http://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/pitt"
-)
+FOOTBALL_URL = "http://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/pitt"
 MENS_BASKETBALL_URL = "http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/pittsburgh"
 
 
@@ -49,10 +47,7 @@ def get_next_mens_basketball_game() -> dict:
         status = None
         if next_game["competitions"][0]["status"]["type"]["name"] == "STATUS_FINAL":
             status = "GAME_COMPLETE"
-        elif (
-            next_game["competitions"][0]["status"]["type"]["name"]
-            == "STATUS_IN_PROGRESS"
-        ):
+        elif next_game["competitions"][0]["status"]["type"]["name"] == "STATUS_IN_PROGRESS":
             status = "IN_PROGRESS"
         if next_game["competitions"][0]["competitors"][0]["id"] == 221:
             opponent = next_game["competitions"][0]["competitors"][0]
@@ -110,10 +105,7 @@ def get_next_football_game() -> dict:
         status = None
         if next_game["competitions"][0]["status"]["type"]["name"] == "STATUS_FINAL":
             status = "GAME_COMPLETE"
-        elif (
-            next_game["competitions"][0]["status"]["type"]["name"]
-            == "STATUS_IN_PROGRESS"
-        ):
+        elif next_game["competitions"][0]["status"]["type"]["name"] == "STATUS_IN_PROGRESS":
             status = "IN_PROGRESS"
         if next_game["competitions"][0]["competitors"][0]["id"] == 221:
             opponent = next_game["competitions"][0]["competitors"][1]
