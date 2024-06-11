@@ -7,7 +7,6 @@ mocked_courses_data = {
             "crse_id": "105611",
         }
     ]
-    "courses": [{"catalog_nbr": "0007", "descr": "INTRODUCTION TO COMPUTER PROGRAMMING", "crse_id": "105611"}]
 }
 
 mocked_courses_data_invalid = {}
