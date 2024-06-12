@@ -19,7 +19,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 import requests
 from html.parser import HTMLParser
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Union
 
 LIBRARY_URL = (
     "https://pitt.primo.exlibrisgroup.com/primaws/rest/pub/pnxs"
@@ -132,7 +132,7 @@ def _extract_facets(facet_fields: List[Dict[str, Any]]) -> Dict[str, List[Dict[s
     return facets
 
 
-def hillman_total_reserved():
+def hillman_total_reserved() -> Dict[str, int]:
     """Returns a simple count dictionary of the total amount of reserved rooms appointments"""
     count = {}
     resp = requests.get(STUDY_ROOMS_URL)
@@ -144,8 +144,7 @@ def hillman_total_reserved():
     count["Total Hillman Reservations"] = total_records
     return count
 
-
-def reserved_hillman_times():
+def reserved_hillman_times() -> List[Dict[str, Union[str, List[str]]]]:
     """Returns a list of dictionaries of reserved rooms of the Hillman with their respective times"""
     resp = requests.get(STUDY_ROOMS_URL)
     resp = resp.json()
