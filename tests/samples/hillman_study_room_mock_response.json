@@ -1,0 +1,55 @@
+{
+    "data": [
+        {
+            "from": "2024-06-12 17:30:00",
+            "to": "2024-06-12 20:30:00",
+            "nickname": "H2P CLUB",
+            "itemId": 31053,
+            "itemName": "408 HL (Max. 5 persons) (Enclosed Room)",
+            "itemHasMoreInfo": true,
+            "categoryName": "Group Study Spaces",
+            "categoryUrl": "/spaces?lid=917&gid=1558",
+            "locationName": "Hillman Library",
+            "seatName": ""
+        },
+        {
+            "from": "2024-06-12 18:00:00",
+            "to": "2024-06-12 21:00:00",
+            "nickname": "ria",
+            "itemId": 31055,
+            "itemName": "409 HL (Max. 5 persons) (Enclosed Room)",
+            "itemHasMoreInfo": true,
+            "categoryName": "Group Study Spaces",
+            "categoryUrl": "/spaces?lid=917&gid=1558",
+            "locationName": "Hillman Library",
+            "seatName": ""
+        },
+        {
+            "from": "2024-06-12 18:30:00",
+            "to": "2024-06-12 21:30:00",
+            "nickname": "Leyla",
+            "itemId": 60964,
+            "itemName": "303 HL (Max. 5 persons) (Enclosed Room)",
+            "itemHasMoreInfo": true,
+            "categoryName": "Group Study Spaces",
+            "categoryUrl": "/spaces?lid=917&gid=1558",
+            "locationName": "Hillman Library",
+            "seatName": ""
+        },
+        {
+            "from": "2024-06-12 19:00:00",
+            "to": "2024-06-12 22:30:00",
+            "nickname": "John 117",
+            "itemId": 146782,
+            "itemName": "217 HL (Max. 10 persons) (Enclosed Room)",
+            "itemHasMoreInfo": true,
+            "categoryName": "Group Study Spaces",
+            "categoryUrl": "/spaces?lid=917&gid=1558",
+            "locationName": "Hillman Library",
+            "seatName": ""
+        }
+    ],
+    "draw": 1,
+    "recordsTotal": 4,
+    "recordsFiltered": 4
+}
