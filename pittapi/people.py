@@ -18,8 +18,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 """
 
 from requests_html import HTMLSession
-from typing import List, Dict
-from parse import compile
 
 # Please note that find.pitt.edu will not accept more than 10 requests within a few minutes
 # It will time out if that happens
@@ -43,7 +41,7 @@ LABEL_CONVERSION = {
 }
 
 
-def _parse_segments(person: dict, segments: List[str]) -> None:
+def _parse_segments(person: dict, segments: list[str]) -> None:
     label = None
     for segment in segments:
         if "class" in segment.attrs and "row-label" in segment.attrs["class"]:
@@ -62,7 +60,7 @@ def _parse_segments(person: dict, segments: List[str]) -> None:
                 person[label] = segment.text
 
 
-def get_person(query: str) -> List[Dict[str, str]]:
+def get_person(query: str) -> list[dict[str, str]]:
     payload = {"search": query}
     session = HTMLSession()
     resp = session.post(PEOPLE_SEARCH_URL, data=payload)

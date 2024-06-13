@@ -18,10 +18,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 """
 
 import requests
-from typing import Dict, List, Any
+from typing import Any
 
 
-def get_status() -> Dict[str, List[Any]]:
+def get_status() -> dict[str, list[Any]]:
     """Gets status information about all Pitt services"""
     status = requests.get("https://status.pitt.edu/index.json")
     data = status.json()

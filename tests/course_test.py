@@ -21,6 +21,7 @@ import unittest
 from unittest.mock import MagicMock
 
 from pittapi import course
+
 from pittapi.course import (
     Attribute,
     Component,

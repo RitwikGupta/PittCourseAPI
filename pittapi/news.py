@@ -17,11 +17,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
 
-import re
 import math
 import requests
 import grequests
-from typing import Dict, List, Any
+from typing import Any
 
 sess = requests.session()
 
@@ -44,7 +43,7 @@ def _load_n_items(feed: str, max_news_items: int):
     return responses
 
 
-def get_news(feed: str = "main_news", max_news_items: int = 10) -> List[Dict[str, Any]]:
+def get_news(feed: str = "main_news", max_news_items: int = 10) -> list[dict[str, Any]]:
     # feed indicates the desired news feed
     # 'main_news'      - main news
     # 'cssd'           - student announcements, on my pitt
