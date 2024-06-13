@@ -18,10 +18,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 """
 
 import requests
-import re
-from typing import Any, Dict, List, Union
+from typing import Any
 
-from bs4 import BeautifulSoup
 
 BASE_URL = "https://www.laundryview.com/api/currentRoomData?school_desc_key=197&location={}"
 
@@ -46,7 +44,7 @@ def _get_laundry_info(building_name: str) -> Any:
     return info
 
 
-def get_status_simple(building_name: str) -> Dict[str, str]:
+def get_status_simple(building_name: str) -> dict[str, str]:
     """
     :returns: a dictionary with free washers and dryers as well as total washers
               and dryers for given building
@@ -90,7 +88,7 @@ def get_status_simple(building_name: str) -> Dict[str, str]:
     }
 
 
-def get_status_detailed(building_name: str) -> List[Dict[str, Union[str, int]]]:
+def get_status_detailed(building_name: str) -> list[dict[str, str | int]]:
     """
     :returns: A list of washers and dryers for the passed
               building location with their statuses

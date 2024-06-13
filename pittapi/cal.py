@@ -17,7 +17,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
 
-from typing import List, NamedTuple
+from typing import NamedTuple
 
 import requests
 
@@ -36,7 +36,7 @@ COURSE_CALENDAR_URL: str = "https://25livepub.collegenet.com/calendars/pitt-cour
 GRADUATION_CALENDAR_URL: str = "https://25livepub.collegenet.com/calendars/pitt-graduation-calendar.json"
 
 
-def _fetch_calendar_events(url: str) -> List[Event]:
+def _fetch_calendar_events(url: str) -> list[Event]:
     """"""
     data = requests.get(url).json()
     events = []
@@ -52,27 +52,27 @@ def _fetch_calendar_events(url: str) -> List[Event]:
     return events
 
 
-def get_academic_calendar() -> List[Event]:
+def get_academic_calendar() -> list[Event]:
     """"""
     return _fetch_calendar_events(ACADEMIC_CALENDAR_URL)
 
 
-def get_grades_calendar() -> List[Event]:
+def get_grades_calendar() -> list[Event]:
     """"""
     return _fetch_calendar_events(GRADES_CALENDAR_URL)
 
 
-def get_enrollment_calendar() -> List[Event]:
+def get_enrollment_calendar() -> list[Event]:
     """"""
     return _fetch_calendar_events(ENROLLMENT_CALENDAR_URL)
 
 
-def get_course_calendar() -> List[Event]:
+def get_course_calendar() -> list[Event]:
     """This is not a calendar about course schedule but rather
     when courses/class are being determined for the next semester"""
     return _fetch_calendar_events(COURSE_CALENDAR_URL)
 
 
-def get_graduation_calendar() -> List[Event]:
+def get_graduation_calendar() -> list[Event]:
     """"""
     return _fetch_calendar_events(GRADUATION_CALENDAR_URL)

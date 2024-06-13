@@ -1,7 +1,7 @@
 import grequests
 import requests
 
-from typing import List, Dict, Any, Callable, Generator, Tuple
+from typing import Any, Callable, Generator
 
 BASE_URL = "http://pitt.verbacompare.com/"
 
@@ -252,14 +252,14 @@ def _validate_course(course: str) -> str:
     return "0" * (4 - len(course)) + course
 
 
-def _filter_dictionary(d: Dict[Any, Any], keys: List[Any]) -> Dict[Any, Any]:
+def _filter_dictionary(d: dict[Any, Any], keys: list[Any]) -> dict[Any, Any]:
     """Creates new dictionary from selecting certain
     key value pairs from another dictionary
     """
     return dict((k, d[k]) for k in keys if k in d)
 
 
-def _find_item(id_key, data_key, error_item) -> Callable[[Dict[Any, Any], Any], Any]:
+def _find_item(id_key, data_key, error_item) -> Callable[[dict[Any, Any], Any], Any]:
     """Finds a dictionary in a list based on its id key, and
     returns a piece of data from the dictionary based on a data key.
     """
@@ -297,7 +297,7 @@ def _extract_id(response, course: str, instructor: str, section: str) -> str:
     raise LookupError("Unable to find course by " + LOOKUP_ERRORS[error].format(section, instructor))
 
 
-def _extract_books(ids: List[str]) -> List[Dict[str, str]]:
+def _extract_books(ids: list[str]) -> list[dict[str, str]]:
     """Fetches a course's textbook information and returns a list
     of textbooks for the given course.
     """
@@ -314,8 +314,8 @@ class DefaultDict(dict):
 
 
 def _fetch_course(
-    courses: List[Dict[str, str]], departments: Dict[str, str]
-) -> Generator[Tuple[str, str, str, str], None, None]:
+    courses: list[dict[str, str]], departments: dict[str, str]
+) -> Generator[tuple[str, str, str, str], None, None]:
     """Generator for fetching a courses information in order"""
     for course in courses:
         course = DefaultDict(course)
@@ -340,7 +340,7 @@ def _get_department_number(department_code: str) -> int:
     return department_number
 
 
-def get_textbooks(term: str, courses: List[Dict[str, str]]) -> List[Dict[str, str]]:
+def get_textbooks(term: str, courses: list[dict[str, str]]) -> list[dict[str, str]]:
     """Retrieves textbooks for multiple courses in the same term."""
     departments = {course["department"] for course in courses}
     responses = grequests.map(
@@ -367,7 +367,7 @@ def get_textbooks(term: str, courses: List[Dict[str, str]]) -> List[Dict[str, st
     return _extract_books(section_ids)
 
 
-def get_textbook(term: str, department: str, course: str, instructor: str = None, section: str = None) -> List[Dict[str, str]]:
+def get_textbook(term: str, department: str, course: str, instructor: str = None, section: str = None) -> list[dict[str, str]]:
     """Retrieves textbooks for a given course."""
     has_section_or_instructor = (instructor is not None) or (section is not None)
     if not has_section_or_instructor:
