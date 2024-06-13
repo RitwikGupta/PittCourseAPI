@@ -27,6 +27,9 @@ from pittapi import library
 
 SAMPLE_PATH = Path() / "tests" / "samples"
 
+# Put path to Hillman Library Study Rooms mock response and run unit test
+HILLMAN_STUDY_ROOMS_PATH = None
+
 
 class LibraryTest(unittest.TestCase):
     def __init__(self, *args, **kwargs):

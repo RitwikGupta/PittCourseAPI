@@ -144,6 +144,7 @@ def hillman_total_reserved() -> Dict[str, int]:
     count["Total Hillman Reservations"] = total_records
     return count
 
+
 def reserved_hillman_times() -> List[Dict[str, Union[str, List[str]]]]:
     """Returns a list of dictionaries of reserved rooms of the Hillman with their respective times"""
     resp = requests.get(STUDY_ROOMS_URL)
