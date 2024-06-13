@@ -53,7 +53,7 @@ class HTMLStrip(HTMLParser):
         return "".join(self.data)
 
 
-def get_documents(query: str, page: int = 1) -> Dict[str, Any]:
+def get_documents(query: str, page: int = 1) -> dict[str, Any]:
     """Return ten resource results from the specified page"""
     parsed_query = query.replace(" ", "+")
     full_query = LIBRARY_URL + QUERY_START + parsed_query
@@ -64,7 +64,7 @@ def get_documents(query: str, page: int = 1) -> Dict[str, Any]:
     return results
 
 
-def get_document_by_bookmark(bookmark: str) -> Dict[str, Any]:
+def get_document_by_bookmark(bookmark: str) -> dict[str, Any]:
     """Return resource referenced by bookmark"""
     payload = {"bookMark": bookmark}
     resp = sess.get(LIBRARY_URL, params=payload)
@@ -84,7 +84,7 @@ def _strip_html(html: str) -> str:
     return strip.get_data()
 
 
-def _extract_results(json: Dict[str, Any]) -> Dict[str, Any]:
+def _extract_results(json: dict[str, Any]) -> dict[str, Any]:
     results = {
         "total_results": json["info"]["total"],
         "pages": json["info"]["last"],
@@ -93,7 +93,7 @@ def _extract_results(json: Dict[str, Any]) -> Dict[str, Any]:
     return results
 
 
-def _extract_documents(documents: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def _extract_documents(documents: list[dict[str, Any]]) -> list[dict[str, Any]]:
     new_docs = []
     keep_keys = {
         "title",
@@ -122,8 +122,8 @@ def _extract_documents(documents: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     return new_docs
 
 
-def _extract_facets(facet_fields: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
-    facets = {}  # type: Dict[str,List[Dict[str,Any]]]
+def _extract_facets(facet_fields: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
+    facets: dict[str, list[dict[str, Any]]] = {}
     for facet in facet_fields:
         facets[facet["display_name"]] = []
         for count in facet["counts"]:

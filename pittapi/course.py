@@ -17,10 +17,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
 
-import datetime
+from __future__ import annotations
+
 import re
 import requests
-from typing import Dict, List, NamedTuple, Optional, Tuple, Union
+from typing import NamedTuple
 
 # https://pitcsprd.csps.pitt.edu/psc/pitcsprd/EMPLOYEE/SA/s/WEBLIB_HCX_CM.H_CLASS_SEARCH.FieldFormula.IScript_ClassSearch?institution=UPITT&term=2244&date_from=&date_thru=&subject=CS&subject_like=&catalog_nbr=&time_range=&days=&campus=PIT&location=&x_acad_career=UGRD&acad_group=&rqmnt_designtn=&instruction_mode=&keyword=&class_nbr=&acad_org=&enrl_stat=O&crse_attr=&crse_attr_value=&instructor_name=&instr_first_name=&session_code=&units=&trigger_search=&page=1
 SUBJECTS_API = "https://pitcsprd.csps.pitt.edu/psc/pitcsprd/EMPLOYEE/SA/s/WEBLIB_HCX_CM.H_COURSE_CATALOG.FieldFormula.IScript_CatalogSubjects?institution=UPITT"
@@ -31,13 +32,13 @@ SECTION_DETAILS_API = "https://pitcsprd.csps.pitt.edu/psc/pitcsprd/EMPLOYEE/SA/s
 # id -> unique course ID, not to be confused with course code (for instance, CS 0007 has code 105611)
 # career -> for example, UGRD (undergraduate)
 
-TERM_REGEX = "2\d\d[147]"
+TERM_REGEX = r"2\d\d[147]"
 VALID_TERMS = re.compile(TERM_REGEX)
 
 
 class Instructor(NamedTuple):
     name: str
-    email: Optional[str] = None
+    email: str | None = None
 
 
 class Meeting(NamedTuple):
@@ -46,7 +47,7 @@ class Meeting(NamedTuple):
     end_time: str
     start_date: str
     end_date: str
-    instructors: Optional[List[Instructor]] = None
+    instructors: list[Instructor] | None = None
 
 
 class Attribute(NamedTuple):
@@ -71,7 +72,7 @@ class SectionDetails(NamedTuple):
     wait_list_total: str
     valid_to_enroll: str
 
-    combined_section_numbers: Optional[List[str]] = None
+    combined_section_numbers: list[str] | None = None
 
 
 class Section(NamedTuple):
@@ -81,9 +82,9 @@ class Section(NamedTuple):
     class_number: str
     section_type: str
     status: str
-    instructors: Optional[List[Instructor]] = None
-    meetings: Optional[List[Meeting]] = None
-    details: Optional[SectionDetails] = None
+    instructors: list[Instructor] | None = None
+    meetings: list[Meeting] | None = None
+    details: SectionDetails | None = None
 
 
 class Course(NamedTuple):
@@ -95,17 +96,17 @@ class Course(NamedTuple):
 
 class CourseDetails(NamedTuple):
     course: Course
-    course_description: Optional[str] = None
-    credit_range: Optional[Tuple[int]] = None
-    requisites: Optional[str] = None
-    components: List[Component] = None
-    attributes: List[Attribute] = None
-    sections: Optional[List[Section]] = None
+    course_description: str | None = None
+    credit_range: tuple[int, int] | None = None
+    requisites: str | None = None
+    components: list[Component] | None = None
+    attributes: list[Attribute] | None = None
+    sections: list[Section] | None = None
 
 
 class Subject(NamedTuple):
     subject_code: str
-    courses: Dict[str, Course]
+    courses: dict[str, Course]
 
 
 def get_subject_courses(subject: str) -> Subject:
@@ -131,7 +132,7 @@ def get_subject_courses(subject: str) -> Subject:
     return Subject(subject_code=subject, courses=courses)
 
 
-def get_course_details(term: Union[str, int], subject: str, course: Union[str, int]) -> CourseDetails:
+def get_course_details(term: str | int, subject: str, course: str | int) -> CourseDetails:
     term = _validate_term(term)
     subject = _validate_subject(subject)
     course = _validate_course(course)
@@ -230,7 +231,7 @@ def get_course_details(term: Union[str, int], subject: str, course: Union[str, i
     )
 
 
-def get_section_details(term: Union[str, int], class_number: Union[str, int]) -> Section:
+def get_section_details(term: str | int, class_number: str | int) -> Section:
     term = _validate_term(term)
 
     json_response = _get_section_details(term, class_number)
@@ -312,7 +313,7 @@ def get_section_details(term: Union[str, int], class_number: Union[str, int]) ->
 
 
 # validation for method inputs
-def _validate_term(term: Union[str, int]) -> str:
+def _validate_term(term: str | int) -> str:
     """Validates that the term entered follows the pattern that Pitt does for term codes."""
     if VALID_TERMS.match(str(term)):
         return str(term)
@@ -326,7 +327,7 @@ def _validate_subject(subject: str) -> str:
     raise ValueError("Subject code entered isn't a valid Pitt subject code.")
 
 
-def _validate_course(course: Union[str, int]) -> str:
+def _validate_course(course: str | int) -> str:
     """Validates that the course name entered is 4 characters long and in string form."""
     if course == "":
         raise ValueError("Invalid course number, please enter a non-empty string.")
@@ -373,7 +374,7 @@ def _get_section_details(term: str, section_id: str) -> dict:
 
 
 # operations from api calls
-def _get_subject_codes() -> List[str]:
+def _get_subject_codes() -> list[str]:
     response = _get_subjects()
     codes = []
     for subject in response["subjects"]:
