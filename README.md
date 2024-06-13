@@ -1,6 +1,6 @@
 # Pitt API
 
-![Build Status](https://travis-ci.org/Pitt-CSC/PittAPI.svg?branch=master)
+![Build Status](https://img.shields.io/github/actions/workflow/status/pittcsc/PittAPI/tests-on-push.yml?branch=dev)
 ![License](https://img.shields.io/badge/license-GPLv2-blue.svg)
 ![Python Version](https://img.shields.io/badge/python-%3E%3D%203.9-green.svg)
 
