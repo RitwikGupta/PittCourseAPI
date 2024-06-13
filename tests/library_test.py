@@ -60,7 +60,7 @@ class StudyRoomTest(unittest.TestCase):
             responses.GET,
             library.STUDY_ROOMS_URL,
             json=self.hillman_query,
-            status=200
+            status=200,
         )
         self.assertEqual(library.hillman_total_reserved(), {"Total Hillman Reservations": 4})
 
