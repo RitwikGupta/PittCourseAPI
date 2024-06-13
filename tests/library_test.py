@@ -90,5 +90,4 @@ class StudyRoomTest(unittest.TestCase):
                 "Reserved": ["2024-06-12 19:00:00", "2024-06-12 22:30:00"]
             }
         ]
-
         self.assertEqual(mock_answer, library.reserved_hillman_times())
