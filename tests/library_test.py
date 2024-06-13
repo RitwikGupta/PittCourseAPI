@@ -70,7 +70,7 @@ class StudyRoomTest(unittest.TestCase):
             responses.GET,
             library.STUDY_ROOMS_URL,
             json=self.hillman_query,
-            status=200
+            status=200,
         )
         mock_answer = [
             {
