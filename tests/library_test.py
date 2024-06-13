@@ -75,19 +75,19 @@ class StudyRoomTest(unittest.TestCase):
         mock_answer = [
             {
                 "Room": "408 HL (Max. 5 persons) (Enclosed Room)",
-                "Reserved": ["2024-06-12 17:30:00", "2024-06-12 20:30:00"]
+                "Reserved": ["2024-06-12 17:30:00", "2024-06-12 20:30:00"],
             },
             {
                 "Room": "409 HL (Max. 5 persons) (Enclosed Room)",
-                "Reserved": ["2024-06-12 18:00:00", "2024-06-12 21:00:00"]
+                "Reserved": ["2024-06-12 18:00:00", "2024-06-12 21:00:00"],
             },
             {
                 "Room": "303 HL (Max. 5 persons) (Enclosed Room)",
-                "Reserved": ["2024-06-12 18:30:00", "2024-06-12 21:30:00"]
+                "Reserved": ["2024-06-12 18:30:00", "2024-06-12 21:30:00"],
             },
             {
                 "Room": "217 HL (Max. 10 persons) (Enclosed Room)",
-                "Reserved": ["2024-06-12 19:00:00", "2024-06-12 22:30:00"]
-            }
+                "Reserved": ["2024-06-12 19:00:00", "2024-06-12 22:30:00"],
+            },
         ]
         self.assertEqual(mock_answer, library.reserved_hillman_times())
