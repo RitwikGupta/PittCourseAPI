@@ -81,7 +81,11 @@ class DiningTest(unittest.TestCase):
         )
         responses.add(
             responses.GET,
-            dining.MENU_URL.format("610b1f78e82971147c9f8ba5", period_id="659daa4d351d53068df67835", date_str="24-04-12"),
+            dining.MENU_URL.format(
+                location_id="610b1f78e82971147c9f8ba5",
+                period_id="659daa4d351d53068df67835",
+                date_str="24-04-12",
+            ),
             json=self.dining_menu_data,
             status=200,
         )

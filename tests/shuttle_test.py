@@ -38,7 +38,7 @@ class ShuttleTest(unittest.TestCase):
     def test_get_route_stop_arrivals(self):
         responses.add(
             method=responses.GET,
-            url=f"{shuttle.STOP_ESTIMATES_URL}?ApiKey={shuttle.API_KEY}&TimesPerStopString=1",
+            url=f"{shuttle.ARRIVAL_TIMES_URL}?ApiKey={shuttle.API_KEY}&TimesPerStopString=1",
             json=[{}, {}, {}],
             status=200,
         )
