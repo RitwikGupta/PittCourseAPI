@@ -39,8 +39,7 @@ class LaundryTest(unittest.TestCase):
     def test_get_status_simple(self):
         responses.add(
             responses.GET,
-            "https://www.laundryview.com/api/currentRoomData?school_desc_key=197&location="
-            + laundry.LOCATION_LOOKUP[TEST_BUILDING],
+            laundry.BASE_URL.format(location=laundry.LOCATION_LOOKUP[TEST_BUILDING]),
             json=self.mock_data,
             status=200,
         )
@@ -56,8 +55,7 @@ class LaundryTest(unittest.TestCase):
     def test_get_status_detailed(self):
         responses.add(
             responses.GET,
-            "https://www.laundryview.com/api/currentRoomData?school_desc_key=197&location="
-            + laundry.LOCATION_LOOKUP[TEST_BUILDING],
+            laundry.BASE_URL.format(location=laundry.LOCATION_LOOKUP[TEST_BUILDING]),
             json=self.mock_data,
             status=200,
         )

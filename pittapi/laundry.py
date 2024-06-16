@@ -23,7 +23,7 @@ import requests
 from typing import Any
 
 
-BASE_URL = "https://www.laundryview.com/api/currentRoomData?school_desc_key=197&location={}"
+BASE_URL = "https://www.laundryview.com/api/currentRoomData?school_desc_key=197&location={location}"
 
 LOCATION_LOOKUP = {
     "TOWERS": "2430136",
@@ -40,7 +40,7 @@ LOCATION_LOOKUP = {
 def _get_laundry_info(building_name: str) -> Any:
     """Returns JSON object of laundry view webpage"""
     building_name = building_name.upper()
-    url = BASE_URL.format(LOCATION_LOOKUP[building_name])
+    url = BASE_URL.format(location=LOCATION_LOOKUP[building_name])
     response = requests.get(url)
     info = response.json()
     return info

@@ -62,19 +62,16 @@ LOCATIONS = {
     "CAFE 1923",
 }
 
+LOCATIONS_URL = "https://api.dineoncampus.com/v1/locations/status?site_id=5e6fcc641ca48e0cacd93b04&platform="
+HOURS_URL = "https://api.dineoncampus.com/v1/locations/weekly_schedule?site_id=5e6fcc641ca48e0cacd93b04&date=%22{date_str}%22"
+PERIODS_URL = "https://api.dineoncampus.com/v1/location/{location_id}/periods?platform=0&date={date_str}"
+MENU_URL = "https://api.dineoncampus.com/v1/location/{location_id}/periods/{period_id}?platform=0&date={date_str}"
+
 
 def get_locations() -> dict[str, Any]:
     """Gets data about all dining locations"""
-
-    url = "https://api.dineoncampus.com/v1/locations/status?site_id=5e6fcc641ca48e0cacd93b04&platform="
-
-    resp = requests.get(
-        url,
-        headers=REQUEST_HEADERS,
-    )
-
+    resp = requests.get(LOCATIONS_URL, headers=REQUEST_HEADERS)
     locations = json.loads(resp.content)["locations"]
-
     dining_locations = {location["name"].upper(): location for location in locations}
 
     return dining_locations
@@ -87,17 +84,17 @@ def get_location_hours(location_name: str, date: datetime) -> dict[str, Any]:
     - date must be in YYYY,MM,DD format, will return data on current day if None
     """
 
-    if location_name != None and location_name.upper() not in LOCATIONS:
+    if location_name is not None and location_name.upper() not in LOCATIONS:
         raise ValueError("Invalid Dining Location")
 
-    if date == None:
+    if date is None:
         date = datetime.now()
 
     date_str = date.strftime("%Y-%m-%d")
-
-    url = f"https://api.dineoncampus.com/v1/locations/weekly_schedule?site_id=5e6fcc641ca48e0cacd93b04&date=%22{date_str}%22"
-
-    resp = requests.get(url, headers=REQUEST_HEADERS)
+    resp = requests.get(
+        HOURS_URL.format(date_str=date_str),
+        headers=REQUEST_HEADERS,
+    )
 
     if resp.status_code == 502:
         raise ValueError("Invalid Date")
@@ -106,7 +103,7 @@ def get_location_hours(location_name: str, date: datetime) -> dict[str, Any]:
 
     hours = {}
 
-    if location_name == None:
+    if location_name is None:
         for location in locations:
             for day in location["week"]:
                 if day["date"] == date_str:
@@ -124,39 +121,38 @@ def get_location_hours(location_name: str, date: datetime) -> dict[str, Any]:
 
 def get_location_menu(location: str, date: datetime, period_name: str):
     """Returns menu data for given dining location on given day/period
-    -period_name used for locations with different serving periods(i.e. 'Breakfast','Lunch','Dinner','Late Night')
-        - None -> Returns menu for first(or only) period at location"""
+    - period_name used for locations with different serving periods(i.e. 'Breakfast','Lunch','Dinner','Late Night')
+    - None -> Returns menu for first(or only) period at location
+    """
 
     if location.upper() not in LOCATIONS:
         raise ValueError("Invalid Dining Location")
 
-    if date == None:
+    if date is None:
         date = datetime.today()
 
     date_str = date.strftime("%y-%m-%d")
-
     location_id = get_locations()[location.upper()]["id"]
-
-    periods_url = f"https://api.dineoncampus.com/v1/location/{location_id}/periods?platform=0&date={date_str}"
-
-    periods_resp = requests.get(periods_url, headers=REQUEST_HEADERS)
+    periods_resp = requests.get(
+        PERIODS_URL.format(location_id=location_id, date_str=date_str),
+        headers=REQUEST_HEADERS,
+    )
 
     if periods_resp.status_code == 502:
         raise ValueError("Invalid Date")
 
     periods = json.loads(periods_resp.content)["periods"]
-
-    if period_name == None or len(periods) == 1:
+    if period_name is None or len(periods) == 1:
         period_id = periods[0]["id"]
     else:
         for period in periods:
             if period["name"].lower() == period_name.lower():
                 period_id = period["id"]
 
-    menu_url = f"https://api.dineoncampus.com/v1/location/{location_id}/periods/{period_id}?platform=0&date={date_str}"
-
-    menu_resp = requests.get(menu_url, headers=REQUEST_HEADERS)
-
+    menu_resp = requests.get(
+        MENU_URL.format(location_id=location_id, period_id=period_id, date_str=date_str),
+        headers=REQUEST_HEADERS,
+    )
     menu = json.loads(menu_resp.content)["menu"]
 
     return menu

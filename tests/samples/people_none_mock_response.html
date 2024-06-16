@@ -1,0 +1,21 @@
+<div id="searchResults">
+    <script>
+        if ('0' == 1) {
+                $("#resultsInfo").text('0 result found');
+            } else {
+                $("#resultsInfo").text('0 results found');
+            }
+            $(".more-info-link a").click(function () {
+                if ($(this).text() == "Show More") {
+                // $(this).parent().parent().children().removeClass('more-info-hide');
+                    $(this).parent().parent().children('.more-info').slideDown('fast');
+                    $(this).text('Hide More');
+                } else {
+                    $(this).parent().parent().children('.more-info').slideUp('fast');
+                    $(this).text('Show More')
+                }
+            });
+    </script>
+</div>
+<script>
+</script>

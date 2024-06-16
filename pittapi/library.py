@@ -25,16 +25,18 @@ from typing import Any
 
 LIBRARY_URL = (
     "https://pitt.primo.exlibrisgroup.com/primaws/rest/pub/pnxs"
-    "?acTriggered=false&blendFacetsSeparately=false"
-    "&citationTrailFilterByAvailability=true&disableCache=false&getMore=0"
-    "&inst=01PITT_INST&isCDSearch=false&lang=en&limit=10&newspapersActive=false"
-    "&newspapersSearch=false&offset=0&otbRanking=false&pcAvailability=false"
-    "&qExclude=&qInclude=&rapido=false&refEntryActive=false&rtaLinks=true"
-    "&scope=MyInst_and_CI&searchInFulltextUserSelection=false&skipDelivery=Y"
-    "&sort=rank&tab=Everything&vid=01PITT_INST:01PITT_INST"
+    "?acTriggered=false&blendFacetsSeparately=false&citationTrailFilterByAvailability=true&disableCache=false&getMore=0"
+    "&inst=01PITT_INST&isCDSearch=false&lang=en&limit=10&newspapersActive=false&newspapersSearch=false&offset=0"
+    "&otbRanking=false&pcAvailability=false&qExclude=&qInclude=&rapido=false&refEntryActive=false&rtaLinks=true"
+    "&scope=MyInst_and_CI&searchInFulltextUserSelection=false&skipDelivery=Y&sort=rank&tab=Everything"
+    "&vid=01PITT_INST:01PITT_INST"
 )
 
-STUDY_ROOMS_URL = "https://pitt.libcal.com/spaces/bookings/search?lid=917&gid=1558&eid=0&seat=0&d=1&customDate=&q=&daily=0&draw=1&order%5B0%5D%5Bcolumn%5D=1&order%5B0%5D%5Bdir%5D=asc&start=0&length=25&search%5Bvalue%5D=&_=1717907260661"
+STUDY_ROOMS_URL = (
+    "https://pitt.libcal.com/spaces/bookings/search"
+    "?lid=917&gid=1558&eid=0&seat=0&d=1&customDate=&q=&daily=0&draw=1&order%5B0%5D%5Bcolumn%5D=1&order%5B0%5D%5Bdir%5D=asc"
+    "&start=0&length=25&search%5Bvalue%5D=&_=1717907260661"
+)
 
 
 QUERY_START = "&q=any,contains,"
@@ -148,7 +150,7 @@ def hillman_total_reserved() -> dict[str, int]:
 
 
 def reserved_hillman_times() -> list[dict[str, str | list[str]]]:
-    """Returns a list of dictionaries of reserved rooms of the Hillman with their respective times"""
+    """Returns a list of dictionaries of reserved rooms in Hillman with their respective times"""
     resp = requests.get(STUDY_ROOMS_URL)
     resp = resp.json()
     data = resp["data"]
@@ -156,7 +158,7 @@ def reserved_hillman_times() -> list[dict[str, str | list[str]]]:
     if data is None:
         return []
 
-    # Note: there can be multiple reservations in the same room, hence why we must use a list of maps, and cannot just use a singular map
+    # Note: there can be multiple reservations in the same room, so we must use a list of maps and not a singular map
     bookings = [
         {
             "Room": reservation["itemName"],

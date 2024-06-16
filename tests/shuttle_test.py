@@ -28,7 +28,7 @@ class ShuttleTest(unittest.TestCase):
     def test_get_map_vehicle_points(self):
         responses.add(
             method=responses.GET,
-            url="http://www.pittshuttle.com/Services/JSONPRelay.svc/GetMapVehiclePoints?ApiKey=8882812681",
+            url=f"{shuttle.VEHICLE_POINTS_URL}?ApiKey={shuttle.API_KEY}",
             json=[{}, {}, {}],
             status=200,
         )
@@ -38,7 +38,7 @@ class ShuttleTest(unittest.TestCase):
     def test_get_route_stop_arrivals(self):
         responses.add(
             method=responses.GET,
-            url="http://www.pittshuttle.com/Services/JSONPRelay.svc/GetRouteStopArrivals?ApiKey=8882812681&TimesPerStopString=1",
+            url=f"{shuttle.STOP_ESTIMATES_URL}?ApiKey={shuttle.API_KEY}&TimesPerStopString=1",
             json=[{}, {}, {}],
             status=200,
         )
@@ -48,11 +48,11 @@ class ShuttleTest(unittest.TestCase):
     def test_vehicle_route_stop_estimates(self):
         responses.add(
             method=responses.GET,
-            url="http://www.pittshuttle.com/Services/JSONPRelay.svc/GetVehicleRouteStopEstimates?vehicleIdStrings=25&quantity=4",
+            url=f"{shuttle.STOP_ESTIMATES_URL}?vehicleIdStrings=25&quantity=4",
             json=[{"Estimates": [{}, {}, {}, {}]}],
             status=200,
         )
-        stop_estimates = shuttle.get_vehicle_route_stop_estimates(25, 4)
+        stop_estimates = shuttle.get_vehicle_route_stop_estimates("25", 4)
         self.assertIsInstance(stop_estimates, list)
         self.assertEqual(len(stop_estimates[0]["Estimates"]), 4)
 
@@ -60,7 +60,7 @@ class ShuttleTest(unittest.TestCase):
     def test_get_routes(self):
         responses.add(
             method=responses.GET,
-            url="http://www.pittshuttle.com/Services/JSONPRelay.svc/GetRoutesForMap?ApiKey=8882812681",
+            url=f"{shuttle.ROUTES_URL}?ApiKey={shuttle.API_KEY}",
             json=[{}, {}, {}],
             status=200,
         )

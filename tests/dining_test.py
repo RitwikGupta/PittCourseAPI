@@ -45,7 +45,7 @@ class DiningTest(unittest.TestCase):
     def test_get_locations(self):
         responses.add(
             responses.GET,
-            "https://api.dineoncampus.com/v1/locations/status?site_id=5e6fcc641ca48e0cacd93b04&platform=",
+            dining.LOCATIONS_URL,
             json=self.dining_locations_data,
             status=200,
         )
@@ -55,7 +55,7 @@ class DiningTest(unittest.TestCase):
     def test_get_location_hours(self):
         responses.add(
             responses.GET,
-            "https://api.dineoncampus.com/v1/locations/weekly_schedule?site_id=5e6fcc641ca48e0cacd93b04&date=%222024-04-12%22",
+            dining.HOURS_URL.format(date_str="2024-04-12"),
             json=self.dining_schedule_data,
             status=200,
         )
@@ -69,19 +69,19 @@ class DiningTest(unittest.TestCase):
     def test_get_location_menu(self):
         responses.add(
             responses.GET,
-            "https://api.dineoncampus.com/v1/locations/status?site_id=5e6fcc641ca48e0cacd93b04&platform=",
+            dining.LOCATIONS_URL,
             json=self.dining_locations_data,
             status=200,
         )
         responses.add(
             responses.GET,
-            "https://api.dineoncampus.com/v1/location/610b1f78e82971147c9f8ba5/periods?platform=0&date=24-04-12",
+            dining.PERIODS_URL.format(location_id="610b1f78e82971147c9f8ba5", date_str="24-04-12"),
             json=self.dining_menu_data,
             status=200,
         )
         responses.add(
             responses.GET,
-            "https://api.dineoncampus.com/v1/location/610b1f78e82971147c9f8ba5/periods/659daa4d351d53068df67835?platform=0&date=24-04-12",
+            dining.MENU_URL.format("610b1f78e82971147c9f8ba5", period_id="659daa4d351d53068df67835", date_str="24-04-12"),
             json=self.dining_menu_data,
             status=200,
         )

@@ -13,7 +13,14 @@ mocked_courses_data_invalid = {}
 
 mocked_course_info_data = {
     "course_details": {
-        "descrlong": "This is a first course in computer science programming. It is recommended for those students intending to major in computer science who do not have the required background for cs 0401. It may also be of interest to students majoring in one of the social sciences or humanities. The focus of the course is on problem analysis and the development of algorithms and computer programs in a modern high-level language.",
+        "descrlong": (
+            "This is a first course in computer science programming. "
+            "It is recommended for those students intending to major in computer science who do not have the required "
+            "background for cs 0401. "
+            "It may also be of interest to students majoring in one of the social sciences or humanities. "
+            "The focus of the course is on problem analysis and the development of algorithms and computer programs in a "
+            "modern high-level language."
+        ),
         "units_minimum": 3,
         "units_maximum": 3,
         "units_inc": 1,
@@ -179,7 +186,11 @@ mocked_section_details_data = {
             "drop_consent": "",
             "enroll_requirements": "",
             "requirement_desig": "",
-            "class_attributes": "DSAS Algebra General Ed. Requirement \rDSAS Quant.-Formal Reason General Ed. Requirement \rAsian Studies",
+            "class_attributes": (
+                "DSAS Algebra General Ed. Requirement \r"
+                "DSAS Quant.-Formal Reason General Ed. Requirement \r"
+                "Asian Studies"
+            ),
         },
         "class_availability": {
             "class_capacity": "28",
@@ -192,7 +203,14 @@ mocked_section_details_data = {
         "is_combined": False,
         "notes": {"class_notes": "", "subject_notes": ""},
         "catalog_descr": {
-            "crse_catalog_description": "This is a first course in computer science programming. It is recommended for those students intending to major in computer science who do not have the required background for cs 0401. It may also be of interest to students majoring in one of the social sciences or humanities. The focus of the course is on problem analysis and the development of algorithms and computer programs in a modern high-level language."
+            "crse_catalog_description": (
+                "This is a first course in computer science programming. "
+                "It is recommended for those students intending to major in computer science who do not have the required "
+                "background for cs 0401. "
+                "It may also be of interest to students majoring in one of the social sciences or humanities. "
+                "The focus of the course is on problem analysis and the development of algorithms and computer programs in a "
+                "modern high-level language."
+            )
         },
         "materials": {
             "txb_none": "N",
@@ -241,7 +259,10 @@ mocked_section_details_data = {
     "messages": {
         "shareLink": "Copy link to share the class with friends.",
         "shareSocial": "Or share on social media networks.",
-        "reserveInfo": "Seats in this class have been reserved for students for the specified programs, majors or groups listed below. Reserved seats are subject to change without notice.",
+        "reserveInfo": (
+            "Seats in this class have been reserved for students for the specified programs, majors or groups listed below. "
+            "Reserved seats are subject to change without notice."
+        ),
         "noMeetingInfo": "No meeting info found",
     },
 }

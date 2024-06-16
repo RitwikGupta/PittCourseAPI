@@ -20,44 +20,39 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 import requests
 from typing import Any
 
+
+API_KEY = "8882812681"
+VEHICLE_POINTS_URL = "http://www.pittshuttle.com/Services/JSONPRelay.svc/GetMapVehiclePoints"
+ARRIVAL_TIMES_URL = "http://www.pittshuttle.com/Services/JSONPRelay.svc/GetRouteStopArrivals"
+STOP_ESTIMATES_URL = "http://www.pittshuttle.com/Services/JSONPRelay.svc/GetVehicleRouteStopEstimates"
+ROUTES_URL = "http://www.pittshuttle.com/Services/JSONPRelay.svc/GetRoutesForMap"
+
 sess = requests.session()
 
 
-def get_map_vehicle_points(api_key: str = "8882812681") -> dict[str, Any]:
+def get_map_vehicle_points(api_key: str = API_KEY) -> dict[str, Any]:
     """Return the map location for all active vehicles."""
     payload = {"ApiKey": api_key}
-    response = sess.get(
-        "http://www.pittshuttle.com/Services/JSONPRelay.svc/GetMapVehiclePoints",
-        params=payload,
-    )
+    response = sess.get(VEHICLE_POINTS_URL, params=payload)
     return response.json()
 
 
-def get_route_stop_arrivals(api_key: str = "8882812681", times_per_stop: int = 1) -> dict[str, Any]:
+def get_route_stop_arrivals(api_key: str = API_KEY, times_per_stop: int = 1) -> dict[str, Any]:
     """Return stop arrival times for all vehicles."""
     payload = {"ApiKey": api_key, "TimesPerStopString": times_per_stop}
-    response = sess.get(
-        "http://www.pittshuttle.com/Services/JSONPRelay.svc/GetRouteStopArrivals",
-        params=payload,
-    )
+    response = sess.get(ARRIVAL_TIMES_URL, params=payload)
     return response.json()
 
 
 def get_vehicle_route_stop_estimates(vehicle_id: str, quantity: int = 2) -> dict[str, Any]:
     """Return {quantity} stop estimates for all active vehicles."""
     payload = {"vehicleIdStrings": vehicle_id, "quantity": str(quantity)}
-    response = sess.get(
-        "http://www.pittshuttle.com/Services/JSONPRelay.svc/GetVehicleRouteStopEstimates",
-        params=payload,
-    )
+    response = sess.get(STOP_ESTIMATES_URL, params=payload)
     return response.json()
 
 
-def get_routes(api_key: str = "8882812681") -> dict[str, Any]:
+def get_routes(api_key: str = API_KEY) -> dict[str, Any]:
     """Return the routes with Vehicle Route Name, Vehicle ID, and all stops, etc."""
     payload = {"ApiKey": api_key}
-    response = sess.get(
-        "http://www.pittshuttle.com/Services/JSONPRelay.svc/GetRoutesForMap",
-        params=payload,
-    )
+    response = sess.get(ROUTES_URL, params=payload)
     return response.json()

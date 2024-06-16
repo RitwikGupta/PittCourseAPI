@@ -22,17 +22,7 @@ from unittest.mock import MagicMock
 
 from pittapi import course
 
-from pittapi.course import (
-    Attribute,
-    Component,
-    Course,
-    CourseDetails,
-    Instructor,
-    Meeting,
-    Section,
-    SectionDetails,
-    Subject,
-)
+from pittapi.course import Attribute, Course, CourseDetails, Instructor, Meeting, Section, SectionDetails, Subject
 
 from tests.mocks.course_mocks import (
     mocked_subject_data,
