@@ -168,27 +168,25 @@ def get_course_details(term: str | int, subject: str, course: str | int) -> Cour
 
     components = None
     if "components" in json_response and len(json_response["components"]) != 0:
-        components = []
-        for component in json_response["components"]:
-            components.append(
-                Component(
-                    component=component["descr"],
-                    required=True if component["optional"] == "N" else False,
-                )
+        components = [
+            Component(
+                component=component["descr"],
+                required=True if component["optional"] == "N" else False,
             )
+            for component in json_response["components"]
+        ]
 
     attributes = None
     if "attributes" in json_response and len(json_response["attributes"]) != 0:
-        attributes = []
-        for attribute in json_response["attributes"]:
-            attributes.append(
-                Attribute(
-                    attribute=attribute["crse_attribute"],
-                    attribute_description=attribute["crse_attribute_descr"],
-                    value=attribute["crse_attribute_value"],
-                    value_description=attribute["crse_attribute_value_descr"],
-                )
+        attributes = [
+            Attribute(
+                attribute=attribute["crse_attribute"],
+                attribute_description=attribute["crse_attribute_descr"],
+                value=attribute["crse_attribute_value"],
+                value_description=attribute["crse_attribute_value_descr"],
             )
+            for attribute in json_response["attributes"]
+        ]
 
     sections = []
     for section in json_response_details["sections"]:
@@ -200,24 +198,23 @@ def get_course_details(term: str | int, subject: str, course: str | int) -> Cour
 
         instructors = None
         if len(section["instructors"]) != 0 and section["instructors"][0] != "To be Announced":
-            instructors = []
-            for instructor in section["instructors"]:
-                instructors.append(Instructor(name=instructor["name"], email=instructor["email"]))
+            instructors = [
+                Instructor(name=instructor["name"], email=instructor["email"]) for instructor in section["instructors"]
+            ]
 
         meetings = None
         if len(section["meetings"]) != 0:
-            meetings = []
-            for meeting in section["meetings"]:
-                meetings.append(
-                    Meeting(
-                        days=meeting["days"],
-                        start_time=meeting["start_time"],
-                        end_time=meeting["end_time"],
-                        start_date=meeting["start_dt"],
-                        end_date=meeting["end_dt"],
-                        instructors=[Instructor(name=meeting["instructor"])],
-                    )
+            meetings = [
+                Meeting(
+                    days=meeting["days"],
+                    start_time=meeting["start_time"],
+                    end_time=meeting["end_time"],
+                    start_date=meeting["start_dt"],
+                    end_date=meeting["end_dt"],
+                    instructors=[Instructor(name=meeting["instructor"])],
                 )
+                for meeting in section["meetings"]
+            ]
 
         sections.append(
             Section(

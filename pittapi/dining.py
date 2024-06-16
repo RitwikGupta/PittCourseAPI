@@ -101,22 +101,18 @@ def get_location_hours(location_name: str, date: datetime) -> dict[str, Any]:
 
     locations = json.loads(resp.content)["the_locations"]
 
-    hours = {}
-
     if location_name is None:
-        for location in locations:
-            for day in location["week"]:
-                if day["date"] == date_str:
-                    hours[location["name"]] = day["hours"]
-    else:
-        for location in locations:
-            if location["name"].upper() == location_name.upper():
-                for day in location["week"]:
-                    if day["date"] == date_str:
-                        hours[location["name"]] = day["hours"]
-                break
+        hours = {
+            location["name"]: day["hours"] for location in locations for day in location["week"] if day["date"] == date_str
+        }
+        return hours
 
-    return hours
+    for location in locations:
+        if location["name"].upper() == location_name.upper():
+            hours = {location["name"]: day["hours"] for day in location["week"] if day["date"] == date_str}
+            return hours
+
+    return {}
 
 
 def get_location_menu(location: str, date: datetime, period_name: str):
