@@ -66,7 +66,7 @@ sphinxcontrib-serializinghtml==1.1.10
 tqdm==4.66.4
 typing==3.7.4.3
 typing-extensions==4.11.0
-urllib3==1.26.18
+urllib3==1.26.19
 virtualenv==20.26.2
 w3lib==2.1.2
 websockets==10.4
