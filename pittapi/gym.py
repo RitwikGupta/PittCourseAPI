@@ -50,4 +50,3 @@ def _fetch_gym_info():
 
     return gym_dict
 
-print(_fetch_gym_info())
