@@ -1,7 +1,7 @@
 alabaster==0.7.16
 babel==2.15.0
 black==24.4.2
-certifi==2024.6.2
+certifi==2024.7.4
 cfgv==3.4.0
 charset-normalizer==3.3.2
 click==8.1.7
