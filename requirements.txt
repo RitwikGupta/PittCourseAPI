@@ -5,10 +5,10 @@ certifi==2024.7.4
 cfgv==3.4.0
 charset-normalizer==3.3.2
 click==8.1.7
-coverage[toml]==7.5.3
+coverage[toml]==7.5.4
 distlib==0.3.8
 docutils==0.21.2
-filelock==3.15.3
+filelock==3.15.4
 flake8==7.1.0
 identify==2.5.36
 idna==3.7
@@ -40,7 +40,7 @@ sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==1.0.7
 sphinxcontrib-serializinghtml==1.1.10
 urllib3==1.26.19
-virtualenv==20.26.2
+virtualenv==20.26.3
 appdirs==1.4.4
 beautifulsoup4==4.12.3
 bs4==0.0.2
@@ -49,7 +49,7 @@ fake-useragent==1.5.1
 gevent==24.2.1
 greenlet==3.0.3
 grequests==0.7.0
-importlib-metadata==7.1.0
+importlib-metadata==8.0.0
 lxml==5.2.2
 lxml-html-clean==0.1.1
 parse==1.20.2
@@ -58,7 +58,7 @@ pyppeteer==2.0.0
 pyquery==2.0.0
 requests-html==0.10.0
 responses==0.25.3
-setuptools==70.1.0
+setuptools==70.2.0
 soupsieve==2.5
 tqdm==4.66.4
 typing==3.7.4.3
