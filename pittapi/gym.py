@@ -19,14 +19,21 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 from bs4 import BeautifulSoup
 import requests
-
+from typing import NamedTuple, List
 
 GYM_URL = "https://connect2concepts.com/connect2/?type=bar&key=17c2cbcb-ec92-4178-a5f5-c4860330aea0"
 
 
-def fetch_gym_info() -> dict:
-    """Fetches dictionary of Live Facility Counts of all gyms"""
-    gym_dict = {}
+class Gym(NamedTuple):
+    name: str
+    date: str
+    count: int
+    percentage: int
+
+
+def get_all_gyms_info() -> List[Gym]:
+    """Fetches list of Gym named tuples with all gym information"""
+    gyms = []
     # Was getting a Mod Security Error
     # Fix: https://stackoverflow.com/questions/61968521/python-web-scraping-request-errormod-security
     headers = {
@@ -41,45 +48,35 @@ def fetch_gym_info() -> dict:
     for gym in gym_info_list:
         text = gym.get_text("|", strip=True)
         info = text.split("|")
-        gym_dict[info[0]] = info[2][12:]
-    return gym_dict
+        name = info[0]
+        count = int(info[2][12:])
+        date = info[3][9:]
+        try:
+            percentage = int(info[4].rstrip("%"))
+        except ValueError:
+            percentage = 0
+        gyms.append(Gym(name=name, date=date, count=count, percentage=percentage))
+    return gyms
 
 
-def get_baierl_rec_count():
-    info = fetch_gym_info()
-    return info["Baierl Rec Center"]
+GYM_Names = [
+    "Baierl Rec Center",
+    "Bellefield Hall: Fitness Center & Weight Room",
+    "Bellefield Hall: Court & Dance Studio",
+    "Trees Hall: Fitness Center",
+    "Trees Hall: Courts",
+    "Trees Hall: Racquetball Courts & Multipurpose Room",
+    "William Pitt Union",
+    "Pitt Sports Dome",
+]
 
 
-def get_bellfield_fitness_count():
-    info = fetch_gym_info()
-    return info["Bellefield Hall: Fitness Center & Weight Room"]
-
-
-def get_bellfield_court_count():
-    info = fetch_gym_info()
-    return info["Bellefield Hall: Court & Dance Studio"]
-
-
-def get_trees_fitness_count():
-    info = fetch_gym_info()
-    return info["Trees Hall: Fitness Center"]
-
-
-def get_trees_court_count():
-    info = fetch_gym_info()
-    return info["Trees Hall: Courts"]
-
-
-def get_trees_raquetball_court_count():
-    info = fetch_gym_info()
-    return info["Trees Hall: Racquetball Courts & Multipurpose Room"]
-
-
-def get_willaim_pitt_fittness_count():
-    info = fetch_gym_info()
-    return info["William Pitt Union"]
-
-
-def get_sports_dome_count():
-    info = fetch_gym_info()
-    return info["Pitt Sports Dome"]
+def get_gym_information(gym_name: str) -> Gym:
+    """Fetches the information of a singular gym as a tuple"""
+    info = get_all_gyms_info()
+    if gym_name in GYM_Names:
+        for gym in info:
+            if gym.name == gym_name:
+                return gym
+    else:
+        return None
