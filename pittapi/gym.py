@@ -59,7 +59,7 @@ def get_all_gyms_info() -> List[Gym]:
     return gyms
 
 
-GYM_Names = [
+GYM_NAMES = [
     "Baierl Rec Center",
     "Bellefield Hall: Fitness Center & Weight Room",
     "Bellefield Hall: Court & Dance Studio",
@@ -74,7 +74,7 @@ GYM_Names = [
 def get_gym_information(gym_name: str) -> Gym:
     """Fetches the information of a singular gym as a tuple"""
     info = get_all_gyms_info()
-    if gym_name in GYM_Names:
+    if gym_name in GYM_NAMES:
         for gym in info:
             if gym.name == gym_name:
                 return gym
