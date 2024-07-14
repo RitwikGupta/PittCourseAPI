@@ -17,11 +17,24 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
 
+from __future__ import annotations
+
 from bs4 import BeautifulSoup
 import requests
-from typing import NamedTuple, List
+from typing import NamedTuple
 
 GYM_URL = "https://connect2concepts.com/connect2/?type=bar&key=17c2cbcb-ec92-4178-a5f5-c4860330aea0"
+
+GYM_NAMES = [
+    "Baierl Rec Center",
+    "Bellefield Hall: Fitness Center & Weight Room",
+    "Bellefield Hall: Court & Dance Studio",
+    "Trees Hall: Fitness Center",
+    "Trees Hall: Courts",
+    "Trees Hall: Racquetball Courts & Multipurpose Room",
+    "William Pitt Union",
+    "Pitt Sports Dome",
+]
 
 
 class Gym(NamedTuple):
@@ -31,7 +44,7 @@ class Gym(NamedTuple):
     percentage: int
 
 
-def get_all_gyms_info() -> List[Gym]:
+def get_all_gyms_info() -> list[Gym]:
     """Fetches list of Gym named tuples with all gym information"""
     gyms = []
     # Was getting a Mod Security Error
@@ -59,19 +72,7 @@ def get_all_gyms_info() -> List[Gym]:
     return gyms
 
 
-GYM_NAMES = [
-    "Baierl Rec Center",
-    "Bellefield Hall: Fitness Center & Weight Room",
-    "Bellefield Hall: Court & Dance Studio",
-    "Trees Hall: Fitness Center",
-    "Trees Hall: Courts",
-    "Trees Hall: Racquetball Courts & Multipurpose Room",
-    "William Pitt Union",
-    "Pitt Sports Dome",
-]
-
-
-def get_gym_information(gym_name: str) -> Gym:
+def get_gym_information(gym_name: str) -> Gym | None:
     """Fetches the information of a singular gym as a tuple"""
     info = get_all_gyms_info()
     if gym_name in GYM_NAMES:
