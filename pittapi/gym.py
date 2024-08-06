@@ -43,6 +43,21 @@ class Gym(NamedTuple):
     count: int
     percentage: int
 
+    @classmethod
+    def from_text(cls, text: str) -> "Gym":
+        info = text.split("|")
+        name = info[0]
+        if len(info) < 4:
+            return cls(name=name, date=None, count=None, percentage=None)
+        count = int(info[2][12:])
+        date = info[3][9:]
+        try:
+            percentage = int(info[4].rstrip("%"))
+        except ValueError:
+            percentage = 0
+
+        return cls(name=name, date=date, count=count, percentage=percentage)
+
 
 def get_all_gyms_info() -> list[Gym]:
     """Fetches list of Gym named tuples with all gym information"""
@@ -58,26 +73,17 @@ def get_all_gyms_info() -> list[Gym]:
     gym_info_list = soup.find_all("div", class_="barChart")
 
     # Iterate through list and add to dictionary
-    for gym in gym_info_list:
-        text = gym.get_text("|", strip=True)
-        info = text.split("|")
-        name = info[0]
-        count = int(info[2][12:])
-        date = info[3][9:]
-        try:
-            percentage = int(info[4].rstrip("%"))
-        except ValueError:
-            percentage = 0
-        gyms.append(Gym(name=name, date=date, count=count, percentage=percentage))
+    gyms = [Gym.from_text(gym.get_text("|", strip=True)) for gym in gym_info_list]
     return gyms
 
 
-def get_gym_information(gym_name: str) -> Gym | None:
+def get_gym_info(gym_name: str) -> Gym | None:
     """Fetches the information of a singular gym as a tuple"""
     info = get_all_gyms_info()
     if gym_name in GYM_NAMES:
         for gym in info:
-            if gym.name == gym_name:
+            if gym.name == gym_name and gym.date and gym.count and gym.percentage:
                 return gym
     else:
         return None
+    return None

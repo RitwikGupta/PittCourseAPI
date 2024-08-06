@@ -23,7 +23,7 @@ mock_gym_html = """
             <br>
             Updated: 07/09/2024 09:05 AM
             <div class="barChart_row" data-value="33.0">
-            <span class="barChart__value">33%</span>
+            <span class="barChart__value">non%</span>
             <span class="barChart__bar" style=" background: rgb(239, 239, 239);">
             <span class="barChart__barFill" style="background: #2A5B84;"></span>
             </span>
@@ -34,9 +34,8 @@ mock_gym_html = """
             <br>
             <span style="color:green">(Open)</span>
             <br>
-            Last Count: 30
-            <br>
-            Updated: 07/09/2024 09:05 AM
+            <!-- Missing Last Count -->
+            <!-- Missing Updated Date -->
             <div class="barChart_row" data-value="38.0">
             <span class="barChart__value">38%</span>
             <span class="barChart__bar" style=" background: rgb(239, 239, 239);">
