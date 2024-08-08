@@ -20,7 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 from __future__ import annotations
 
 import requests
-from typing import Any
+from typing import Any, NamedTuple
 
 
 BASE_URL = "https://www.laundryview.com/api/currentRoomData?school_desc_key=197&location={location}"
@@ -37,7 +37,22 @@ LOCATION_LOOKUP = {
 }
 
 
-def _get_laundry_info(building_name: str) -> Any:
+class BuildingStatus(NamedTuple):
+    building: str
+    free_washers: int
+    total_washers: int
+    free_dryers: int
+    total_dryers: int
+
+
+class LaundryMachine(NamedTuple):
+    id: str
+    status: str
+    type: str
+    time_left: int | None
+
+
+def _get_laundry_info(building_name: str) -> dict[str, Any]:
     """Returns JSON object of laundry view webpage"""
     building_name = building_name.upper()
     url = BASE_URL.format(location=LOCATION_LOOKUP[building_name])
@@ -46,10 +61,9 @@ def _get_laundry_info(building_name: str) -> Any:
     return info
 
 
-def get_status_simple(building_name: str) -> dict[str, str]:
+def get_building_status(building_name: str) -> BuildingStatus:
     """
-    :returns: a dictionary with free washers and dryers as well as total washers
-              and dryers for given building
+    :returns: a BuildingStatus object with free washers and dryers as well as total washers and dryers for given building
 
     :param: loc: Building name, case doesn't matter
         -> TOWERS
@@ -61,39 +75,43 @@ def get_status_simple(building_name: str) -> dict[str, str]:
         -> SUTH_WEST
     """
     laundry_info = _get_laundry_info(building_name)
-    freeWashers, freeDryers, totalWashers, totalDryers = 0, 0, 0, 0
+    free_washers, free_dryers, total_washers, total_dryers = 0, 0, 0, 0
 
     for obj in laundry_info["objects"]:
         if obj["type"] == "washFL":
-            totalWashers += 1
+            total_washers += 1
             if obj["status_toggle"] == 0:
-                freeWashers += 1
+                free_washers += 1
         elif obj["type"] == "dry":
-            totalDryers += 1
+            total_dryers += 1
             if obj["status_toggle"] == 0:
-                freeDryers += 1
+                free_dryers += 1
         # for towers, they have "combo" machines with this type, no individual washers and dryers |
         # one part of combo being in use marks the whole thing as in use, so we can only show if
         # both parts are free.
+        #
+        # New: Above statement is not true, as the JSON objects provide two separate statuses for combo machines, one for the
+        # washer and one for the dryer
+        # See tests/samples/laundry_mock_response_towers.json for examples
+        # TODO: rewrite elif to use the separate combo statuses to more accurately count washers and dryers
         elif obj["type"] == "washNdry":
-            totalWashers += 1
-            totalDryers += 1
+            total_washers += 1
+            total_dryers += 1
             if obj["status_toggle"] == 0:
-                freeDryers += 1
-                freeWashers += 1
-    return {
-        "building": building_name,
-        "free_washers": freeWashers,
-        "total_washers": totalWashers,
-        "free_dryers": freeDryers,
-        "total_dryers": totalDryers,
-    }
+                free_dryers += 1
+                free_washers += 1
+    return BuildingStatus(
+        building=building_name,
+        free_washers=free_washers,
+        total_washers=total_washers,
+        free_dryers=free_dryers,
+        total_dryers=total_dryers,
+    )
 
 
-def get_status_detailed(building_name: str) -> list[dict[str, str | int]]:
+def get_laundry_machine_statuses(building_name: str) -> list[LaundryMachine]:
     """
-    :returns: A list of washers and dryers for the passed
-              building location with their statuses
+    :returns: A list of washers and dryers for the passed building location with their statuses
 
     :param building_name: (String) one of these:
         -> BRACKENRIDGE
@@ -104,7 +122,6 @@ def get_status_detailed(building_name: str) -> list[dict[str, str | int]]:
         -> SUTH_WEST
     """
     machines = []
-    machine_type = "Unknown"
     laundry_info = _get_laundry_info(building_name)
 
     for obj in laundry_info["objects"]:
@@ -112,20 +129,32 @@ def get_status_detailed(building_name: str) -> list[dict[str, str | int]]:
             machine_type = "dryer"
         elif obj["type"] == "washFL":
             machine_type = "washer"
-        elif obj["type"] == "washNDry":
-            machine_type = "washAndDry"
+        # TODO: rewrite elif to add two LaundryMachines for combo machines, one for the washer and one for the dryer
+        # Must first figure out which JSON fields correspond to the washer and which correspond to the dryer
+        elif obj["type"] == "washNdry":
+            machine_type = "combo"
+        # Skip any JSON object that's not a laundry machine (e.g., card reader)
+        else:
+            continue
 
         machine_id = obj["appliance_desc_key"]
+        # Possible machine statuses:
+        # status_toggle = 0: "Available"
+        # status_toggle = 1: TODO, unknown and must be documented, probably "Completed"
+        # status_toggle = 2: either "N min remaining" or "Ext. Cycle"
+        # status_toggle = 3: "Out of service"
+        # status_toggle = 4: "Offline"
         machine_status = obj["time_left_lite"]
-        time_left = obj["time_remaining"]
+        unavailable = machine_status in ("Out of service", "Offline")
+        time_left = None if unavailable else obj["time_remaining"]
 
         machines.append(
-            {
-                "machine_id": machine_id,
-                "machine_status": machine_status,
-                "machine_type": machine_type,
-                "time_left": time_left,
-            }
+            LaundryMachine(
+                id=machine_id,
+                status=machine_status,
+                type=machine_type,
+                time_left=time_left,
+            )
         )
 
     return machines
