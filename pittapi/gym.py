@@ -21,7 +21,7 @@ from __future__ import annotations
 
 from bs4 import BeautifulSoup
 import requests
-from typing import NamedTuple
+from typing import NamedTuple, Self
 
 GYM_URL = "https://connect2concepts.com/connect2/?type=bar&key=17c2cbcb-ec92-4178-a5f5-c4860330aea0"
 
@@ -44,7 +44,7 @@ class Gym(NamedTuple):
     percentage: int
 
     @classmethod
-    def from_text(cls, text: str) -> "Gym":
+    def from_text(cls, text: str) -> Self:
         info = text.split("|")
         name = info[0]
         if len(info) < 4:
