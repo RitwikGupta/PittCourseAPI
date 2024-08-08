@@ -61,7 +61,6 @@ class Gym(NamedTuple):
 
 def get_all_gyms_info() -> list[Gym]:
     """Fetches list of Gym named tuples with all gym information"""
-    gyms = []
     # Was getting a Mod Security Error
     # Fix: https://stackoverflow.com/questions/61968521/python-web-scraping-request-errormod-security
     headers = {
@@ -84,6 +83,4 @@ def get_gym_info(gym_name: str) -> Gym | None:
         for gym in info:
             if gym.name == gym_name and gym.date and gym.count and gym.percentage:
                 return gym
-    else:
-        return None
     return None
