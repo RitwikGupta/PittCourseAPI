@@ -34,8 +34,8 @@ class LaundryTest(unittest.TestCase):
         unittest.TestCase.__init__(self, *args, **kwargs)
         with open(SAMPLE_PATH / "laundry_mock_response_suth_east.json", "r") as file:
             self.mock_data_suth_east = json.load(file)
-            with open(SAMPLE_PATH / "laundry_mock_response_towers.json", "r") as file:
-                self.mock_data_towers = json.load(file)
+        with open(SAMPLE_PATH / "laundry_mock_response_towers.json", "r") as file:
+            self.mock_data_towers = json.load(file)
 
     @responses.activate
     def test_get_building_status_suth_east(self):
