@@ -86,14 +86,12 @@ def get_building_status(building_name: str) -> BuildingStatus:
             total_dryers += 1
             if obj["status_toggle"] == 0:
                 free_dryers += 1
-        # for towers, they have "combo" machines with this type, no individual washers and dryers |
-        # one part of combo being in use marks the whole thing as in use, so we can only show if
-        # both parts are free.
-        #
-        # New: Above statement is not true, as the JSON objects provide two separate statuses for combo machines, one for the
-        # washer and one for the dryer
+        # The JSON objects provide two separate statuses for combo machines, one for the washer and one for the dryer
         # See tests/samples/laundry_mock_response_towers.json for examples
+        #
+        # This elif marks a whole combo machine as free if one part is free
         # TODO: rewrite elif to use the separate combo statuses to more accurately count washers and dryers
+        # Must first figure out which JSON fields correspond to the washer and which correspond to the dryer
         elif obj["type"] == "washNdry":
             total_washers += 1
             total_dryers += 1
