@@ -57,7 +57,7 @@ def _get_laundry_info(building_name: str) -> dict[str, Any]:
     building_name = building_name.upper()
     url = BASE_URL.format(location=LOCATION_LOOKUP[building_name])
     response = requests.get(url)
-    info = response.json()
+    info: dict[str, Any] = response.json()
     return info
 
 
