@@ -17,6 +17,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
 
+# grequests monkey-patches ssl, but this must be done before all other imports,
+# or else we may get a MonkeyPatchWarning or a RecursionError
+# See https://github.com/spyoungtech/grequests/issues/150 and https://github.com/gevent/gevent/issues/1016
+from gevent import monkey
+
+monkey.patch_all(thread=False, select=False)
+
 import urllib3
 from urllib3.exceptions import InsecureRequestWarning
 
