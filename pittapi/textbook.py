@@ -24,7 +24,7 @@ request_headers: dict[str, str] | None = None
 subject_map: dict[str, str] | None = None
 
 
-@dataclass(slots=True)
+@dataclass  # No dataclass slots because they're not supported in Python 3.9
 class CourseInfo:
     subject: str
     course_num: str
