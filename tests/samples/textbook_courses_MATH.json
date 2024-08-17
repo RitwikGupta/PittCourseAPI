@@ -1,0 +1,870 @@
+[
+    {
+        "name": "MATH 0010",
+        "id": "MATH0010",
+        "sections": [
+            {
+                "id": "4650882",
+                "name": "1070",
+                "instructor": null
+            }
+        ]
+    },
+    {
+        "name": "MATH 0025",
+        "id": "MATH0025",
+        "sections": [
+            {
+                "id": "4561831",
+                "name": "7510",
+                "instructor": "DEMATEO"
+            },
+            {
+                "id": "4631046",
+                "name": "1100",
+                "instructor": "VARGSON"
+            }
+        ]
+    },
+    {
+        "name": "MATH 0031",
+        "id": "MATH0031",
+        "sections": [
+            {
+                "id": "4561832",
+                "name": "7510",
+                "instructor": "O'MARA"
+            },
+            {
+                "id": "4631047",
+                "name": "1010",
+                "instructor": "VARGSON"
+            },
+            {
+                "id": "4631048",
+                "name": "1030",
+                "instructor": "ISLAM"
+            },
+            {
+                "id": "4631049",
+                "name": "1070",
+                "instructor": "ISLAM"
+            },
+            {
+                "id": "4650927",
+                "name": "1050",
+                "instructor": null
+            },
+            {
+                "id": "4650929",
+                "name": "1110",
+                "instructor": null
+            },
+            {
+                "id": "4650930",
+                "name": "1130",
+                "instructor": null
+            },
+            {
+                "id": "4650931",
+                "name": "1240",
+                "instructor": null
+            }
+        ]
+    },
+    {
+        "name": "MATH 0120",
+        "id": "MATH0120",
+        "sections": [
+            {
+                "id": "4631050",
+                "name": "1060",
+                "instructor": "GILTON"
+            },
+            {
+                "id": "4631051",
+                "name": "1096",
+                "instructor": "POPESCU"
+            },
+            {
+                "id": "4631052",
+                "name": "1110",
+                "instructor": "EVEREST"
+            },
+            {
+                "id": "4631053",
+                "name": "1250",
+                "instructor": "GILTON"
+            }
+        ]
+    },
+    {
+        "name": "MATH 0125",
+        "id": "MATH0125",
+        "sections": [
+            {
+                "id": "4631054",
+                "name": "1040",
+                "instructor": "VARGSON"
+            }
+        ]
+    },
+    {
+        "name": "MATH 0200",
+        "id": "MATH0200",
+        "sections": [
+            {
+                "id": "4631055",
+                "name": "1100",
+                "instructor": "HOCKENSMITH"
+            },
+            {
+                "id": "4631056",
+                "name": "1200",
+                "instructor": "DEBLOIS"
+            },
+            {
+                "id": "4631057",
+                "name": "1300",
+                "instructor": "BAO"
+            }
+        ]
+    },
+    {
+        "name": "MATH 0220",
+        "id": "MATH0220",
+        "sections": [
+            {
+                "id": "4631058",
+                "name": "1025",
+                "instructor": "TROFIMOV"
+            },
+            {
+                "id": "4631059",
+                "name": "1060",
+                "instructor": "XIONG"
+            },
+            {
+                "id": "4631060",
+                "name": "1080",
+                "instructor": "YUST"
+            },
+            {
+                "id": "4631061",
+                "name": "1100",
+                "instructor": "HOCKENSMITH"
+            },
+            {
+                "id": "4631062",
+                "name": "1116",
+                "instructor": "WANG"
+            },
+            {
+                "id": "4631063",
+                "name": "1120",
+                "instructor": "XIONG"
+            },
+            {
+                "id": "4631064",
+                "name": "1191",
+                "instructor": "KAVEH"
+            },
+            {
+                "id": "4631065",
+                "name": "1195",
+                "instructor": "MORGAN"
+            },
+            {
+                "id": "4631066",
+                "name": "1210",
+                "instructor": "YUST"
+            },
+            {
+                "id": "4631067",
+                "name": "1230",
+                "instructor": "SPARLING"
+            },
+            {
+                "id": "4631068",
+                "name": "1239",
+                "instructor": "MORGAN"
+            },
+            {
+                "id": "4631069",
+                "name": "1250",
+                "instructor": "KAVEH"
+            },
+            {
+                "id": "4631070",
+                "name": "1300",
+                "instructor": "WANG"
+            },
+            {
+                "id": "4631071",
+                "name": "1350",
+                "instructor": "FEDOROV"
+            },
+            {
+                "id": "4631072",
+                "name": "1500",
+                "instructor": "YAO"
+            }
+        ]
+    },
+    {
+        "name": "MATH 0230",
+        "id": "MATH0230",
+        "sections": [
+            {
+                "id": "4631073",
+                "name": "1010",
+                "instructor": "TROFIMOV"
+            },
+            {
+                "id": "4631074",
+                "name": "1015",
+                "instructor": "EVEREST"
+            },
+            {
+                "id": "4631075",
+                "name": "1036",
+                "instructor": "EVEREST"
+            },
+            {
+                "id": "4631076",
+                "name": "1040",
+                "instructor": "WHEELER"
+            },
+            {
+                "id": "4631077",
+                "name": "1050",
+                "instructor": "POPESCU"
+            },
+            {
+                "id": "4631078",
+                "name": "1060",
+                "instructor": "POPESCU"
+            }
+        ]
+    },
+    {
+        "name": "MATH 0235",
+        "id": "MATH0235",
+        "sections": [
+            {
+                "id": "4634384",
+                "name": "1040",
+                "instructor": "WHEELER"
+            }
+        ]
+    },
+    {
+        "name": "MATH 0240",
+        "id": "MATH0240",
+        "sections": [
+            {
+                "id": "4631079",
+                "name": "1015",
+                "instructor": "STREIPERT"
+            },
+            {
+                "id": "4631080",
+                "name": "1105",
+                "instructor": "HAJLASZ"
+            },
+            {
+                "id": "4631081",
+                "name": "1160",
+                "instructor": "HAJLASZ"
+            },
+            {
+                "id": "4631082",
+                "name": "1300",
+                "instructor": "SPARLING"
+            },
+            {
+                "id": "4631083",
+                "name": "1400",
+                "instructor": "POGGI CEVALLOS"
+            },
+            {
+                "id": "4631084",
+                "name": "1420",
+                "instructor": "PAN"
+            }
+        ]
+    },
+    {
+        "name": "MATH 0280",
+        "id": "MATH0280",
+        "sections": [
+            {
+                "id": "4631085",
+                "name": "1030",
+                "instructor": "CHEN"
+            },
+            {
+                "id": "4631086",
+                "name": "1041",
+                "instructor": "GARTSIDE"
+            },
+            {
+                "id": "4631087",
+                "name": "1045",
+                "instructor": "GARTSIDE"
+            },
+            {
+                "id": "4631088",
+                "name": "1200",
+                "instructor": "WOJTOWYTSCH"
+            }
+        ]
+    },
+    {
+        "name": "MATH 0290",
+        "id": "MATH0290",
+        "sections": [
+            {
+                "id": "4631089",
+                "name": "1040",
+                "instructor": "BAO"
+            },
+            {
+                "id": "4631090",
+                "name": "1050",
+                "instructor": "STREIPERT"
+            },
+            {
+                "id": "4631091",
+                "name": "1090",
+                "instructor": "TRENCHEA"
+            },
+            {
+                "id": "4631092",
+                "name": "1100",
+                "instructor": "BAO"
+            }
+        ]
+    },
+    {
+        "name": "MATH 0413",
+        "id": "MATH0413",
+        "sections": [
+            {
+                "id": "4631093",
+                "name": "1030",
+                "instructor": "LAYTON"
+            },
+            {
+                "id": "4631094",
+                "name": "1060",
+                "instructor": "HALES"
+            },
+            {
+                "id": "4631095",
+                "name": "1100",
+                "instructor": "KAVEH"
+            }
+        ]
+    },
+    {
+        "name": "MATH 0420",
+        "id": "MATH0420",
+        "sections": [
+            {
+                "id": "4631096",
+                "name": "1020",
+                "instructor": "CHEN"
+            }
+        ]
+    },
+    {
+        "name": "MATH 0430",
+        "id": "MATH0430",
+        "sections": [
+            {
+                "id": "4631097",
+                "name": "1070",
+                "instructor": "PAN"
+            }
+        ]
+    },
+    {
+        "name": "MATH 0470",
+        "id": "MATH0470",
+        "sections": [
+            {
+                "id": "4631098",
+                "name": "1120",
+                "instructor": "XIONG"
+            }
+        ]
+    },
+    {
+        "name": "MATH 0480",
+        "id": "MATH0480",
+        "sections": [
+            {
+                "id": "4631099",
+                "name": "1000",
+                "instructor": "ION"
+            },
+            {
+                "id": "4631100",
+                "name": "1200",
+                "instructor": "MOAKHER"
+            }
+        ]
+    },
+    {
+        "name": "MATH 1010",
+        "id": "MATH1010",
+        "sections": [
+            {
+                "id": "4631101",
+                "name": "1010",
+                "instructor": "LEWICKA"
+            }
+        ]
+    },
+    {
+        "name": "MATH 1050",
+        "id": "MATH1050",
+        "sections": [
+            {
+                "id": "4631102",
+                "name": "1040",
+                "instructor": "CONSTANTINE"
+            }
+        ]
+    },
+    {
+        "name": "MATH 1070",
+        "id": "MATH1070",
+        "sections": [
+            {
+                "id": "4631103",
+                "name": "1040",
+                "instructor": "LAYTON"
+            },
+            {
+                "id": "4631104",
+                "name": "1050",
+                "instructor": "YOTOV"
+            }
+        ]
+    },
+    {
+        "name": "MATH 1101",
+        "id": "MATH1101",
+        "sections": [
+            {
+                "id": "4631105",
+                "name": "1030",
+                "instructor": "WHEELER"
+            },
+            {
+                "id": "4631106",
+                "name": "1300",
+                "instructor": "CHOU"
+            }
+        ]
+    },
+    {
+        "name": "MATH 1119",
+        "id": "MATH1119",
+        "sections": [
+            {
+                "id": "4631107",
+                "name": "1010",
+                "instructor": "YUST"
+            }
+        ]
+    },
+    {
+        "name": "MATH 1122",
+        "id": "MATH1122",
+        "sections": [
+            {
+                "id": "4631108",
+                "name": "1000",
+                "instructor": "CHADAM"
+            }
+        ]
+    },
+    {
+        "name": "MATH 1126",
+        "id": "MATH1126",
+        "sections": [
+            {
+                "id": "4631109",
+                "name": "1010",
+                "instructor": "CHADAM"
+            }
+        ]
+    },
+    {
+        "name": "MATH 1180",
+        "id": "MATH1180",
+        "sections": [
+            {
+                "id": "4631110",
+                "name": "1030",
+                "instructor": "SWIGON"
+            },
+            {
+                "id": "4631111",
+                "name": "1050",
+                "instructor": "CHEN"
+            }
+        ]
+    },
+    {
+        "name": "MATH 1185",
+        "id": "MATH1185",
+        "sections": [
+            {
+                "id": "4634385",
+                "name": "1040",
+                "instructor": "GILTON"
+            }
+        ]
+    },
+    {
+        "name": "MATH 1270",
+        "id": "MATH1270",
+        "sections": [
+            {
+                "id": "4631112",
+                "name": "1040",
+                "instructor": "SWIGON"
+            },
+            {
+                "id": "4631113",
+                "name": "1050",
+                "instructor": "VAINCHTEIN"
+            }
+        ]
+    },
+    {
+        "name": "MATH 1290",
+        "id": "MATH1290",
+        "sections": [
+            {
+                "id": "4631114",
+                "name": "1100",
+                "instructor": "DEBLOIS"
+            }
+        ]
+    },
+    {
+        "name": "MATH 1360",
+        "id": "MATH1360",
+        "sections": [
+            {
+                "id": "4631115",
+                "name": "1040",
+                "instructor": "ERMENTROUT"
+            }
+        ]
+    },
+    {
+        "name": "MATH 1470",
+        "id": "MATH1470",
+        "sections": [
+            {
+                "id": "4631116",
+                "name": "1070",
+                "instructor": "CHEN"
+            }
+        ]
+    },
+    {
+        "name": "MATH 1530",
+        "id": "MATH1530",
+        "sections": [
+            {
+                "id": "4590464",
+                "name": "1060",
+                "instructor": "HAJLASZ"
+            },
+            {
+                "id": "4631117",
+                "name": "1230",
+                "instructor": "SCHIKORRA"
+            }
+        ]
+    },
+    {
+        "name": "MATH 1550",
+        "id": "MATH1550",
+        "sections": [
+            {
+                "id": "4631118",
+                "name": "1040",
+                "instructor": "LENNARD"
+            }
+        ]
+    },
+    {
+        "name": "MATH 1900",
+        "id": "MATH1900",
+        "sections": [
+            {
+                "id": "4561833",
+                "name": "1100",
+                "instructor": "DEBLOIS"
+            }
+        ]
+    },
+    {
+        "name": "MATH 1902",
+        "id": "MATH1902",
+        "sections": [
+            {
+                "id": "4561834",
+                "name": "1030",
+                "instructor": "HALES"
+            },
+            {
+                "id": "4561835",
+                "name": "1040",
+                "instructor": "SCHIKORRA"
+            },
+            {
+                "id": "4561836",
+                "name": "1050",
+                "instructor": "LAYTON"
+            },
+            {
+                "id": "4561837",
+                "name": "1060",
+                "instructor": "GILTON"
+            },
+            {
+                "id": "4561838",
+                "name": "1070",
+                "instructor": "DEBLOIS"
+            },
+            {
+                "id": "4561839",
+                "name": "1080",
+                "instructor": "CONSTANTINE"
+            }
+        ]
+    },
+    {
+        "name": "MATH 2000",
+        "id": "MATH2000",
+        "sections": [
+            {
+                "id": "4561840",
+                "name": "1010",
+                "instructor": "NEILAN"
+            }
+        ]
+    },
+    {
+        "name": "MATH 2060",
+        "id": "MATH2060",
+        "sections": [
+            {
+                "id": "4590465",
+                "name": "1200",
+                "instructor": "CONSTANTINE"
+            }
+        ]
+    },
+    {
+        "name": "MATH 2070",
+        "id": "MATH2070",
+        "sections": [
+            {
+                "id": "4590466",
+                "name": "1040",
+                "instructor": "NEILAN"
+            },
+            {
+                "id": "4631119",
+                "name": "1030",
+                "instructor": "NEILAN"
+            }
+        ]
+    },
+    {
+        "name": "MATH 2090",
+        "id": "MATH2090",
+        "sections": [
+            {
+                "id": "4590467",
+                "name": "1100",
+                "instructor": "TRENCHEA"
+            }
+        ]
+    },
+    {
+        "name": "MATH 2301",
+        "id": "MATH2301",
+        "sections": [
+            {
+                "id": "4590468",
+                "name": "1040",
+                "instructor": "LENNARD"
+            }
+        ]
+    },
+    {
+        "name": "MATH 2303",
+        "id": "MATH2303",
+        "sections": [
+            {
+                "id": "4590469",
+                "name": "1060",
+                "instructor": "LEWICKA"
+            }
+        ]
+    },
+    {
+        "name": "MATH 2370",
+        "id": "MATH2370",
+        "sections": [
+            {
+                "id": "4590470",
+                "name": "1040",
+                "instructor": "WOJTOWYTSCH"
+            }
+        ]
+    },
+    {
+        "name": "MATH 2500",
+        "id": "MATH2500",
+        "sections": [
+            {
+                "id": "4590471",
+                "name": "1100",
+                "instructor": "WANG ERICKSON"
+            }
+        ]
+    },
+    {
+        "name": "MATH 2505",
+        "id": "MATH2505",
+        "sections": [
+            {
+                "id": "4590472",
+                "name": "1200",
+                "instructor": "ION"
+            }
+        ]
+    },
+    {
+        "name": "MATH 2603",
+        "id": "MATH2603",
+        "sections": [
+            {
+                "id": "4590473",
+                "name": "1200",
+                "instructor": "YOTOV"
+            }
+        ]
+    },
+    {
+        "name": "MATH 2800",
+        "id": "MATH2800",
+        "sections": [
+            {
+                "id": "4590474",
+                "name": "1100",
+                "instructor": "FEDOROV"
+            }
+        ]
+    },
+    {
+        "name": "MATH 2900",
+        "id": "MATH2900",
+        "sections": [
+            {
+                "id": "4590475",
+                "name": "1000",
+                "instructor": "VAINCHTEIN"
+            }
+        ]
+    },
+    {
+        "name": "MATH 2920",
+        "id": "MATH2920",
+        "sections": [
+            {
+                "id": "4590476",
+                "name": "1070",
+                "instructor": "RUBIN"
+            }
+        ]
+    },
+    {
+        "name": "MATH 2990",
+        "id": "MATH2990",
+        "sections": [
+            {
+                "id": "4561841",
+                "name": "1010",
+                "instructor": "NEILAN"
+            }
+        ]
+    },
+    {
+        "name": "MATH 3000",
+        "id": "MATH3000",
+        "sections": [
+            {
+                "id": "4561842",
+                "name": "1010",
+                "instructor": "NEILAN"
+            }
+        ]
+    },
+    {
+        "name": "MATH 3225",
+        "id": "MATH3225",
+        "sections": [
+            {
+                "id": "4590477",
+                "name": "1010",
+                "instructor": "YAO"
+            }
+        ]
+    },
+    {
+        "name": "MATH 3900",
+        "id": "MATH3900",
+        "sections": [
+            {
+                "id": "4561843",
+                "name": "1010",
+                "instructor": "NEILAN"
+            }
+        ]
+    },
+    {
+        "name": "MATH 3902",
+        "id": "MATH3902",
+        "sections": [
+            {
+                "id": "4561844",
+                "name": "1010",
+                "instructor": "NEILAN"
+            }
+        ]
+    },
+    {
+        "name": "MATH 3923",
+        "id": "MATH3923",
+        "sections": [
+            {
+                "id": "4585743",
+                "name": "1200",
+                "instructor": "GALDI"
+            }
+        ]
+    }
+]

@@ -1,377 +1,225 @@
+from __future__ import annotations
+
+# grequests must be imported before all other libraries, especially requests,
+# because grequests uses gevent, which in turn uses monkey-patching to implement concurrency
 import grequests
-import requests
+import warnings
 
-from typing import Any, Callable, Generator
+from dataclasses import dataclass
+from requests import ConnectionError
+from requests_html import HTMLResponse, HTMLSession
+from typing import Any, NamedTuple
 
-BASE_URL = "http://pitt.verbacompare.com/"
+BASE_URL = "https://pitt.verbacompare.com/"
 
-CODES = [
-    "ADMJ",
-    "ADMPS",
-    "AFRCNA",
-    "AFROTC",
-    "ANTH",
-    "ARABIC",
-    "ARTSC",
-    "ASL",
-    "ASTRON",
-    "ATHLTR",
-    "BACC",
-    "BCHS",
-    "BECN",
-    "BFIN",
-    "BHRM",
-    "BIND",
-    "BIOENG",
-    "BIOETH",
-    "BIOINF",
-    "BIOSC",
-    "BIOST",
-    "BMIS",
-    "BMKT",
-    "BOAH",
-    "BORG",
-    "BQOM",
-    "BSEO",
-    "BSPP",
-    "BUS",
-    "BUSACC",
-    "BUSADM",
-    "BUSBIS",
-    "BUSECN",
-    "BUSENV",
-    "BUSERV",
-    "BUSFIN",
-    "BUSHRM",
-    "BUSMKT",
-    "BUSORG",
-    "BUSQOM",
-    "BUSSCM",
-    "BUSSPP",
-    "CDACCT",
-    "CDENT",
-    "CEE",
-    "CGS",
-    "CHE",
-    "CHEM",
-    "CHIN",
-    "CLASS",
-    "CLRES",
-    "CLST",
-    "CMMUSIC",
-    "CMPBIO",
-    "COE",
-    "COEA",
-    "COEE",
-    "COMMRC",
-    "CS",
-    "CSD",
-    "DENHYG",
-    "DENT",
-    "DIASCI",
-    "DSANE",
-    "EAS",
-    "ECE",
-    "ECON",
-    "EDUC",
-    "ELI",
-    "EM",
-    "ENDOD",
-    "ENGCMP",
-    "ENGFLM",
-    "ENGLIT",
-    "ENGR",
-    "ENGSCI",
-    "ENGWRT",
-    "ENRES",
-    "EOH",
-    "EPIDEM",
-    "FACDEV",
-    "FILMG",
-    "FILMST",
-    "FP",
-    "FR",
-    "FTADMA",
-    "FTDA",
-    "FTDB",
-    "FTDC",
-    "FTDR",
-    "GEOL",
-    "GER",
-    "GERON",
-    "GREEK",
-    "GREEKM",
-    "GSWS",
-    "HAA",
-    "HIM",
-    "HINDI",
-    "HIST",
-    "HONORS",
-    "HPA",
-    "HPM",
-    "HPS",
-    "HRS",
-    "HUGEN",
-    "IDM",
-    "IE",
-    "IL",
-    "IMB",
-    "INFSCI",
-    "INTBP",
-    "IRISH",
-    "ISB",
-    "ISSP",
-    "ITAL",
-    "JPNSE",
-    "JS",
-    "KOREAN",
-    "LATIN",
-    "LAW",
-    "LCTL",
-    "LDRSHP",
-    "LEGLST",
-    "LING",
-    "LIS",
-    "LSAP",
-    "MATH",
-    "ME",
-    "MED",
-    "MEDEDU",
-    "MEMS",
-    "MILS",
-    "MOLBPH",
-    "MSCBIO",
-    "MSCBMP",
-    "MSCMP",
-    "MSE",
-    "MSIMM",
-    "MSMBPH",
-    "MSMGDB",
-    "MSMPHL",
-    "MSMVM",
-    "MSNBIO",
-    "MUSIC",
-    "NEURO",
-    "NPHS",
-    "NROSCI",
-    "NUR",
-    "NURCNS",
-    "NURNM",
-    "NURNP",
-    "NURSAN",
-    "NURSP",
-    "NUTR",
-    "ODO",
-    "OLLI",
-    "ORBIOL",
-    "ORSUR",
-    "OT",
-    "PAS",
-    "PEDC",
-    "PEDENT",
-    "PERIO",
-    "PERS",
-    "PETE",
-    "PHARM",
-    "PHIL",
-    "PHYS",
-    "PIA",
-    "POLISH",
-    "PORT",
-    "PROSTH",
-    "PS",
-    "PSY",
-    "PSYC",
-    "PSYED",
-    "PT",
-    "PUBHLT",
-    "PUBSRV",
-    "REHSCI",
-    "REL",
-    "RELGST",
-    "RESTD",
-    "RUSS",
-    "SA",
-    "SERCRO",
-    "SLAV",
-    "SLOVAK",
-    "SOC",
-    "SOCWRK",
-    "SPAN",
-    "STAT",
-    "SWAHIL",
-    "SWBEH",
-    "SWCOSA",
-    "SWE",
-    "SWGEN",
-    "SWINT",
-    "SWRES",
-    "SWWEL",
-    "TELCOM",
-    "THEA",
-    "TURKSH",
-    "UKRAIN",
-    "URBNST",
-    "VIET",
-]
-KEYS = ["isbn", "citation", "title", "edition", "author"]
-QUERIES = {
-    "courses": "compare/courses/?id={}&term_id={}",
-    "books": "compare/books?id={}",
-}
-LOOKUP_ERRORS = {
-    1: "section {1}.",
-    2: "instructor {2}.",
-    3: "section {1} or instructor {2}.",
-}
+SUBJECTS_URL = BASE_URL + "compare/departments/?term={term_id}"
+COURSES_URL = BASE_URL + "compare/courses/?id={dept_id}&term_id={term_id}"
+BOOKS_URL = BASE_URL + "compare/books?id={section_id}"
+
+CURRENT_TERM_ID = 78104  # Term ID for fall 2024, TODO: figure out how this ID is generated
+MAX_REQUEST_ATTEMPTS = 3
+
+sess = HTMLSession()
+request_headers: dict[str, str] | None = None
+subject_map: dict[str, str] | None = None
 
 
-def _construct_query(query: str, *args) -> str:
-    """Constructs query based on which one is requested
-    and fills the query in with the given arguments
-    """
-    return QUERIES[query].format(*args)
+@dataclass(slots=True)
+class CourseInfo:
+    subject: str
+    course_num: str
+    instructor: str | None = None
+    section_num: str | None = None
+
+    def __post_init__(self) -> None:
+        if not subject_map:
+            _update_subject_map()
+            assert subject_map
+
+        self.subject = self.subject.upper()
+        if self.subject not in subject_map:
+            raise LookupError(f"{self.subject} is not a valid subject")
+        if len(self.course_num) > 4 or not self.course_num.isdigit():
+            raise ValueError("Invalid course number")
+        self.course_num = "0" * (4 - len(self.course_num)) + self.course_num
+        if self.instructor:
+            self.instructor = self.instructor.upper()
+        if self.section_num and (len(self.section_num) != 4 or not self.section_num.isdigit()):
+            raise ValueError("Invalid section number")
 
 
-def _validate_term(term: str) -> str:
-    """Validates term is a string and check if it is valid."""
-    if len(term) == 4 and term.isdigit():
-        return term
-    raise ValueError("Invalid term")
+class Textbook(NamedTuple):
+    title: str | None
+    author: str | None
+    edition: str | None
+    isbn: str | None
+    citation: str | None
+
+    @classmethod
+    def from_json(cls, json: dict[str, Any]) -> Textbook | None:
+        parsed_textbook = cls(
+            title=json.get("title"),
+            author=json.get("author"),
+            edition=json.get("edition"),
+            isbn=json.get("isbn"),
+            citation=json.get("citation"),
+        )
+        # If all fields are None, then don't bother returning a Textbook object
+        return parsed_textbook if any(field for field in parsed_textbook) else None
 
 
-def _validate_course(course: str) -> str:
-    """Validates course is a four digit number,
-    otherwise adds zero(s) to create four digit number or,
-    raises an exception.
-    """
-    if len(course) > 4 or not course.isdigit():
-        raise ValueError("Invalid course number")
-    elif len(course) == 4:
-        return course
-    return "0" * (4 - len(course)) + course
+def _update_headers() -> None:
+    for i in range(MAX_REQUEST_ATTEMPTS):
+        base_response: HTMLResponse = sess.get(BASE_URL)
+        if base_response.status_code == 200:
+            break
+        warnings.warn(f"Attempt {i + 1} to connect to textbook site failed, trying again")
+    if base_response.status_code != 200:  # Request failed too many times
+        raise ConnectionError(f"Failed to connect to textbook site after {MAX_REQUEST_ATTEMPTS} attempts")
+
+    elements = base_response.html.find("meta")
+    assert isinstance(elements, list)
+    for element in elements:
+        if element.attrs.get("name") == "csrf-token":
+            csrf_token: str = element.attrs["content"]
+            global request_headers
+            request_headers = {"X-CSRF-Token": csrf_token}
+            return
+    raise ConnectionError("Unable to find valid request credentials, cannot connect to textbook site")
 
 
-def _filter_dictionary(d: dict[Any, Any], keys: list[Any]) -> dict[Any, Any]:
-    """Creates new dictionary from selecting certain
-    key value pairs from another dictionary
-    """
-    return dict((k, d[k]) for k in keys if k in d)
+def _update_subject_map() -> None:
+    if not request_headers:
+        _update_headers()
+
+    for i in range(MAX_REQUEST_ATTEMPTS):
+        subject_response = sess.get(SUBJECTS_URL.format(term_id=CURRENT_TERM_ID), headers=request_headers)
+        if subject_response.status_code == 200:
+            break
+        warnings.warn(f"Attempt {i + 1} to retrieve list of subjects failed, trying again")
+        _update_headers()  # Try again with new CSRF token
+    if subject_response.status_code != 200:  # Request failed too many times
+        raise ConnectionError(f"Failed to retrieve list of subjects after {MAX_REQUEST_ATTEMPTS} attempts")
+
+    subject_json: list[dict[str, str]] = subject_response.json()
+    global subject_map
+    subject_map = {entry["name"]: entry["id"] for entry in subject_json}
 
 
-def _find_item(id_key, data_key, error_item) -> Callable[[dict[Any, Any], Any], Any]:
-    """Finds a dictionary in a list based on its id key, and
-    returns a piece of data from the dictionary based on a data key.
-    """
+def _find_section_from_json(sections: list[dict[str, str]], instructor: str | None, section_num: str | None) -> str:
+    if section_num:
+        for section in sections:
+            if section["name"] == section_num:
+                return section["id"]
+        raise LookupError(f"No section found with given {section_num=}")
+    if instructor:
+        for section in sections:
+            if section["instructor"] == instructor:
+                return section["id"]
+        raise LookupError(f"No section found with given {instructor=}")
 
-    def find(data, value):
-        for item in data:
-            if item[id_key] == value:
-                return item[data_key]
-        raise LookupError("Can't find {} {}.".format(error_item, str(value)))
-
-    return find
-
-
-_find_sections = _find_item("id", "sections", "course")
-_find_course_id_by_instructor = _find_item("instructor", "id", "instructor")
-_find_course_id_by_section = _find_item("name", "id", "section")
-
-
-def _extract_id(response, course: str, instructor: str, section: str) -> str:
-    """Gathers sections from departments and finds course id by
-    instructor name or section number.
-    """
-    sections = _find_sections(response.json(), course)
-    error = 0
-    try:
-        if section is not None:
-            return _find_course_id_by_section(sections, section)
-    except LookupError:
-        error += 1
-    try:
-        if instructor is not None:
-            return _find_course_id_by_instructor(sections, instructor.upper())
-    except LookupError:
-        error += 2
-    raise LookupError("Unable to find course by " + LOOKUP_ERRORS[error].format(section, instructor))
+    # Not enough info provided, so try to deduce the correct section:
+    # - If there's only 1 section of the course, then the sole section must be the correct one
+    # - If all sections of the course are taught by the same instructor, then we can assume that all sections will have the
+    #   same textbook, meaning that the exact section doesn't matter
+    instructors = {section["instructor"] for section in sections}
+    if len(sections) == 1 or len(instructors) == 1:
+        return sections[0]["id"]
+    raise LookupError(
+        "Cannot determine section ID from given arguments, please provide the instructor's name and/or the section number"
+    )
 
 
-def _extract_books(ids: list[str]) -> list[dict[str, str]]:
+def _get_textbooks_for_ids(ids: list[str]) -> list[Textbook]:
     """Fetches a course's textbook information and returns a list
     of textbooks for the given course.
     """
-    responses = grequests.imap([grequests.get(BASE_URL + _construct_query("books", section_id)) for section_id in ids])
-    books = [_filter_dictionary(book, KEYS) for response in responses for book in response.json()]
-    return books
+    if not request_headers:
+        _update_headers()
+
+    responses = grequests.imap(grequests.get(BOOKS_URL.format(section_id=id), headers=request_headers) for id in ids)
+    books = []
+    for response in responses:
+        for book_json in response.json():
+            book = Textbook.from_json(book_json)
+            if book:
+                books.append(book)
+            else:
+                warnings.warn(f"No textbook info found for {response}")
+    return [book for book in books if book]  # Drop all None values
 
 
-# Meant to force a return of None instead of raising a KeyError
-# when using a nonexistent key
-class DefaultDict(dict):
-    def __missing__(self, key):
-        return None
+def _get_textbooks_from_json(
+    course_json: list[dict[str, Any]], subject: str, course_num: str, instructor: str | None, section_num: str | None
+) -> list[Textbook]:
+    for course in course_json:
+        if course["id"] == subject + course_num:
+            section_id = _find_section_from_json(course["sections"], instructor, section_num)
+            return _get_textbooks_for_ids([section_id])
+    raise LookupError(f"{subject} {course_num} is not a valid course")
 
 
-def _fetch_course(
-    courses: list[dict[str, str]], departments: dict[str, str]
-) -> Generator[tuple[str, str, str, str], None, None]:
-    """Generator for fetching a courses information in order"""
-    for course in courses:
-        course = DefaultDict(course)
-        yield (
-            departments[course["department"]],
-            course["department"] + _validate_course(course["course"]),
-            course["instructor"],
-            course["section"],
+def get_textbooks_for_course(course: CourseInfo) -> list[Textbook]:
+    if not request_headers:
+        _update_headers()
+    if not subject_map:
+        _update_subject_map()
+        assert subject_map
+
+    for i in range(MAX_REQUEST_ATTEMPTS):
+        course_response = sess.get(
+            COURSES_URL.format(dept_id=subject_map[course.subject], term_id=CURRENT_TERM_ID), headers=request_headers
         )
+        if course_response.status_code == 200:
+            break
+        warnings.warn(f"Attempt {i} to retrieve list of {course.subject} courses failed, trying again")
+        _update_headers()  # Try again with new CSRF token
+    if course_response.status_code != 200:  # Request failed too many times
+        raise ConnectionError(f"Failed to retrieve list of {course.subject} courses from textbook site")
 
-
-def _get_department_number(department_code: str) -> int:
-    """Temporary solution to finding a department.
-    There will be a new method to getting department information
-    at a later time.
-    """
-    department_number = CODES.index(department_code) + 22399
-    if department_number > 22462:
-        department_number += 2  # between codes DSANE and EAS 2 id numbers are skipped.
-    if department_number > 22580:
-        department_number += 1  # between codes PUBSRV and REHSCI 1 id number is skipped.
-    return department_number
-
-
-def get_textbooks(term: str, courses: list[dict[str, str]]) -> list[dict[str, str]]:
-    """Retrieves textbooks for multiple courses in the same term."""
-    departments = {course["department"] for course in courses}
-    responses = grequests.map(
-        [
-            grequests.get(
-                BASE_URL + _construct_query("courses", _get_department_number(department), _validate_term(term)),
-                timeout=10,
-            )
-            for department in departments
-        ]
+    return _get_textbooks_from_json(
+        course_json=course_response.json(),
+        subject=course.subject,
+        course_num=course.course_num,
+        instructor=course.instructor,
+        section_num=course.section_num,
     )
-    section_ids = [
-        _extract_id(*course)
-        for course in _fetch_course(
-            courses,
-            dict(
-                zip(
-                    sorted(departments),
-                    sorted(responses, key=lambda resp: resp.json()[0]["name"]),
-                )
-            ),
+
+
+def get_textbooks_for_courses(courses_info: list[CourseInfo]) -> list[Textbook]:
+    if not request_headers:
+        _update_headers()
+    if not subject_map:
+        _update_subject_map()
+        assert subject_map
+
+    # Precompute list of unique subjects to avoid unnecessary API requests
+    subjects = {course_info.subject for course_info in courses_info}
+    courses_for_subjects: dict[str, list[dict[str, Any]]] = {}
+    for subject in subjects:
+        for i in range(MAX_REQUEST_ATTEMPTS):
+            course_response = sess.get(
+                COURSES_URL.format(dept_id=subject_map[subject], term_id=CURRENT_TERM_ID), headers=request_headers
+            )
+            if course_response.status_code == 200:
+                break
+            warnings.warn(f"Attempt {i} to retrieve list {subject} courses failed, trying again")
+            _update_headers()  # Try again with new CSRF token
+        if course_response.status_code != 200:  # Request failed too many times
+            raise ConnectionError(f"Failed to retrieve list of {subject} courses from textbook site")
+
+        courses_for_subjects[subject] = course_response.json()
+
+    textbooks = []
+    for course_info in courses_info:
+        course_json = courses_for_subjects[course_info.subject]
+        textbooks.extend(
+            _get_textbooks_from_json(
+                course_json=course_json,
+                subject=course_info.subject,
+                course_num=course_info.course_num,
+                instructor=course_info.instructor,
+                section_num=course_info.section_num,
+            )
         )
-    ]
-    return _extract_books(section_ids)
-
-
-def get_textbook(term: str, department: str, course: str, instructor: str = None, section: str = None) -> list[dict[str, str]]:
-    """Retrieves textbooks for a given course."""
-    has_section_or_instructor = (instructor is not None) or (section is not None)
-    if not has_section_or_instructor:
-        raise TypeError("get_textbook() is missing a instructor or section argument")
-    response = requests.get(BASE_URL + _construct_query("courses", _get_department_number(department), _validate_term(term)))
-    section_id = _extract_id(response, department + _validate_course(course), instructor, section)
-    return _extract_books([section_id])
+    return textbooks

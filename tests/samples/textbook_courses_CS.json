@@ -1,1 +1,1594 @@
-[{"name":"CS 0004","id":"CS0004","sections":[{"id":"2096252","name":"1070","instructor":"DEVINE"},{"id":"2096253","name":"7010","instructor":"COSTANTINO"}]},{"name":"CS 0007","id":"CS0007","sections":[{"id":"2096254","name":"1050","instructor":"DELANEY"},{"id":"2096255","name":"1060","instructor":null},{"id":"2096256","name":"1090","instructor":null},{"id":"2096257","name":"1100","instructor":"DELANEY"},{"id":"2096258","name":"1105","instructor":null},{"id":"2096259","name":"1110","instructor":null},{"id":"2096260","name":"1200","instructor":"FILIPSKI"},{"id":"2096261","name":"1210","instructor":null},{"id":"2096262","name":"1220","instructor":null},{"id":"2096263","name":"1250","instructor":"FILIPSKI"},{"id":"2096264","name":"1255","instructor":null},{"id":"2096265","name":"1260","instructor":null},{"id":"2096266","name":"1300","instructor":"KREBS"},{"id":"2096267","name":"1310","instructor":"KREBS"},{"id":"2096268","name":"1320","instructor":"KREBS"}]},{"name":"CS 0008","id":"CS0008","sections":[{"id":"2096269","name":"1020","instructor":"MOHAMED KHATTAB"},{"id":"2096270","name":"1030","instructor":null},{"id":"2096271","name":"1040","instructor":null},{"id":"2096272","name":"1230","instructor":"NOVACKY"},{"id":"2096273","name":"1235","instructor":null},{"id":"2096274","name":"1240","instructor":null},{"id":"2096275","name":"1300","instructor":"PRODONOVICH"},{"id":"2096276","name":"1310","instructor":null},{"id":"2096277","name":"1320","instructor":null}]},{"name":"CS 0090","id":"CS0090","sections":[{"id":"2096278","name":"1040","instructor":"DEVINE"}]},{"name":"CS 0134","id":"CS0134","sections":[{"id":"2096279","name":"1060","instructor":"CHANG"},{"id":"2096280","name":"1200","instructor":"BILLINGSLEY"}]},{"name":"CS 0334","id":"CS0334","sections":[{"id":"2096281","name":"1020","instructor":"DENARDIS"}]},{"name":"CS 0401","id":"CS0401","sections":[{"id":"2096282","name":"1030","instructor":"HOFFMAN"},{"id":"2096283","name":"1035","instructor":null},{"id":"2096284","name":"1040","instructor":null},{"id":"2096285","name":"1045","instructor":"HOFFMAN"},{"id":"2096286","name":"1060","instructor":"RAMIREZ"},{"id":"2096287","name":"1070","instructor":null},{"id":"2096288","name":"1080","instructor":null},{"id":"2096289","name":"1090","instructor":null},{"id":"2096290","name":"1100","instructor":"RAMIREZ"},{"id":"2096291","name":"1105","instructor":null},{"id":"2096292","name":"1110","instructor":null},{"id":"2096293","name":"1115","instructor":null},{"id":"2096294","name":"1200","instructor":"HOFFMAN"},{"id":"2096295","name":"1210","instructor":null},{"id":"2096296","name":"1220","instructor":"HOFFMAN"},{"id":"2096297","name":"1300","instructor":"DICK"},{"id":"2096298","name":"1310","instructor":null},{"id":"2096299","name":"1315","instructor":null},{"id":"2096300","name":"1320","instructor":"HOFFMAN"},{"id":"2096301","name":"1325","instructor":null},{"id":"2096302","name":"1330","instructor":null}]},{"name":"CS 0441","id":"CS0441","sections":[{"id":"2096303","name":"1070","instructor":"BONIDIE"},{"id":"2096304","name":"1075","instructor":null},{"id":"2096305","name":"1080","instructor":null},{"id":"2096306","name":"1085","instructor":null},{"id":"2096307","name":"1090","instructor":"BONIDIE"},{"id":"2096308","name":"1095","instructor":null},{"id":"2096309","name":"1100","instructor":null},{"id":"2096310","name":"1101","instructor":null},{"id":"2096311","name":"1110","instructor":"GARRISON III"},{"id":"2096312","name":"1120","instructor":null},{"id":"2096313","name":"1130","instructor":null},{"id":"2096314","name":"1135","instructor":null},{"id":"2096315","name":"1200","instructor":"GARRISON III"},{"id":"2096316","name":"1210","instructor":null},{"id":"2096317","name":"1220","instructor":null},{"id":"2198583","name":"1230","instructor":"GARRISON III"}]},{"name":"CS 0445","id":"CS0445","sections":[{"id":"2096318","name":"1030","instructor":"GARRISON III"},{"id":"2096319","name":"1035","instructor":null},{"id":"2096320","name":"1040","instructor":null},{"id":"2096321","name":"1045","instructor":null},{"id":"2096322","name":"1100","instructor":"GARRISON III"},{"id":"2096323","name":"1105","instructor":null},{"id":"2096324","name":"1110","instructor":null},{"id":"2096325","name":"1115","instructor":null},{"id":"2096326","name":"1200","instructor":"MOHAMED KHATTAB"},{"id":"2096327","name":"1205","instructor":null},{"id":"2096328","name":"1210","instructor":null},{"id":"2096329","name":"1220","instructor":null},{"id":"2106366","name":"1240","instructor":"JAMES"},{"id":"2106367","name":"1242","instructor":null},{"id":"2106368","name":"1244","instructor":null}]},{"name":"CS 0447","id":"CS0447","sections":[{"id":"2096330","name":"1070","instructor":"KOSIYATRAKUL"},{"id":"2096331","name":"1080","instructor":null},{"id":"2096332","name":"1090","instructor":null},{"id":"2096333","name":"1095","instructor":null},{"id":"2096334","name":"1120","instructor":"BILLINGSLEY"},{"id":"2096335","name":"1130","instructor":null},{"id":"2096336","name":"1140","instructor":null},{"id":"2096337","name":"1145","instructor":null},{"id":"2096338","name":"1200","instructor":"ZHANG"},{"id":"2096339","name":"1205","instructor":null},{"id":"2096340","name":"1210","instructor":null},{"id":"2198983","name":"1215","instructor":"KOSIYATRAKUL"}]},{"name":"CS 0449","id":"CS0449","sections":[{"id":"2096341","name":"1070","instructor":"AHN"},{"id":"2096342","name":"1080","instructor":null},{"id":"2096343","name":"1090","instructor":null},{"id":"2096344","name":"1095","instructor":null},{"id":"2096345","name":"1110","instructor":"AHN"},{"id":"2096346","name":"1120","instructor":null},{"id":"2096347","name":"1125","instructor":null},{"id":"2096348","name":"1130","instructor":null},{"id":"2096349","name":"1135","instructor":"MISURDA"},{"id":"2096350","name":"1140","instructor":null},{"id":"2096351","name":"1145","instructor":null}]},{"name":"CS 0590","id":"CS0590","sections":[{"id":"2096352","name":"1020","instructor":"QUIRIN"},{"id":"2096353","name":"1040","instructor":"BRANDON"}]},{"name":"CS 0699","id":"CS0699","sections":[{"id":"2096354","name":"1350","instructor":"FRANOLICH"}]},{"name":"CS 1501","id":"CS1501","sections":[{"id":"2096355","name":"1040","instructor":"FARNAN"},{"id":"2096356","name":"1050","instructor":null},{"id":"2096357","name":"1055","instructor":null},{"id":"2096358","name":"1060","instructor":"FARNAN"},{"id":"2096359","name":"1065","instructor":null},{"id":"2096360","name":"1075","instructor":null},{"id":"2096361","name":"1150","instructor":"FARNAN"},{"id":"2096362","name":"1170","instructor":"FARNAN"},{"id":"2096363","name":"1172","instructor":null},{"id":"2096364","name":"1174","instructor":null},{"id":"2096365","name":"1190","instructor":null},{"id":"2096366","name":"1195","instructor":null},{"id":"2096367","name":"1200","instructor":"WEHAR"},{"id":"2096368","name":"1205","instructor":null},{"id":"2096369","name":"1210","instructor":null},{"id":"2096370","name":"1250","instructor":"WEHAR"},{"id":"2096371","name":"1255","instructor":null},{"id":"2096372","name":"1260","instructor":null},{"id":"2096373","name":"1270","instructor":"FARNAN"},{"id":"2096374","name":"1272","instructor":null},{"id":"2096375","name":"1275","instructor":null},{"id":"2096376","name":"1280","instructor":"FARNAN"},{"id":"2096377","name":"1282","instructor":null},{"id":"2096378","name":"1285","instructor":null},{"id":"2096379","name":"1300","instructor":"FARNAN"},{"id":"2096380","name":"1305","instructor":"FARNAN"},{"id":"2096381","name":"1310","instructor":"ZHANG"},{"id":"2096382","name":"1315","instructor":"ZHANG"},{"id":"2096383","name":"1320","instructor":"ZHANG"},{"id":"2096384","name":"1330","instructor":"ZHANG"},{"id":"2096385","name":"1400","instructor":"WEHAR"},{"id":"2096386","name":"1405","instructor":null},{"id":"2096387","name":"1406","instructor":null},{"id":"2096388","name":"1410","instructor":"WEHAR"},{"id":"2096389","name":"1415","instructor":null},{"id":"2096390","name":"1420","instructor":null},{"id":"2198744","name":"ALL SECTIONS","instructor":"ALL INSTRUCTORS"}]},{"name":"CS 1502","id":"CS1502","sections":[{"id":"2096391","name":"1070","instructor":"MOHAMED KHATTAB"},{"id":"2096392","name":"1075","instructor":null},{"id":"2096393","name":"1080","instructor":null},{"id":"2096394","name":"1085","instructor":null},{"id":"2096395","name":"1200","instructor":"KOSIYATRAKUL"},{"id":"2096396","name":"1210","instructor":null},{"id":"2096397","name":"1220","instructor":null}]},{"name":"CS 1510","id":"CS1510","sections":[{"id":"2096398","name":"1040","instructor":"PRUHS"},{"id":"2096399","name":"1050","instructor":null}]},{"name":"CS 1520","id":"CS1520","sections":[{"id":"2096400","name":"1100","instructor":"BOWYTZ"},{"id":"2096401","name":"1105","instructor":null},{"id":"2096402","name":"1110","instructor":null},{"id":"2106419","name":"1050","instructor":null},{"id":"2106420","name":"1055","instructor":null},{"id":"2106421","name":"1060","instructor":null}]},{"name":"CS 1530","id":"CS1530","sections":[{"id":"2096403","name":"1070","instructor":"LABOON"},{"id":"2096404","name":"1080","instructor":"LABOON"}]},{"name":"CS 1541","id":"CS1541","sections":[{"id":"2096405","name":"1070","instructor":"MELHEM"}]},{"name":"CS 1550","id":"CS1550","sections":[{"id":"2096406","name":"1040","instructor":"MISURDA"},{"id":"2096407","name":"1050","instructor":null},{"id":"2096408","name":"1060","instructor":null},{"id":"2096409","name":"1080","instructor":"MISURDA"},{"id":"2096410","name":"1085","instructor":null},{"id":"2096411","name":"1090","instructor":null}]},{"name":"CS 1555","id":"CS1555","sections":[{"id":"2096412","name":"1100","instructor":"CHRYSANTHIS"},{"id":"2096413","name":"1110","instructor":null},{"id":"2096414","name":"1120","instructor":null}]},{"name":"CS 1566","id":"CS1566","sections":[{"id":"2096415","name":"1100","instructor":"KOSIYATRAKUL"},{"id":"2096416","name":"1105","instructor":null},{"id":"2096417","name":"1110","instructor":null}]},{"name":"CS 1571","id":"CS1571","sections":[{"id":"2096418","name":"1070","instructor":"LITMAN"}]},{"name":"CS 1621","id":"CS1621","sections":[{"id":"2096419","name":"1270","instructor":"ZHANG"}]},{"name":"CS 1622","id":"CS1622","sections":[{"id":"2096420","name":"1010","instructor":"MISURDA"}]},{"name":"CS 1632","id":"CS1632","sections":[{"id":"2096421","name":"1270","instructor":"LABOON"}]},{"name":"CS 1640","id":"CS1640","sections":[{"id":"2096422","name":"1050","instructor":"LABOON"}]},{"name":"CS 1645","id":"CS1645","sections":[{"id":"2096423","name":"1020","instructor":"BIGRIGG"}]},{"name":"CS 1652","id":"CS1652","sections":[{"id":"2096424","name":"1300","instructor":"LANGE"}]},{"name":"CS 1653","id":"CS1653","sections":[{"id":"2096425","name":"1140","instructor":"LEE"}]},{"name":"CS 1656","id":"CS1656","sections":[{"id":"2096426","name":"1130","instructor":"LABRINIDIS"},{"id":"2096427","name":"1140","instructor":null},{"id":"2096428","name":"1145","instructor":null}]},{"name":"CS 1675","id":"CS1675","sections":[{"id":"2096429","name":"1160","instructor":"HAUSKRECHT"}]},{"name":"CS 1699","id":"CS1699","sections":[{"id":"2096430","name":"1280","instructor":"ZNATI"}]},{"name":"CS 1900","id":"CS1900","sections":[{"id":"2096431","name":"1010","instructor":"LABOON"}]},{"name":"CS 1902","id":"CS1902","sections":[{"id":"2096432","name":"1050","instructor":"RAMIREZ"}]},{"name":"CS 1950","id":"CS1950","sections":[{"id":"2096433","name":"1010","instructor":"LABOON"},{"id":"2096434","name":"1020","instructor":"PRUHS"}]},{"name":"CS 1980","id":"CS1980","sections":[{"id":"2096435","name":"1200","instructor":"LABOON"}]},{"name":"CS 1981","id":"CS1981","sections":[{"id":"2096436","name":"1050","instructor":"LABOON"}]},{"name":"CS 2000","id":"CS2000","sections":[{"id":"2096437","name":"1010","instructor":"CHANG"},{"id":"2096438","name":"1020","instructor":null},{"id":"2096439","name":"1030","instructor":"CHILDERS"},{"id":"2096440","name":"1040","instructor":"AHN"},{"id":"2096441","name":"1050","instructor":"CHRYSANTHIS"},{"id":"2096442","name":"1060","instructor":null},{"id":"2096443","name":"1070","instructor":"HAUSKRECHT"},{"id":"2096444","name":"1080","instructor":"HWA"},{"id":"2096445","name":"1090","instructor":"LABRINIDIS"},{"id":"2096446","name":"1100","instructor":"LEE"},{"id":"2096447","name":"1110","instructor":"LITMAN"},{"id":"2096448","name":"1120","instructor":"KOVASHKA"},{"id":"2096449","name":"1130","instructor":"MELHEM"},{"id":"2096450","name":"1140","instructor":"MOSSE"},{"id":"2096451","name":"1150","instructor":"PRUHS"},{"id":"2096452","name":"1160","instructor":"WIEBE"},{"id":"2096453","name":"1170","instructor":"ZHANG"},{"id":"2096454","name":"1180","instructor":"ZNATI"},{"id":"2096455","name":"1190","instructor":"WANG"},{"id":"2096456","name":"1200","instructor":"LANGE"}]},{"name":"CS 2001","id":"CS2001","sections":[{"id":"2096457","name":"1040","instructor":"ZNATI"}]},{"name":"CS 2003","id":"CS2003","sections":[{"id":"2096458","name":"1060","instructor":"LEE"}]},{"name":"CS 2012","id":"CS2012","sections":[{"id":"2096459","name":"1040","instructor":"PRUHS"},{"id":"2096460","name":"1050","instructor":null}]},{"name":"CS 2045","id":"CS2045","sections":[{"id":"2096461","name":"1020","instructor":"BIGRIGG"}]},{"name":"CS 2053","id":"CS2053","sections":[{"id":"2132958","name":"1140","instructor":"LEE"}]},{"name":"CS 2055","id":"CS2055","sections":[{"id":"2096462","name":"1100","instructor":"CHRYSANTHIS"},{"id":"2096463","name":"1110","instructor":null},{"id":"2096464","name":"1120","instructor":null}]},{"name":"CS 2310","id":"CS2310","sections":[{"id":"2096465","name":"1020","instructor":"CHANG"}]},{"name":"CS 2410","id":"CS2410","sections":[{"id":"2096466","name":"1040","instructor":"CHILDERS"}]},{"name":"CS 2510","id":"CS2510","sections":[{"id":"2096467","name":"1040","instructor":"LANGE"}]},{"name":"CS 2610","id":"CS2610","sections":[{"id":"2096468","name":"1140","instructor":"WANG"}]},{"name":"CS 2710","id":"CS2710","sections":[{"id":"2096469","name":"1050","instructor":"HAUSKRECHT"}]},{"name":"CS 2900","id":"CS2900","sections":[{"id":"2096470","name":"1010","instructor":"CHANG"},{"id":"2096471","name":"1020","instructor":null},{"id":"2096472","name":"1030","instructor":"CHILDERS"},{"id":"2096473","name":"1040","instructor":"AHN"},{"id":"2096474","name":"1050","instructor":"CHRYSANTHIS"},{"id":"2096475","name":"1060","instructor":null},{"id":"2096476","name":"1070","instructor":"HAUSKRECHT"},{"id":"2096477","name":"1080","instructor":"HWA"},{"id":"2096478","name":"1090","instructor":"LABRINIDIS"},{"id":"2096479","name":"1100","instructor":"LEE"},{"id":"2096480","name":"1110","instructor":"LITMAN"},{"id":"2096481","name":"1120","instructor":"KOVASHKA"},{"id":"2096482","name":"1130","instructor":"MELHEM"},{"id":"2096483","name":"1140","instructor":"MOSSE"},{"id":"2096484","name":"1150","instructor":"PRUHS"},{"id":"2096485","name":"1160","instructor":"WIEBE"},{"id":"2096486","name":"1170","instructor":"ZHANG"},{"id":"2096487","name":"1180","instructor":"ZNATI"},{"id":"2096488","name":"1190","instructor":"LANGE"},{"id":"2096489","name":"1200","instructor":"WANG"}]},{"name":"CS 2910","id":"CS2910","sections":[{"id":"2096490","name":"1010","instructor":"CHANG"},{"id":"2096491","name":"1020","instructor":null},{"id":"2096492","name":"1030","instructor":"CHILDERS"},{"id":"2096493","name":"1040","instructor":"AHN"},{"id":"2096494","name":"1050","instructor":"CHRYSANTHIS"},{"id":"2096495","name":"1060","instructor":null},{"id":"2096496","name":"1070","instructor":"HAUSKRECHT"},{"id":"2096497","name":"1080","instructor":"HWA"},{"id":"2096498","name":"1090","instructor":"LABRINIDIS"},{"id":"2096499","name":"1100","instructor":"LEE"},{"id":"2096500","name":"1110","instructor":"LITMAN"},{"id":"2096501","name":"1120","instructor":"KOVASHKA"},{"id":"2096502","name":"1130","instructor":"MELHEM"},{"id":"2096503","name":"1140","instructor":"MOSSE"},{"id":"2096504","name":"1150","instructor":"PRUHS"},{"id":"2096505","name":"1160","instructor":"WIEBE"},{"id":"2096506","name":"1170","instructor":"ZHANG"},{"id":"2096507","name":"1180","instructor":"ZNATI"},{"id":"2096508","name":"1190","instructor":"WANG"},{"id":"2096509","name":"1200","instructor":"LANGE"}]},{"name":"CS 2990","id":"CS2990","sections":[{"id":"2096510","name":"1010","instructor":"CHANG"},{"id":"2096511","name":"1015","instructor":"WIEBE"},{"id":"2096512","name":"1020","instructor":null},{"id":"2096513","name":"1030","instructor":"CHILDERS"},{"id":"2096514","name":"1040","instructor":"AHN"},{"id":"2096515","name":"1050","instructor":"CHRYSANTHIS"},{"id":"2096516","name":"1060","instructor":null},{"id":"2096517","name":"1070","instructor":"HAUSKRECHT"},{"id":"2096518","name":"1080","instructor":"HWA"},{"id":"2096519","name":"1090","instructor":"LABRINIDIS"},{"id":"2096520","name":"1100","instructor":"LEE"},{"id":"2096521","name":"1110","instructor":"LITMAN"},{"id":"2096522","name":"1120","instructor":"KOVASHKA"},{"id":"2096523","name":"1130","instructor":"MELHEM"},{"id":"2096524","name":"1140","instructor":"MOSSE"},{"id":"2096525","name":"1150","instructor":"PRUHS"},{"id":"2096526","name":"1160","instructor":"ZHANG"},{"id":"2096527","name":"1170","instructor":"ZNATI"},{"id":"2096528","name":"1180","instructor":"WANG"},{"id":"2096529","name":"1190","instructor":"LANGE"},{"id":"2096530","name":"1200","instructor":null}]},{"name":"CS 3000","id":"CS3000","sections":[{"id":"2096531","name":"1010","instructor":"CHANG"},{"id":"2096532","name":"1020","instructor":null},{"id":"2096533","name":"1030","instructor":"CHILDERS"},{"id":"2096534","name":"1040","instructor":"AHN"},{"id":"2096535","name":"1050","instructor":"CHRYSANTHIS"},{"id":"2096536","name":"1060","instructor":null},{"id":"2096537","name":"1070","instructor":"HAUSKRECHT"},{"id":"2096538","name":"1080","instructor":"HWA"},{"id":"2096539","name":"1090","instructor":"LABRINIDIS"},{"id":"2096540","name":"1100","instructor":"LEE"},{"id":"2096541","name":"1110","instructor":"LITMAN"},{"id":"2096542","name":"1120","instructor":"KOVASHKA"},{"id":"2096543","name":"1130","instructor":"MELHEM"},{"id":"2096544","name":"1140","instructor":"MOSSE"},{"id":"2096545","name":"1150","instructor":"PRUHS"},{"id":"2096546","name":"1160","instructor":"WIEBE"},{"id":"2096547","name":"1170","instructor":"ZHANG"},{"id":"2096548","name":"1180","instructor":"ZNATI"},{"id":"2096549","name":"1190","instructor":"LANGE"},{"id":"2096550","name":"1200","instructor":"WANG"}]},{"name":"CS 3580","id":"CS3580","sections":[{"id":"2096551","name":"1010","instructor":"MELHEM"}]},{"name":"CS 3900","id":"CS3900","sections":[{"id":"2096552","name":"1010","instructor":"CHANG"},{"id":"2096553","name":"1020","instructor":null},{"id":"2096554","name":"1030","instructor":"CHILDERS"},{"id":"2096555","name":"1040","instructor":"AHN"},{"id":"2096556","name":"1050","instructor":"CHRYSANTHIS"},{"id":"2096557","name":"1060","instructor":null},{"id":"2096558","name":"1070","instructor":"HAUSKRECHT"},{"id":"2096559","name":"1080","instructor":"HWA"},{"id":"2096560","name":"1090","instructor":"LABRINIDIS"},{"id":"2096561","name":"1100","instructor":"LEE"},{"id":"2096562","name":"1110","instructor":"LITMAN"},{"id":"2096563","name":"1120","instructor":"KOVASHKA"},{"id":"2096564","name":"1130","instructor":"MELHEM"},{"id":"2096565","name":"1140","instructor":"MOSSE"},{"id":"2096566","name":"1150","instructor":"PRUHS"},{"id":"2096567","name":"1160","instructor":"WIEBE"},{"id":"2096568","name":"1170","instructor":"ZHANG"},{"id":"2096569","name":"1180","instructor":"ZNATI"},{"id":"2096570","name":"1190","instructor":"LANGE"},{"id":"2096571","name":"1200","instructor":"WANG"}]}]
+[
+    {
+        "name": "CS 0007",
+        "id": "CS0007",
+        "sections": [
+            {
+                "id": "4558013",
+                "name": "1050",
+                "instructor": "HOFFMAN"
+            },
+            {
+                "id": "4558014",
+                "name": "1061",
+                "instructor": "DEVINE"
+            },
+            {
+                "id": "4558015",
+                "name": "1100",
+                "instructor": "BONIDIE"
+            },
+            {
+                "id": "4558016",
+                "name": "1200",
+                "instructor": "DEVINE"
+            },
+            {
+                "id": "4558017",
+                "name": "1250",
+                "instructor": "HOFFMAN"
+            },
+            {
+                "id": "4558018",
+                "name": "1300",
+                "instructor": "XU"
+            }
+        ]
+    },
+    {
+        "name": "CS 0011",
+        "id": "CS0011",
+        "sections": [
+            {
+                "id": "4558019",
+                "name": "1000",
+                "instructor": "DE LIMA BARBOSA"
+            },
+            {
+                "id": "4558020",
+                "name": "1010",
+                "instructor": "HEDGES"
+            },
+            {
+                "id": "4558021",
+                "name": "1035",
+                "instructor": "SHARMA"
+            }
+        ]
+    },
+    {
+        "name": "CS 0012",
+        "id": "CS0012",
+        "sections": [
+            {
+                "id": "4558022",
+                "name": "1005",
+                "instructor": "DE LIMA BARBOSA"
+            },
+            {
+                "id": "4558023",
+                "name": "1010",
+                "instructor": "DENARDIS"
+            },
+            {
+                "id": "4558024",
+                "name": "8020",
+                "instructor": "YURASITS"
+            }
+        ]
+    },
+    {
+        "name": "CS 0134",
+        "id": "CS0134",
+        "sections": [
+            {
+                "id": "4558025",
+                "name": "1060",
+                "instructor": "DENARDIS"
+            },
+            {
+                "id": "4558026",
+                "name": "8085",
+                "instructor": "LAYE"
+            },
+            {
+                "id": "4558027",
+                "name": "8155",
+                "instructor": "SOLTER"
+            }
+        ]
+    },
+    {
+        "name": "CS 0207",
+        "id": "CS0207",
+        "sections": [
+            {
+                "id": "4558028",
+                "name": "1100",
+                "instructor": "RAMIREZ"
+            }
+        ]
+    },
+    {
+        "name": "CS 0441",
+        "id": "CS0441",
+        "sections": [
+            {
+                "id": "4558029",
+                "name": "1090",
+                "instructor": "BONIDIE"
+            },
+            {
+                "id": "4558030",
+                "name": "1230",
+                "instructor": "FARNAN"
+            },
+            {
+                "id": "4558031",
+                "name": "1245",
+                "instructor": "GARRISON III"
+            },
+            {
+                "id": "4558032",
+                "name": "1250",
+                "instructor": "MURRUGARRA LLERENA"
+            },
+            {
+                "id": "4637596",
+                "name": "1150",
+                "instructor": "MURRUGARRA LLERENA"
+            }
+        ]
+    },
+    {
+        "name": "CS 0445",
+        "id": "CS0445",
+        "sections": [
+            {
+                "id": "4558033",
+                "name": "1100",
+                "instructor": "BARSKY"
+            },
+            {
+                "id": "4558034",
+                "name": "1200",
+                "instructor": "MOHAMED KHATTAB"
+            },
+            {
+                "id": "4558035",
+                "name": "1400",
+                "instructor": "ELLIS"
+            },
+            {
+                "id": "4637597",
+                "name": "1240",
+                "instructor": "JAMES"
+            }
+        ]
+    },
+    {
+        "name": "CS 0447",
+        "id": "CS0447",
+        "sections": [
+            {
+                "id": "4558036",
+                "name": "1070",
+                "instructor": "BILLINGSLEY"
+            },
+            {
+                "id": "4558037",
+                "name": "1200",
+                "instructor": "MOHAMED KHATTAB"
+            },
+            {
+                "id": "4637598",
+                "name": "1215",
+                "instructor": "BILLINGSLEY"
+            },
+            {
+                "id": "4637599",
+                "name": "1400",
+                "instructor": "BILLINGSLEY"
+            }
+        ]
+    },
+    {
+        "name": "CS 0449",
+        "id": "CS0449",
+        "sections": [
+            {
+                "id": "4558038",
+                "name": "1110",
+                "instructor": "NUNES QUARESMA DE OL"
+            },
+            {
+                "id": "4558039",
+                "name": "1135",
+                "instructor": "NUNES QUARESMA DE OL"
+            },
+            {
+                "id": "4558040",
+                "name": "1150",
+                "instructor": "NUNES QUARESMA DE OL"
+            }
+        ]
+    },
+    {
+        "name": "CS 0590",
+        "id": "CS0590",
+        "sections": [
+            {
+                "id": "4558041",
+                "name": "1020",
+                "instructor": "QUIRIN"
+            },
+            {
+                "id": "4558042",
+                "name": "1090",
+                "instructor": "QUIRIN"
+            },
+            {
+                "id": "4558043",
+                "name": "1300",
+                "instructor": "QUIRIN"
+            }
+        ]
+    },
+    {
+        "name": "CS 1501",
+        "id": "CS1501",
+        "sections": [
+            {
+                "id": "4558044",
+                "name": "1060",
+                "instructor": "FARNAN"
+            },
+            {
+                "id": "4558045",
+                "name": "1065",
+                "instructor": "MOHAMED KHATTAB"
+            },
+            {
+                "id": "4558046",
+                "name": "1150",
+                "instructor": "MOHAMED KHATTAB"
+            },
+            {
+                "id": "4558047",
+                "name": "1200",
+                "instructor": "FARNAN"
+            }
+        ]
+    },
+    {
+        "name": "CS 1502",
+        "id": "CS1502",
+        "sections": [
+            {
+                "id": "4558048",
+                "name": "1070",
+                "instructor": "KOSIYATRAKUL"
+            },
+            {
+                "id": "4558049",
+                "name": "1200",
+                "instructor": "KOSIYATRAKUL"
+            },
+            {
+                "id": "4558050",
+                "name": "1210",
+                "instructor": "KOSIYATRAKUL"
+            }
+        ]
+    },
+    {
+        "name": "CS 1503",
+        "id": "CS1503",
+        "sections": [
+            {
+                "id": "4558051",
+                "name": "1200",
+                "instructor": "BARSKY"
+            },
+            {
+                "id": "4558052",
+                "name": "1250",
+                "instructor": "BARSKY"
+            }
+        ]
+    },
+    {
+        "name": "CS 1510",
+        "id": "CS1510",
+        "sections": [
+            {
+                "id": "4558053",
+                "name": "1040",
+                "instructor": "PRUHS"
+            },
+            {
+                "id": "4558054",
+                "name": "1050",
+                "instructor": "PRUHS"
+            }
+        ]
+    },
+    {
+        "name": "CS 1520",
+        "id": "CS1520",
+        "sections": [
+            {
+                "id": "4558055",
+                "name": "1050",
+                "instructor": "FERREIRA"
+            },
+            {
+                "id": "4558056",
+                "name": "1100",
+                "instructor": "FERREIRA"
+            }
+        ]
+    },
+    {
+        "name": "CS 1530",
+        "id": "CS1530",
+        "sections": [
+            {
+                "id": "4558057",
+                "name": "1070",
+                "instructor": "VON FRANKENBERG UND"
+            }
+        ]
+    },
+    {
+        "name": "CS 1550",
+        "id": "CS1550",
+        "sections": [
+            {
+                "id": "4558058",
+                "name": "1040",
+                "instructor": "MISURDA"
+            },
+            {
+                "id": "4558059",
+                "name": "1080",
+                "instructor": "MISURDA"
+            },
+            {
+                "id": "4558060",
+                "name": "1095",
+                "instructor": "MISURDA"
+            }
+        ]
+    },
+    {
+        "name": "CS 1555",
+        "id": "CS1555",
+        "sections": [
+            {
+                "id": "4558061",
+                "name": "1100",
+                "instructor": "NIXON"
+            }
+        ]
+    },
+    {
+        "name": "CS 1566",
+        "id": "CS1566",
+        "sections": [
+            {
+                "id": "4558062",
+                "name": "1100",
+                "instructor": "KOSIYATRAKUL"
+            }
+        ]
+    },
+    {
+        "name": "CS 1571",
+        "id": "CS1571",
+        "sections": [
+            {
+                "id": "4637600",
+                "name": "1010",
+                "instructor": "SINGH"
+            }
+        ]
+    },
+    {
+        "name": "CS 1622",
+        "id": "CS1622",
+        "sections": [
+            {
+                "id": "4558063",
+                "name": "1200",
+                "instructor": "AHN"
+            }
+        ]
+    },
+    {
+        "name": "CS 1632",
+        "id": "CS1632",
+        "sections": [
+            {
+                "id": "4558064",
+                "name": "1080",
+                "instructor": "AHN"
+            },
+            {
+                "id": "4558065",
+                "name": "1270",
+                "instructor": "AHN"
+            }
+        ]
+    },
+    {
+        "name": "CS 1635",
+        "id": "CS1635",
+        "sections": [
+            {
+                "id": "4558066",
+                "name": "1010",
+                "instructor": "BIEHL"
+            }
+        ]
+    },
+    {
+        "name": "CS 1640",
+        "id": "CS1640",
+        "sections": [
+            {
+                "id": "4637601",
+                "name": "1050",
+                "instructor": "JORDAN"
+            }
+        ]
+    },
+    {
+        "name": "CS 1645",
+        "id": "CS1645",
+        "sections": [
+            {
+                "id": "4599605",
+                "name": "1010",
+                "instructor": "TANG"
+            }
+        ]
+    },
+    {
+        "name": "CS 1651",
+        "id": "CS1651",
+        "sections": [
+            {
+                "id": "4558067",
+                "name": "1200",
+                "instructor": "NUNES QUARESMA DE OL"
+            }
+        ]
+    },
+    {
+        "name": "CS 1653",
+        "id": "CS1653",
+        "sections": [
+            {
+                "id": "4558068",
+                "name": "1140",
+                "instructor": "GARRISON III"
+            }
+        ]
+    },
+    {
+        "name": "CS 1656",
+        "id": "CS1656",
+        "sections": [
+            {
+                "id": "4558069",
+                "name": "1130",
+                "instructor": "JIA"
+            },
+            {
+                "id": "4558070",
+                "name": "1200",
+                "instructor": "YU"
+            }
+        ]
+    },
+    {
+        "name": "CS 1660",
+        "id": "CS1660",
+        "sections": [
+            {
+                "id": "4558071",
+                "name": "1300",
+                "instructor": "MAHONEY"
+            }
+        ]
+    },
+    {
+        "name": "CS 1666",
+        "id": "CS1666",
+        "sections": [
+            {
+                "id": "4558072",
+                "name": "1040",
+                "instructor": "FARNAN"
+            }
+        ]
+    },
+    {
+        "name": "CS 1674",
+        "id": "CS1674",
+        "sections": [
+            {
+                "id": "4649455",
+                "name": "1010",
+                "instructor": "MURRUGARRA LLERENA"
+            }
+        ]
+    },
+    {
+        "name": "CS 1675",
+        "id": "CS1675",
+        "sections": [
+            {
+                "id": "4558073",
+                "name": "1100",
+                "instructor": "SKEBA"
+            }
+        ]
+    },
+    {
+        "name": "CS 1678",
+        "id": "CS1678",
+        "sections": [
+            {
+                "id": "4639988",
+                "name": "1000",
+                "instructor": "JORDAN"
+            }
+        ]
+    },
+    {
+        "name": "CS 1684",
+        "id": "CS1684",
+        "sections": [
+            {
+                "id": "4647043",
+                "name": "1010",
+                "instructor": "LIU"
+            }
+        ]
+    },
+    {
+        "name": "CS 1699",
+        "id": "CS1699",
+        "sections": [
+            {
+                "id": "4637602",
+                "name": "1200",
+                "instructor": "SHI"
+            }
+        ]
+    },
+    {
+        "name": "CS 1900",
+        "id": "CS1900",
+        "sections": [
+            {
+                "id": "4558074",
+                "name": "1010",
+                "instructor": "AHN"
+            },
+            {
+                "id": "4558075",
+                "name": "1015",
+                "instructor": "AHN"
+            }
+        ]
+    },
+    {
+        "name": "CS 1901",
+        "id": "CS1901",
+        "sections": [
+            {
+                "id": "4558076",
+                "name": "1300",
+                "instructor": "RAMIREZ"
+            }
+        ]
+    },
+    {
+        "name": "CS 1906",
+        "id": "CS1906",
+        "sections": [
+            {
+                "id": "4558077",
+                "name": "1050",
+                "instructor": "RAMIREZ"
+            }
+        ]
+    },
+    {
+        "name": "CS 1950",
+        "id": "CS1950",
+        "sections": [
+            {
+                "id": "4558078",
+                "name": "1010",
+                "instructor": "AHN"
+            },
+            {
+                "id": "4558079",
+                "name": "1015",
+                "instructor": "AHN"
+            }
+        ]
+    },
+    {
+        "name": "CS 1951",
+        "id": "CS1951",
+        "sections": [
+            {
+                "id": "4558080",
+                "name": "1300",
+                "instructor": "RAMIREZ"
+            }
+        ]
+    },
+    {
+        "name": "CS 1980",
+        "id": "CS1980",
+        "sections": [
+            {
+                "id": "4637603",
+                "name": "1200",
+                "instructor": "JORDAN"
+            }
+        ]
+    },
+    {
+        "name": "CS 2000",
+        "id": "CS2000",
+        "sections": [
+            {
+                "id": "4558081",
+                "name": "1010",
+                "instructor": "WALKER"
+            },
+            {
+                "id": "4558082",
+                "name": "1030",
+                "instructor": "CHILDERS"
+            },
+            {
+                "id": "4558083",
+                "name": "1040",
+                "instructor": "CHRYSANTHIS"
+            },
+            {
+                "id": "4558084",
+                "name": "1050",
+                "instructor": "HAUSKRECHT"
+            },
+            {
+                "id": "4558085",
+                "name": "1060",
+                "instructor": "HWA"
+            },
+            {
+                "id": "4558086",
+                "name": "1070",
+                "instructor": "KOVASHKA"
+            },
+            {
+                "id": "4558087",
+                "name": "1080",
+                "instructor": "LABRINIDIS"
+            },
+            {
+                "id": "4558088",
+                "name": "1090",
+                "instructor": "LANGE"
+            },
+            {
+                "id": "4558089",
+                "name": "1100",
+                "instructor": "LEE"
+            },
+            {
+                "id": "4558090",
+                "name": "1110",
+                "instructor": "LITMAN"
+            },
+            {
+                "id": "4558091",
+                "name": "1130",
+                "instructor": "MOSSE"
+            },
+            {
+                "id": "4558092",
+                "name": "1140",
+                "instructor": "PRUHS"
+            },
+            {
+                "id": "4558093",
+                "name": "1170",
+                "instructor": "ZHANG"
+            },
+            {
+                "id": "4558094",
+                "name": "1200",
+                "instructor": "SHANGGUAN"
+            },
+            {
+                "id": "4558095",
+                "name": "1210",
+                "instructor": "BIEHL"
+            },
+            {
+                "id": "4599606",
+                "name": "1020",
+                "instructor": "LI"
+            },
+            {
+                "id": "4637604",
+                "name": "1220",
+                "instructor": "AHN"
+            },
+            {
+                "id": "4637605",
+                "name": "1230",
+                "instructor": "JIA"
+            }
+        ]
+    },
+    {
+        "name": "CS 2001",
+        "id": "CS2001",
+        "sections": [
+            {
+                "id": "4558096",
+                "name": "1040",
+                "instructor": "BIEHL"
+            }
+        ]
+    },
+    {
+        "name": "CS 2003",
+        "id": "CS2003",
+        "sections": [
+            {
+                "id": "4558097",
+                "name": "1060",
+                "instructor": "BIEHL"
+            }
+        ]
+    },
+    {
+        "name": "CS 2012",
+        "id": "CS2012",
+        "sections": [
+            {
+                "id": "4558098",
+                "name": "1040",
+                "instructor": "PRUHS"
+            },
+            {
+                "id": "4558099",
+                "name": "1050",
+                "instructor": "PRUHS"
+            }
+        ]
+    },
+    {
+        "name": "CS 2035",
+        "id": "CS2035",
+        "sections": [
+            {
+                "id": "4558100",
+                "name": "1200",
+                "instructor": "BIEHL"
+            }
+        ]
+    },
+    {
+        "name": "CS 2045",
+        "id": "CS2045",
+        "sections": [
+            {
+                "id": "4599607",
+                "name": "1010",
+                "instructor": "TANG"
+            }
+        ]
+    },
+    {
+        "name": "CS 2051",
+        "id": "CS2051",
+        "sections": [
+            {
+                "id": "4558101",
+                "name": "1200",
+                "instructor": "NUNES QUARESMA DE OL"
+            }
+        ]
+    },
+    {
+        "name": "CS 2053",
+        "id": "CS2053",
+        "sections": [
+            {
+                "id": "4558102",
+                "name": "1140",
+                "instructor": "GARRISON III"
+            }
+        ]
+    },
+    {
+        "name": "CS 2055",
+        "id": "CS2055",
+        "sections": [
+            {
+                "id": "4558103",
+                "name": "1100",
+                "instructor": "NIXON"
+            }
+        ]
+    },
+    {
+        "name": "CS 2056",
+        "id": "CS2056",
+        "sections": [
+            {
+                "id": "4558104",
+                "name": "1050",
+                "instructor": "JIA"
+            },
+            {
+                "id": "4558105",
+                "name": "1100",
+                "instructor": "JIA"
+            },
+            {
+                "id": "4558106",
+                "name": "1200",
+                "instructor": "YU"
+            }
+        ]
+    },
+    {
+        "name": "CS 2060",
+        "id": "CS2060",
+        "sections": [
+            {
+                "id": "4558107",
+                "name": "1300",
+                "instructor": "MAHONEY"
+            }
+        ]
+    },
+    {
+        "name": "CS 2074",
+        "id": "CS2074",
+        "sections": [
+            {
+                "id": "4649456",
+                "name": "1010",
+                "instructor": "MURRUGARRA LLERENA"
+            }
+        ]
+    },
+    {
+        "name": "CS 2075",
+        "id": "CS2075",
+        "sections": [
+            {
+                "id": "4558108",
+                "name": "1100",
+                "instructor": "SKEBA"
+            }
+        ]
+    },
+    {
+        "name": "CS 2078",
+        "id": "CS2078",
+        "sections": [
+            {
+                "id": "4639989",
+                "name": "1000",
+                "instructor": "JORDAN"
+            }
+        ]
+    },
+    {
+        "name": "CS 2084",
+        "id": "CS2084",
+        "sections": [
+            {
+                "id": "4647044",
+                "name": "1010",
+                "instructor": "LIU"
+            }
+        ]
+    },
+    {
+        "name": "CS 2210",
+        "id": "CS2210",
+        "sections": [
+            {
+                "id": "4558109",
+                "name": "1000",
+                "instructor": "ZHANG"
+            }
+        ]
+    },
+    {
+        "name": "CS 2520",
+        "id": "CS2520",
+        "sections": [
+            {
+                "id": "4558110",
+                "name": "1000",
+                "instructor": "SHANGGUAN"
+            }
+        ]
+    },
+    {
+        "name": "CS 2637",
+        "id": "CS2637",
+        "sections": [
+            {
+                "id": "4558111",
+                "name": "1010",
+                "instructor": "GAUTAM"
+            }
+        ]
+    },
+    {
+        "name": "CS 2710",
+        "id": "CS2710",
+        "sections": [
+            {
+                "id": "4637606",
+                "name": "1050",
+                "instructor": "SKEBA"
+            }
+        ]
+    },
+    {
+        "name": "CS 2731",
+        "id": "CS2731",
+        "sections": [
+            {
+                "id": "4558112",
+                "name": "1210",
+                "instructor": "YODER"
+            }
+        ]
+    },
+    {
+        "name": "CS 2756",
+        "id": "CS2756",
+        "sections": [
+            {
+                "id": "4637607",
+                "name": "1010",
+                "instructor": "JIA"
+            }
+        ]
+    },
+    {
+        "name": "CS 2900",
+        "id": "CS2900",
+        "sections": [
+            {
+                "id": "4558113",
+                "name": "1000",
+                "instructor": "ZHANG"
+            },
+            {
+                "id": "4558114",
+                "name": "1020",
+                "instructor": "BABAY"
+            },
+            {
+                "id": "4558115",
+                "name": "1030",
+                "instructor": "BIEHL"
+            },
+            {
+                "id": "4558116",
+                "name": "1050",
+                "instructor": "CHILDERS"
+            },
+            {
+                "id": "4558117",
+                "name": "1060",
+                "instructor": "CHRYSANTHIS"
+            },
+            {
+                "id": "4558118",
+                "name": "1070",
+                "instructor": "COHEN"
+            },
+            {
+                "id": "4558119",
+                "name": "1080",
+                "instructor": "HAUSKRECHT"
+            },
+            {
+                "id": "4558120",
+                "name": "1100",
+                "instructor": "SHANGGUAN"
+            },
+            {
+                "id": "4558121",
+                "name": "1110",
+                "instructor": "JIA"
+            },
+            {
+                "id": "4558122",
+                "name": "1120",
+                "instructor": "KOVASHKA"
+            },
+            {
+                "id": "4558123",
+                "name": "1130",
+                "instructor": "LABRINIDIS"
+            },
+            {
+                "id": "4558124",
+                "name": "1170",
+                "instructor": "LEE"
+            },
+            {
+                "id": "4558125",
+                "name": "1180",
+                "instructor": "LEE"
+            },
+            {
+                "id": "4558126",
+                "name": "1200",
+                "instructor": "LITMAN"
+            },
+            {
+                "id": "4558127",
+                "name": "1210",
+                "instructor": "MOSSE"
+            },
+            {
+                "id": "4558128",
+                "name": "1220",
+                "instructor": "PRUHS"
+            },
+            {
+                "id": "4558129",
+                "name": "1230",
+                "instructor": "TANG"
+            },
+            {
+                "id": "4558130",
+                "name": "1240",
+                "instructor": "ZHANG"
+            },
+            {
+                "id": "4599608",
+                "name": "1010",
+                "instructor": "LI"
+            },
+            {
+                "id": "4599609",
+                "name": "1040",
+                "instructor": "SHI"
+            },
+            {
+                "id": "4637608",
+                "name": "1090",
+                "instructor": "AHN"
+            },
+            {
+                "id": "4637609",
+                "name": "1140",
+                "instructor": "GAUTAM"
+            }
+        ]
+    },
+    {
+        "name": "CS 2905",
+        "id": "CS2905",
+        "sections": [
+            {
+                "id": "4558131",
+                "name": "1300",
+                "instructor": "BIEHL"
+            }
+        ]
+    },
+    {
+        "name": "CS 2910",
+        "id": "CS2910",
+        "sections": [
+            {
+                "id": "4558132",
+                "name": "1000",
+                "instructor": "ZHANG"
+            },
+            {
+                "id": "4558133",
+                "name": "1020",
+                "instructor": "BABAY"
+            },
+            {
+                "id": "4558134",
+                "name": "1030",
+                "instructor": "BIEHL"
+            },
+            {
+                "id": "4558135",
+                "name": "1050",
+                "instructor": "CHILDERS"
+            },
+            {
+                "id": "4558136",
+                "name": "1060",
+                "instructor": "CHRYSANTHIS"
+            },
+            {
+                "id": "4558137",
+                "name": "1070",
+                "instructor": "COHEN"
+            },
+            {
+                "id": "4558138",
+                "name": "1080",
+                "instructor": "HAUSKRECHT"
+            },
+            {
+                "id": "4558139",
+                "name": "1100",
+                "instructor": "SHANGGUAN"
+            },
+            {
+                "id": "4558140",
+                "name": "1110",
+                "instructor": "JIA"
+            },
+            {
+                "id": "4558141",
+                "name": "1120",
+                "instructor": "KOVASHKA"
+            },
+            {
+                "id": "4558142",
+                "name": "1130",
+                "instructor": "LABRINIDIS"
+            },
+            {
+                "id": "4558143",
+                "name": "1170",
+                "instructor": "LEE"
+            },
+            {
+                "id": "4558144",
+                "name": "1180",
+                "instructor": "LEE"
+            },
+            {
+                "id": "4558145",
+                "name": "1200",
+                "instructor": "LITMAN"
+            },
+            {
+                "id": "4558146",
+                "name": "1210",
+                "instructor": "MOSSE"
+            },
+            {
+                "id": "4558147",
+                "name": "1220",
+                "instructor": "PRUHS"
+            },
+            {
+                "id": "4558148",
+                "name": "1230",
+                "instructor": "TANG"
+            },
+            {
+                "id": "4558149",
+                "name": "1240",
+                "instructor": "ZHANG"
+            },
+            {
+                "id": "4599610",
+                "name": "1010",
+                "instructor": "LI"
+            },
+            {
+                "id": "4637610",
+                "name": "1040",
+                "instructor": "NUNES QUARESMA DE OL"
+            }
+        ]
+    },
+    {
+        "name": "CS 2990",
+        "id": "CS2990",
+        "sections": [
+            {
+                "id": "4558150",
+                "name": "1000",
+                "instructor": "ZHANG"
+            },
+            {
+                "id": "4558151",
+                "name": "1010",
+                "instructor": "GAUTAM"
+            },
+            {
+                "id": "4558152",
+                "name": "1020",
+                "instructor": "BABAY"
+            },
+            {
+                "id": "4558153",
+                "name": "1030",
+                "instructor": "BIEHL"
+            },
+            {
+                "id": "4558154",
+                "name": "1040",
+                "instructor": "WALKER"
+            },
+            {
+                "id": "4558155",
+                "name": "1050",
+                "instructor": "CHILDERS"
+            },
+            {
+                "id": "4558156",
+                "name": "1060",
+                "instructor": "CHRYSANTHIS"
+            },
+            {
+                "id": "4558157",
+                "name": "1070",
+                "instructor": "COHEN"
+            },
+            {
+                "id": "4558158",
+                "name": "1080",
+                "instructor": "HAUSKRECHT"
+            },
+            {
+                "id": "4558159",
+                "name": "1100",
+                "instructor": "SHANGGUAN"
+            },
+            {
+                "id": "4558160",
+                "name": "1110",
+                "instructor": "JIA"
+            },
+            {
+                "id": "4558161",
+                "name": "1120",
+                "instructor": "KOVASHKA"
+            },
+            {
+                "id": "4558162",
+                "name": "1130",
+                "instructor": "LABRINIDIS"
+            },
+            {
+                "id": "4558163",
+                "name": "1170",
+                "instructor": "LEE"
+            },
+            {
+                "id": "4558164",
+                "name": "1180",
+                "instructor": "LEE"
+            },
+            {
+                "id": "4558165",
+                "name": "1200",
+                "instructor": "LITMAN"
+            },
+            {
+                "id": "4558166",
+                "name": "1210",
+                "instructor": "MOSSE"
+            },
+            {
+                "id": "4558167",
+                "name": "1220",
+                "instructor": "PRUHS"
+            },
+            {
+                "id": "4558168",
+                "name": "1230",
+                "instructor": "TANG"
+            },
+            {
+                "id": "4558169",
+                "name": "1240",
+                "instructor": "ZHANG"
+            },
+            {
+                "id": "4599611",
+                "name": "1090",
+                "instructor": "LI"
+            },
+            {
+                "id": "4637611",
+                "name": "1140",
+                "instructor": "NUNES QUARESMA DE OL"
+            }
+        ]
+    },
+    {
+        "name": "CS 3000",
+        "id": "CS3000",
+        "sections": [
+            {
+                "id": "4558170",
+                "name": "1000",
+                "instructor": "WALKER"
+            },
+            {
+                "id": "4558171",
+                "name": "1020",
+                "instructor": "BABAY"
+            },
+            {
+                "id": "4558172",
+                "name": "1030",
+                "instructor": "BIEHL"
+            },
+            {
+                "id": "4558173",
+                "name": "1050",
+                "instructor": "CHILDERS"
+            },
+            {
+                "id": "4558174",
+                "name": "1060",
+                "instructor": "CHRYSANTHIS"
+            },
+            {
+                "id": "4558175",
+                "name": "1070",
+                "instructor": "COHEN"
+            },
+            {
+                "id": "4558176",
+                "name": "1080",
+                "instructor": "HAUSKRECHT"
+            },
+            {
+                "id": "4558177",
+                "name": "1100",
+                "instructor": "SHANGGUAN"
+            },
+            {
+                "id": "4558178",
+                "name": "1110",
+                "instructor": "JIA"
+            },
+            {
+                "id": "4558179",
+                "name": "1120",
+                "instructor": "KOVASHKA"
+            },
+            {
+                "id": "4558180",
+                "name": "1130",
+                "instructor": "LABRINIDIS"
+            },
+            {
+                "id": "4558181",
+                "name": "1170",
+                "instructor": "LEE"
+            },
+            {
+                "id": "4558182",
+                "name": "1180",
+                "instructor": "LEE"
+            },
+            {
+                "id": "4558183",
+                "name": "1200",
+                "instructor": "LITMAN"
+            },
+            {
+                "id": "4558184",
+                "name": "1210",
+                "instructor": "MOSSE"
+            },
+            {
+                "id": "4558185",
+                "name": "1220",
+                "instructor": "PRUHS"
+            },
+            {
+                "id": "4558186",
+                "name": "1230",
+                "instructor": "TANG"
+            },
+            {
+                "id": "4558187",
+                "name": "1240",
+                "instructor": "ZHANG"
+            },
+            {
+                "id": "4599612",
+                "name": "1010",
+                "instructor": "LI"
+            },
+            {
+                "id": "4637612",
+                "name": "1140",
+                "instructor": "NUNES QUARESMA DE OL"
+            }
+        ]
+    },
+    {
+        "name": "CS 3550",
+        "id": "CS3550",
+        "sections": [
+            {
+                "id": "4558188",
+                "name": "1200",
+                "instructor": "LABRINIDIS"
+            }
+        ]
+    },
+    {
+        "name": "CS 3551",
+        "id": "CS3551",
+        "sections": [
+            {
+                "id": "4558189",
+                "name": "1100",
+                "instructor": "BABAY"
+            }
+        ]
+    },
+    {
+        "name": "CS 3750",
+        "id": "CS3750",
+        "sections": [
+            {
+                "id": "4558190",
+                "name": "1100",
+                "instructor": "JIA"
+            }
+        ]
+    },
+    {
+        "name": "CS 3800",
+        "id": "CS3800",
+        "sections": [
+            {
+                "id": "4639990",
+                "name": "1000",
+                "instructor": "LIU"
+            }
+        ]
+    },
+    {
+        "name": "CS 3900",
+        "id": "CS3900",
+        "sections": [
+            {
+                "id": "4558191",
+                "name": "1000",
+                "instructor": "ZHANG"
+            },
+            {
+                "id": "4558192",
+                "name": "1020",
+                "instructor": "BABAY"
+            },
+            {
+                "id": "4558193",
+                "name": "1030",
+                "instructor": "BIEHL"
+            },
+            {
+                "id": "4558194",
+                "name": "1040",
+                "instructor": "WALKER"
+            },
+            {
+                "id": "4558195",
+                "name": "1050",
+                "instructor": "CHILDERS"
+            },
+            {
+                "id": "4558196",
+                "name": "1060",
+                "instructor": "CHRYSANTHIS"
+            },
+            {
+                "id": "4558197",
+                "name": "1070",
+                "instructor": "COHEN"
+            },
+            {
+                "id": "4558198",
+                "name": "1080",
+                "instructor": "HAUSKRECHT"
+            },
+            {
+                "id": "4558199",
+                "name": "1090",
+                "instructor": "NUNES QUARESMA DE OL"
+            },
+            {
+                "id": "4558200",
+                "name": "1100",
+                "instructor": "SHANGGUAN"
+            },
+            {
+                "id": "4558201",
+                "name": "1110",
+                "instructor": "JIA"
+            },
+            {
+                "id": "4558202",
+                "name": "1120",
+                "instructor": "KOVASHKA"
+            },
+            {
+                "id": "4558203",
+                "name": "1130",
+                "instructor": "LABRINIDIS"
+            },
+            {
+                "id": "4558204",
+                "name": "1140",
+                "instructor": "LANGE"
+            },
+            {
+                "id": "4558205",
+                "name": "1170",
+                "instructor": "LEE"
+            },
+            {
+                "id": "4558206",
+                "name": "1180",
+                "instructor": "LEE"
+            },
+            {
+                "id": "4558207",
+                "name": "1200",
+                "instructor": "LITMAN"
+            },
+            {
+                "id": "4558208",
+                "name": "1210",
+                "instructor": "MOSSE"
+            },
+            {
+                "id": "4558209",
+                "name": "1220",
+                "instructor": "PRUHS"
+            },
+            {
+                "id": "4558210",
+                "name": "1230",
+                "instructor": "TANG"
+            },
+            {
+                "id": "4558211",
+                "name": "1240",
+                "instructor": "ZHANG"
+            },
+            {
+                "id": "4599613",
+                "name": "1010",
+                "instructor": "LI"
+            }
+        ]
+    }
+]

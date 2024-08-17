@@ -1,0 +1,69 @@
+[
+    {
+        "id": "4558031_BSZWEWZWMZYJ_0",
+        "isbn": "BSZWEWZWMZYJ",
+        "pf_id": null,
+        "new_item_id": "2603309:N",
+        "used_item_id": null,
+        "required": "Inclusive Access",
+        "sort_order": [
+            "0",
+            "2",
+            "Ia Canvas Content"
+        ],
+        "cover_image_url": "//vst-coverimages.verbacompete.com/no_image.jpg",
+        "title": "Ia Canvas Content",
+        "author": "Redshelf Ia",
+        "notes": null,
+        "citation": "<em>Ia Canvas Content</em> by Redshelf Ia. (ISBN: BSZWEWZWMZYJ).",
+        "metadata": {
+            "section_id": "4558031",
+            "section_code": "22840",
+            "term_name": "Fall 24"
+        },
+        "offers": [
+            {
+                "isbn": "BSZWEWZWMZYJ",
+                "retailer": "bookstore",
+                "item_id": "2603309:N",
+                "condition": "new",
+                "title": null,
+                "currency": null,
+                "merchant": "bookstore",
+                "rental_days": null,
+                "retailer_name": "University Store",
+                "metadata": null,
+                "in_cart": null,
+                "selected": null,
+                "total": "45.75",
+                "retailer_order": 0,
+                "lowest_price": null,
+                "highest_price": null,
+                "comments": "Books Arriving Every Day-Check Frequently!",
+                "special_comment": "Pick it up or ship it!",
+                "store_branded": true,
+                "data_source": "bookstore",
+                "description": "From University Store on Fifth",
+                "seller_rating": null,
+                "fcondition": "New",
+                "fprice": "$45.75",
+                "discounted_shipping": null,
+                "can_checkout": false,
+                "feedback_count": null,
+                "location": null,
+                "price": "45.75",
+                "shipping": 0,
+                "variant": "new",
+                "source": "default",
+                "id": "bookstore_BSZWEWZWMZYJ_new_2603309:N"
+            }
+        ],
+        "section_id": null,
+        "db_section_id": null,
+        "inclusive_access": false,
+        "catalog_id": null,
+        "edition": null,
+        "copyright_year": null,
+        "binding": null
+    }
+]

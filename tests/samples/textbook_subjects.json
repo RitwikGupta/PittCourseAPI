@@ -1,0 +1,674 @@
+[
+    {
+        "id": "98224",
+        "name": "*GOGGLES"
+    },
+    {
+        "id": "98225",
+        "name": "*LABCOATS"
+    },
+    {
+        "id": "98226",
+        "name": "*NUR KITS"
+    },
+    {
+        "id": "22401",
+        "name": "AFRCNA"
+    },
+    {
+        "id": "22403",
+        "name": "ANTH"
+    },
+    {
+        "id": "22404",
+        "name": "ARABIC"
+    },
+    {
+        "id": "28594",
+        "name": "ARC"
+    },
+    {
+        "id": "22405",
+        "name": "ARTSC"
+    },
+    {
+        "id": "22406",
+        "name": "ASL"
+    },
+    {
+        "id": "22407",
+        "name": "ASTRON"
+    },
+    {
+        "id": "22408",
+        "name": "ATHLTR"
+    },
+    {
+        "id": "22409",
+        "name": "BACC"
+    },
+    {
+        "id": "22410",
+        "name": "BCHS"
+    },
+    {
+        "id": "80803",
+        "name": "BCMS"
+    },
+    {
+        "id": "22411",
+        "name": "BECN"
+    },
+    {
+        "id": "22412",
+        "name": "BFIN"
+    },
+    {
+        "id": "22414",
+        "name": "BIND"
+    },
+    {
+        "id": "22415",
+        "name": "BIOENG"
+    },
+    {
+        "id": "22416",
+        "name": "BIOETH"
+    },
+    {
+        "id": "22417",
+        "name": "BIOINF"
+    },
+    {
+        "id": "22418",
+        "name": "BIOSC"
+    },
+    {
+        "id": "22419",
+        "name": "BIOST"
+    },
+    {
+        "id": "22420",
+        "name": "BMIS"
+    },
+    {
+        "id": "22421",
+        "name": "BMKT"
+    },
+    {
+        "id": "22424",
+        "name": "BQOM"
+    },
+    {
+        "id": "22425",
+        "name": "BSEO"
+    },
+    {
+        "id": "22426",
+        "name": "BSPP"
+    },
+    {
+        "id": "22428",
+        "name": "BUSACC"
+    },
+    {
+        "id": "22430",
+        "name": "BUSBIS"
+    },
+    {
+        "id": "22431",
+        "name": "BUSECN"
+    },
+    {
+        "id": "22432",
+        "name": "BUSENV"
+    },
+    {
+        "id": "22433",
+        "name": "BUSERV"
+    },
+    {
+        "id": "22434",
+        "name": "BUSFIN"
+    },
+    {
+        "id": "22435",
+        "name": "BUSHRM"
+    },
+    {
+        "id": "22436",
+        "name": "BUSMKT"
+    },
+    {
+        "id": "22437",
+        "name": "BUSORG"
+    },
+    {
+        "id": "22438",
+        "name": "BUSQOM"
+    },
+    {
+        "id": "22439",
+        "name": "BUSSCM"
+    },
+    {
+        "id": "22440",
+        "name": "BUSSPP"
+    },
+    {
+        "id": "22441",
+        "name": "CDACCT"
+    },
+    {
+        "id": "22442",
+        "name": "CDENT"
+    },
+    {
+        "id": "22443",
+        "name": "CEE"
+    },
+    {
+        "id": "22444",
+        "name": "CGS"
+    },
+    {
+        "id": "22445",
+        "name": "CHE"
+    },
+    {
+        "id": "22446",
+        "name": "CHEM"
+    },
+    {
+        "id": "22447",
+        "name": "CHIN"
+    },
+    {
+        "id": "22448",
+        "name": "CLASS"
+    },
+    {
+        "id": "22449",
+        "name": "CLRES"
+    },
+    {
+        "id": "22452",
+        "name": "CMPBIO"
+    },
+    {
+        "id": "32207",
+        "name": "CMPINF"
+    },
+    {
+        "id": "22456",
+        "name": "COMMRC"
+    },
+    {
+        "id": "26403",
+        "name": "COUN"
+    },
+    {
+        "id": "22457",
+        "name": "CS"
+    },
+    {
+        "id": "22458",
+        "name": "CSD"
+    },
+    {
+        "id": "22459",
+        "name": "DENHYG"
+    },
+    {
+        "id": "22463",
+        "name": "DSPHL"
+    },
+    {
+        "id": "22466",
+        "name": "ECE"
+    },
+    {
+        "id": "22467",
+        "name": "ECON"
+    },
+    {
+        "id": "22468",
+        "name": "EDUC"
+    },
+    {
+        "id": "44670",
+        "name": "EFOP"
+    },
+    {
+        "id": "22469",
+        "name": "ELI"
+    },
+    {
+        "id": "22470",
+        "name": "EM"
+    },
+    {
+        "id": "22472",
+        "name": "ENGCMP"
+    },
+    {
+        "id": "22473",
+        "name": "ENGFLM"
+    },
+    {
+        "id": "22474",
+        "name": "ENGLIT"
+    },
+    {
+        "id": "22475",
+        "name": "ENGR"
+    },
+    {
+        "id": "22476",
+        "name": "ENGSCI"
+    },
+    {
+        "id": "22477",
+        "name": "ENGWRT"
+    },
+    {
+        "id": "22479",
+        "name": "EOH"
+    },
+    {
+        "id": "22480",
+        "name": "EPIDEM"
+    },
+    {
+        "id": "22481",
+        "name": "FACDEV"
+    },
+    {
+        "id": "26401",
+        "name": "FMST"
+    },
+    {
+        "id": "22484",
+        "name": "FP"
+    },
+    {
+        "id": "22485",
+        "name": "FR"
+    },
+    {
+        "id": "22491",
+        "name": "GEOL"
+    },
+    {
+        "id": "22492",
+        "name": "GER"
+    },
+    {
+        "id": "22493",
+        "name": "GERON"
+    },
+    {
+        "id": "22494",
+        "name": "GREEK"
+    },
+    {
+        "id": "22495",
+        "name": "GREEKM"
+    },
+    {
+        "id": "22496",
+        "name": "GSWS"
+    },
+    {
+        "id": "22497",
+        "name": "HAA"
+    },
+    {
+        "id": "23736",
+        "name": "HEBREW"
+    },
+    {
+        "id": "61591",
+        "name": "HHD"
+    },
+    {
+        "id": "26198",
+        "name": "HI"
+    },
+    {
+        "id": "22499",
+        "name": "HINDI"
+    },
+    {
+        "id": "22500",
+        "name": "HIST"
+    },
+    {
+        "id": "22501",
+        "name": "HONORS"
+    },
+    {
+        "id": "22503",
+        "name": "HPM"
+    },
+    {
+        "id": "22504",
+        "name": "HPS"
+    },
+    {
+        "id": "22505",
+        "name": "HRS"
+    },
+    {
+        "id": "22506",
+        "name": "HUGEN"
+    },
+    {
+        "id": "27731",
+        "name": "HUN"
+    },
+    {
+        "id": "22508",
+        "name": "IE"
+    },
+    {
+        "id": "22511",
+        "name": "INFSCI"
+    },
+    {
+        "id": "22512",
+        "name": "INTBP"
+    },
+    {
+        "id": "22513",
+        "name": "IRISH"
+    },
+    {
+        "id": "22516",
+        "name": "ITAL"
+    },
+    {
+        "id": "22517",
+        "name": "JPNSE"
+    },
+    {
+        "id": "22518",
+        "name": "JS"
+    },
+    {
+        "id": "22519",
+        "name": "KOREAN"
+    },
+    {
+        "id": "22520",
+        "name": "LATIN"
+    },
+    {
+        "id": "22521",
+        "name": "LAW"
+    },
+    {
+        "id": "61465",
+        "name": "LCJS"
+    },
+    {
+        "id": "22522",
+        "name": "LCTL"
+    },
+    {
+        "id": "22523",
+        "name": "LDRSHP"
+    },
+    {
+        "id": "22525",
+        "name": "LING"
+    },
+    {
+        "id": "22526",
+        "name": "LIS"
+    },
+    {
+        "id": "22528",
+        "name": "MATH"
+    },
+    {
+        "id": "22529",
+        "name": "ME"
+    },
+    {
+        "id": "22531",
+        "name": "MEDEDU"
+    },
+    {
+        "id": "22532",
+        "name": "MEMS"
+    },
+    {
+        "id": "22535",
+        "name": "MSCBIO"
+    },
+    {
+        "id": "22537",
+        "name": "MSCMP"
+    },
+    {
+        "id": "22538",
+        "name": "MSE"
+    },
+    {
+        "id": "22544",
+        "name": "MSNBIO"
+    },
+    {
+        "id": "22545",
+        "name": "MUSIC"
+    },
+    {
+        "id": "22548",
+        "name": "NROSCI"
+    },
+    {
+        "id": "64465",
+        "name": "NUCE"
+    },
+    {
+        "id": "22549",
+        "name": "NUR"
+    },
+    {
+        "id": "22550",
+        "name": "NURCNS"
+    },
+    {
+        "id": "22552",
+        "name": "NURNP"
+    },
+    {
+        "id": "22553",
+        "name": "NURSAN"
+    },
+    {
+        "id": "22554",
+        "name": "NURSP"
+    },
+    {
+        "id": "22555",
+        "name": "NUTR"
+    },
+    {
+        "id": "22560",
+        "name": "OT"
+    },
+    {
+        "id": "22561",
+        "name": "PAS"
+    },
+    {
+        "id": "22565",
+        "name": "PERS"
+    },
+    {
+        "id": "22566",
+        "name": "PETE"
+    },
+    {
+        "id": "22567",
+        "name": "PHARM"
+    },
+    {
+        "id": "22568",
+        "name": "PHIL"
+    },
+    {
+        "id": "22569",
+        "name": "PHYS"
+    },
+    {
+        "id": "22570",
+        "name": "PIA"
+    },
+    {
+        "id": "37740",
+        "name": "PITT"
+    },
+    {
+        "id": "22571",
+        "name": "POLISH"
+    },
+    {
+        "id": "22572",
+        "name": "PORT"
+    },
+    {
+        "id": "22574",
+        "name": "PS"
+    },
+    {
+        "id": "22575",
+        "name": "PSY"
+    },
+    {
+        "id": "22578",
+        "name": "PT"
+    },
+    {
+        "id": "22579",
+        "name": "PUBHLT"
+    },
+    {
+        "id": "22580",
+        "name": "PUBSRV"
+    },
+    {
+        "id": "22582",
+        "name": "REHSCI"
+    },
+    {
+        "id": "22583",
+        "name": "REL"
+    },
+    {
+        "id": "22584",
+        "name": "RELGST"
+    },
+    {
+        "id": "22585",
+        "name": "RESTD"
+    },
+    {
+        "id": "63601",
+        "name": "RT"
+    },
+    {
+        "id": "22586",
+        "name": "RUSS"
+    },
+    {
+        "id": "22587",
+        "name": "SA"
+    },
+    {
+        "id": "22589",
+        "name": "SLAV"
+    },
+    {
+        "id": "22590",
+        "name": "SLOVAK"
+    },
+    {
+        "id": "22591",
+        "name": "SOC"
+    },
+    {
+        "id": "22592",
+        "name": "SOCWRK"
+    },
+    {
+        "id": "22593",
+        "name": "SPAN"
+    },
+    {
+        "id": "22594",
+        "name": "STAT"
+    },
+    {
+        "id": "22595",
+        "name": "SWAHIL"
+    },
+    {
+        "id": "22596",
+        "name": "SWBEH"
+    },
+    {
+        "id": "22598",
+        "name": "SWCOSA"
+    },
+    {
+        "id": "22599",
+        "name": "SWE"
+    },
+    {
+        "id": "22600",
+        "name": "SWGEN"
+    },
+    {
+        "id": "22601",
+        "name": "SWINT"
+    },
+    {
+        "id": "22602",
+        "name": "SWRES"
+    },
+    {
+        "id": "22603",
+        "name": "SWWEL"
+    },
+    {
+        "id": "22604",
+        "name": "TELCOM"
+    },
+    {
+        "id": "22605",
+        "name": "THEA"
+    },
+    {
+        "id": "61590",
+        "name": "TLL"
+    },
+    {
+        "id": "22606",
+        "name": "TURKSH"
+    },
+    {
+        "id": "22607",
+        "name": "UKRAIN"
+    },
+    {
+        "id": "22608",
+        "name": "URBNST"
+    },
+    {
+        "id": "38025",
+        "name": "ZZZ"
+    }
+]
