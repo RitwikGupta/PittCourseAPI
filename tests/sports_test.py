@@ -170,36 +170,30 @@ class LibraryTest(unittest.TestCase):
 
     def test_get_next_mens_basketball_game(self):
         next_game_details = sports.get_next_mens_basketball_game()
-        self.assertIn("timestamp", next_game_details)
-        self.assertIn("opponent", next_game_details)
-        self.assertIn("home_away", next_game_details)
-        self.assertIn("location", next_game_details)
-        self.assertIn("status", next_game_details)
-        self.assertNotEqual("NO_GAME_SCHEDULED", next_game_details["status"])
+        self.assertNotEqual("NO_GAME_SCHEDULED", next_game_details.status)
 
     def test_get_next_football_game(self):
         next_game_details = sports.get_next_football_game()
-        self.assertIn("timestamp", next_game_details)
-        self.assertIn("opponent", next_game_details)
-        self.assertIn("home_away", next_game_details)
-        self.assertIn("location", next_game_details)
-        self.assertIn("status", next_game_details)
-        self.assertNotEqual("NO_GAME_SCHEDULED", next_game_details["status"])
+        self.assertNotEqual("NO_GAME_SCHEDULED", next_game_details.status)
 
     def test_get_next_mens_basketball_game_offseason(self):
         offseason_data = {"team": {"nextEvent": []}}
         sports._get_mens_basketball_data = MagicMock(return_value=offseason_data)
 
         next_game_details = sports.get_next_mens_basketball_game()
-        self.assertEqual(1, len(next_game_details))
-        self.assertIn("status", next_game_details)
-        self.assertEqual("NO_GAME_SCHEDULED", next_game_details["status"])
+        self.assertIsNone(next_game_details.timestamp)
+        self.assertIsNone(next_game_details.opponent)
+        self.assertIsNone(next_game_details.home_away)
+        self.assertIsNone(next_game_details.location)
+        self.assertEqual("NO_GAME_SCHEDULED", next_game_details.status)
 
     def test_get_next_football_game_offseason(self):
         offseason_data = {"team": {"nextEvent": []}}
         sports._get_football_data = MagicMock(return_value=offseason_data)
 
         next_game_details = sports.get_next_football_game()
-        self.assertEqual(1, len(next_game_details))
-        self.assertIn("status", next_game_details)
-        self.assertEqual("NO_GAME_SCHEDULED", next_game_details["status"])
+        self.assertIsNone(next_game_details.timestamp)
+        self.assertIsNone(next_game_details.opponent)
+        self.assertIsNone(next_game_details.home_away)
+        self.assertIsNone(next_game_details.location)
+        self.assertEqual("NO_GAME_SCHEDULED", next_game_details.status)
