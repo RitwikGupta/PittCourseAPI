@@ -32,40 +32,39 @@ SAMPLE_PATH = Path() / "tests" / "samples"
 class LaundryTest(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         unittest.TestCase.__init__(self, *args, **kwargs)
-        with open(SAMPLE_PATH / "laundry_mock_response_suth_east.json", "r") as file:
-            self.mock_data_suth_east = json.load(file)
+        with open(SAMPLE_PATH / "laundry_mock_response_holland.json", "r") as file:
+            self.mock_data_holland = json.load(file)
         with open(SAMPLE_PATH / "laundry_mock_response_towers.json", "r") as file:
             self.mock_data_towers = json.load(file)
 
     @responses.activate
-    def test_get_building_status_suth_east(self):
-        test_building = "SUTH_EAST"
+    def test_get_building_status_holland(self):
+        test_building = "HOLLAND"
         responses.add(
             responses.GET,
             laundry.BASE_URL.format(location=laundry.LOCATION_LOOKUP[test_building]),
-            json=self.mock_data_suth_east,
+            json=self.mock_data_holland,
             status=200,
         )
         status = laundry.get_building_status(test_building)
         self.assertEqual(
             status,
-            BuildingStatus(building=test_building, free_washers=7, free_dryers=2, total_washers=10, total_dryers=10),
+            BuildingStatus(building=test_building, free_washers=0, free_dryers=15, total_washers=14, total_dryers=21),
         )
 
     @responses.activate
-    def test_get_laundry_machine_statuses_suth_east(self):
-        test_building = "SUTH_EAST"
+    def test_get_laundry_machine_statuses_holland(self):
+        test_building = "HOLLAND"
         responses.add(
             responses.GET,
             laundry.BASE_URL.format(location=laundry.LOCATION_LOOKUP[test_building]),
-            json=self.mock_data_suth_east,
+            json=self.mock_data_holland,
             status=200,
         )
         machines = laundry.get_laundry_machine_statuses(test_building)
-        self.assertIsInstance(machines, list)
-        self.assertEqual(len(machines), 20)
+        self.assertEqual(len(machines), 35)
         for machine in machines:
-            if machine.status in ("Available", "Ext. Cycle") or "remaining" in machine.status:
+            if machine.status in ("Available", "Idle", "Ext. Cycle") or "remaining" in machine.status:
                 self.assertIsNotNone(machine.time_left)
             elif machine.status in ("Out of service", "Offline"):
                 self.assertIsNone(machine.time_left)
@@ -97,10 +96,9 @@ class LaundryTest(unittest.TestCase):
             status=200,
         )
         machines = laundry.get_laundry_machine_statuses(test_building)
-        self.assertIsInstance(machines, list)
-        self.assertEqual(len(machines), 56)
+        self.assertEqual(len(machines), 109)
         for machine in machines:
-            if machine.status in ("Available", "Ext. Cycle") or "remaining" in machine.status:
+            if machine.status in ("Available", "Idle", "Ext. Cycle") or "remaining" in machine.status:
                 self.assertIsNotNone(machine.time_left)
             elif machine.status in ("Out of service", "Offline"):
                 self.assertIsNone(machine.time_left)
