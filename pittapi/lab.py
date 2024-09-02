@@ -100,8 +100,8 @@ def get_one_lab_data(lab_name: str) -> Lab:
     # Off: 0
     # Available: 1
     # In Use: 2
-    # Out of Service Unknown (just going to use default condition to handle this)
-    # TODO: find out status number for Out of Service
+    # Out of Service: 3
+    # https://github.com/pittcsc/PittAPI/issues/192#issuecomment-2323735463
     for computer_info in lab_data["state"].values():
         if computer_info["up"] == 0:
             off_computers += 1
@@ -109,8 +109,10 @@ def get_one_lab_data(lab_name: str) -> Lab:
             available_computers += 1
         elif computer_info["up"] == 2:
             in_use_computers += 1
-        else:
+        elif computer_info["up"] == 3:
             out_of_service_computers += 1
+        else:
+            raise LabAPIError(f"Unknown 'up' value for {computer_info["addr"]} in {name}: {computer_info["up"]}")
 
     return Lab(
         name,
