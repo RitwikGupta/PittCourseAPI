@@ -103,16 +103,17 @@ def get_one_lab_data(lab_name: str) -> Lab:
     # Out of Service: 3
     # https://github.com/pittcsc/PittAPI/issues/192#issuecomment-2323735463
     for computer_info in lab_data["state"].values():
-        if computer_info["up"] == 0:
+        up = computer_info["up"]
+        if up == 0:
             off_computers += 1
-        elif computer_info["up"] == 1:
+        elif up == 1:
             available_computers += 1
-        elif computer_info["up"] == 2:
+        elif up == 2:
             in_use_computers += 1
-        elif computer_info["up"] == 3:
+        elif up == 3:
             out_of_service_computers += 1
         else:
-            raise LabAPIError(f"Unknown 'up' value for {computer_info["addr"]} in {name}: {computer_info["up"]}")
+            raise LabAPIError(f"Unknown 'up' value for {computer_info["addr"]} in {name}: {up}")
 
     return Lab(
         name,
