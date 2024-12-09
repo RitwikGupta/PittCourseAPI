@@ -1,0 +1,112 @@
+from pittapi import course, dining, lab, laundry, library, news, people, shuttle, textbook
+
+### Courses
+# Returns a dictionary of all courses for a given subject
+cs_subject = course.get_subject_courses(subject='CS')
+courses_dict = cs_subject.courses
+
+# Returns a list of sections of a course during a given term
+cs_course = course.get_course_details(term='2244', subject='CS', course='1501')
+section_list = cs_course.sections
+
+### Textbook
+# Returns a list of dictionaries containing textbooks for a class
+# Term number comes from pitt.verbacompare.com
+small_dict = textbook.get_textbook(term="3150", department="CS", course="445", instructor="RAMIREZ")
+
+### Library
+# Returns a dictionary containing results from query
+big_dict = library.get_documents(query="computer")
+
+### News
+# Returns a list of dictionaries containing news from main news feed
+medium_dict = news.get_news()
+
+### Laundry
+# Returns a dictionary with number of washers and dryers in use vs.
+# total washers and dryers in building
+small_dict = laundry.get_status_simple(building_name="TOWERS")
+
+### Computer Lab
+# Returns a dictionary with status of the lab and number of open machines
+small_dict = lab.get_status(lab_name="ALUMNI")
+
+### Shuttle
+# Returns a list of dictionaries containing routes of shuttles
+big_dict = shuttle.get_routes()
+
+### People
+# Returns a list of people based on the query
+list_of_peeps = people.get_person(query="Smith")
+
+### Dining
+# Returns a dictionary of dictionaries containing each dining location with its
+# name and open/closed status
+medium_dict = dining.get_locations()
+# Returns a dictionary of a dining location with its hours for a given day
+hours = dining.get_location_hours("The Eatery", datetime.datetime(2024, 4, 12))cs_subject.coursespitt.verbacompare.comcs_course.sections# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# This workflow lets you generate SLSA provenance file for your project.
+# The generation satisfies level 3 for the provenance requirements - see https://slsa.dev/spec/v0.1/requirements
+# The project is an initiative of the OpenSSF (openssf.org) and is developed at
+# https://github.com/slsa-framework/slsa-github-generator.
+# The provenance file can be verified using https://github.com/slsa-framework/slsa-verifier.
+# For more information about SLSA and how it improves the supply-chain, visit slsa.dev.
+
+name: SLSA generic generator
+on:
+  workflow_dispatch:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      digests: ${{ steps.hash.outputs.digests }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # ========================================================
+      #
+      # Step 1: Build your artifacts.
+      #
+      # ========================================================
+      - name: Build artifacts
+        run: |
+            # These are some amazing artifacts.
+            echo "artifact1" > artifact1
+            echo "artifact2" > artifact2
+
+      # ========================================================
+      #
+      # Step 2: Add a step to generate the provenance subjects
+      #         as shown below. Update the sha256 sum arguments
+      #         to include all binaries that you generate
+      #         provenance for.
+      #
+      # ========================================================
+      - name: Generate subject for provenance
+        id: hash
+        run: |
+          set -euo pipefail
+
+          # List the artifacts the provenance will refer to.
+          files=$(ls artifact*)
+          # Generate the subjects (base64 encoded).
+          echo "hashes=$(sha256sum $files | base64 -w0)" >> "${GITHUB_OUTPUT}"
+
+  provenance:
+    needs: [build]
+    permissions:
+      actions: read   # To read the workflow path.
+      id-token: write # To sign the provenance.
+      contents: write # To add assets to a release.
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.4.0
+    with:
+      base64-subjects: "${{ needs.build.outputs.digests }}"
+      upload-assets: true # Optional: Upload to a new release
