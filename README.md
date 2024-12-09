@@ -3,9 +3,17 @@
 ![Build Status](https://img.shields.io/github/actions/workflow/status/pittcsc/PittAPI/autotest.yml?branch=dev)
 ![License](https://img.shields.io/badge/license-GPLv2-blue.svg)
 ![Python Version](https://img.shields.io/badge/python-%3E%3D%203.9-green.svg)
-![Pypi Version](https://img.shields.io/pypi/v/pittapi.svg)
+[![Pypi Version](https://img.shields.io/pypi/v/pittapi.svg)](https://pypi.org/project/PittAPI/)
 
 The Pitt API is an unofficial Python API made by Ritwik Gupta at the University of Pittsburgh in an effort to get more open data from Pitt.
+
+## Installation
+
+Pitt API can be installed using the python package manager ``pip``. To make your development easier, you can run the pip commands in a virtual environment. 
+
+1. Install ``pipenv`` using the [instructions](https://pipenv.pypa.io/en/latest/installation.html) for your operating system, pipenv is a tool which manages your python virtual environments for you. 
+2. Run the commands ``pipenv install`` and ``pipenv shell`` to create and setup the virtual environment.
+3. Install the PittAPI in the new virtual environment ``pip install PittAPI``, see the usage guide below for further information.
 
 ## Usage examples
 
@@ -58,11 +66,6 @@ medium_dict = dining.get_locations()
 # Returns a dictionary of a dining location with its hours for a given day
 hours = dining.get_location_hours("The Eatery", datetime.datetime(2024, 4, 12))
 ```
-
-## Local Setup
-Install Python 3.12 and ``pipenv``.
-
-Run ``pipenv install`` and ``pipenv shell`` to create and setup the virtual environment.
 
 ## Contributing
 
