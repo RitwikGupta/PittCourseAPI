@@ -2,7 +2,7 @@
 
 ![Build Status](https://img.shields.io/github/actions/workflow/status/pittcsc/PittAPI/autotest.yml?branch=dev)
 ![License](https://img.shields.io/badge/license-GPLv2-blue.svg)
-![Python Version](https://img.shields.io/badge/python-%3E%3D%203.9-green.svg)
+![Python Version](https://img.shields.io/badge/python-%3E%3D%203.10-green.svg)
 
 The Pitt API is an unofficial Python API made by Ritwik Gupta at the University of Pittsburgh in an effort to get more open data from Pitt.
 
