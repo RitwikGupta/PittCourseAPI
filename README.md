@@ -59,7 +59,7 @@ hours = dining.get_location_hours("The Eatery", datetime.datetime(2024, 4, 12))
 ```
 
 ## Local Setup
-Install Python 3.12 and ``pipenv``.
+Install Python 3.13 and ``pipenv``.
 
 Run ``pipenv install`` and ``pipenv shell`` to create and setup the virtual environment.
 
