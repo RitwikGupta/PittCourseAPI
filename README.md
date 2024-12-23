@@ -12,7 +12,7 @@ The Pitt API is an unofficial Python API made by Ritwik Gupta at the University 
 Pitt API can be installed using the python package manager ``pip``. To make your development easier, you can run the pip commands in a virtual environment. 
 
 1. Install ``pipenv`` using the [instructions](https://pipenv.pypa.io/en/latest/installation.html) for your operating system, pipenv is a tool which manages your python virtual environments for you. 
-2. Run the commands ``pipenv install`` and ``pipenv shell`` to create and setup the virtual environment.
+2. Run the commands ``pipenv sync --dev`` and ``pipenv shell`` to create and setup the virtual environment.
 3. Install the PittAPI in the new virtual environment ``pip install PittAPI``, see the usage guide below for further information.
 
 ## Usage examples
