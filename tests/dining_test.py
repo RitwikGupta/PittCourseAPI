@@ -75,7 +75,9 @@ class DiningTest(unittest.TestCase):
         )
         responses.add(
             responses.GET,
-            dining.PERIODS_URL.format(location_id="610b1f78e82971147c9f8ba5", date_str="24-04-12"),
+            dining.PERIODS_URL.format(
+                location_id="610b1f78e82971147c9f8ba5", date_str="24-04-12"
+            ),
             json=self.dining_menu_data,
             status=200,
         )
@@ -89,5 +91,7 @@ class DiningTest(unittest.TestCase):
             json=self.dining_menu_data,
             status=200,
         )
-        locations = dining.get_location_menu("The Eatery", datetime.datetime(2024, 4, 12), "Breakfast")
+        locations = dining.get_location_menu(
+            "The Eatery", datetime.datetime(2024, 4, 12), "Breakfast"
+        )
         self.assertIsInstance(locations, dict)

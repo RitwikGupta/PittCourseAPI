@@ -24,9 +24,15 @@ from typing import Any
 JSON = dict[str, Any]
 
 API_KEY = "8882812681"
-VEHICLE_POINTS_URL = "http://www.pittshuttle.com/Services/JSONPRelay.svc/GetMapVehiclePoints"
-ARRIVAL_TIMES_URL = "http://www.pittshuttle.com/Services/JSONPRelay.svc/GetRouteStopArrivals"
-STOP_ESTIMATES_URL = "http://www.pittshuttle.com/Services/JSONPRelay.svc/GetVehicleRouteStopEstimates"
+VEHICLE_POINTS_URL = (
+    "http://www.pittshuttle.com/Services/JSONPRelay.svc/GetMapVehiclePoints"
+)
+ARRIVAL_TIMES_URL = (
+    "http://www.pittshuttle.com/Services/JSONPRelay.svc/GetRouteStopArrivals"
+)
+STOP_ESTIMATES_URL = (
+    "http://www.pittshuttle.com/Services/JSONPRelay.svc/GetVehicleRouteStopEstimates"
+)
 ROUTES_URL = "http://www.pittshuttle.com/Services/JSONPRelay.svc/GetRoutesForMap"
 
 sess = requests.session()

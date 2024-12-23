@@ -56,7 +56,12 @@ class Gym(NamedTuple):
         except ValueError:
             percentage = 0
 
-        return cls(name=name, last_updated=date_time, current_count=count, percent_full=percentage)
+        return cls(
+            name=name,
+            last_updated=date_time,
+            current_count=count,
+            percent_full=percentage,
+        )
 
 
 def get_all_gyms_info() -> list[Gym]:
@@ -80,6 +85,11 @@ def get_gym_info(gym_name: str) -> Gym | None:
     info = get_all_gyms_info()
     if gym_name in GYM_NAMES:
         for gym in info:
-            if gym.name == gym_name and gym.last_updated and gym.current_count and gym.percent_full:
+            if (
+                gym.name == gym_name
+                and gym.last_updated
+                and gym.current_count
+                and gym.percent_full
+            ):
                 return gym
     return None

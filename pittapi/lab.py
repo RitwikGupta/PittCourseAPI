@@ -73,7 +73,9 @@ def get_one_lab_data(lab_name: str) -> Lab:
     if lab_name not in AVAIL_LAB_ID_MAP.keys():
         # Dicts are guaranteed to preserve insertion order as of Python 3.7,
         # so the list of valid options will always be printed in the same order
-        raise ValueError(f"Invalid lab name: {lab_name}. Valid options: {', '.join(AVAIL_LAB_ID_MAP.keys())}")
+        raise ValueError(
+            f"Invalid lab name: {lab_name}. Valid options: {', '.join(AVAIL_LAB_ID_MAP.keys())}"
+        )
 
     req = requests.get(
         PITT_BASE_URL + AVAIL_LAB_ID_MAP[lab_name] + "/status.json?noredir=1",
@@ -81,9 +83,13 @@ def get_one_lab_data(lab_name: str) -> Lab:
     )
 
     if req.status_code == 404:
-        raise LabAPIError("The Lab ID was invalid. Please open a GitHub issue so we can resolve this.")
+        raise LabAPIError(
+            "The Lab ID was invalid. Please open a GitHub issue so we can resolve this."
+        )
     elif req.status_code != 200:
-        raise LabAPIError(f"An unexpected error occurred while fetching lab data: {req.text}")
+        raise LabAPIError(
+            f"An unexpected error occurred while fetching lab data: {req.text}"
+        )
     else:
         lab_data = req.json()
 
@@ -113,7 +119,9 @@ def get_one_lab_data(lab_name: str) -> Lab:
         elif up == 3:
             out_of_service_computers += 1
         else:
-            raise LabAPIError(f"Unknown 'up' value for {computer_info['addr']} in {name}: {up}")
+            raise LabAPIError(
+                f"Unknown 'up' value for {computer_info['addr']} in {name}: {up}"
+            )
 
     return Lab(
         name,

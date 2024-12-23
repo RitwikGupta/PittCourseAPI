@@ -90,7 +90,9 @@ def _parse_laundry_object_json(json: JSON) -> list[LaundryMachine]:
         machine1_name = json["appliance_desc"]
         machine1_num_match = NUMBER_REGEX.search(machine1_name)
         if not machine1_num_match:
-            raise ValueError(f"Found a combo machine with an invalid machine name: {machine1_name}")
+            raise ValueError(
+                f"Found a combo machine with an invalid machine name: {machine1_name}"
+            )
         machine1_num = int(machine1_num_match.group(0))
         machine1_type = "washer" if machine1_num % 2 == 0 else "dryer"
         machine1_id = json["appliance_desc_key"]
@@ -101,7 +103,9 @@ def _parse_laundry_object_json(json: JSON) -> list[LaundryMachine]:
         machine2_name = json["appliance_desc2"]
         machine2_num_match = NUMBER_REGEX.search(machine2_name)
         if not machine2_num_match:
-            raise ValueError(f"Found a combo machine with an invalid machine name: {machine2_name}")
+            raise ValueError(
+                f"Found a combo machine with an invalid machine name: {machine2_name}"
+            )
         machine2_num = int(machine2_num_match.group(0))
         machine2_type = "washer" if machine2_num % 2 == 0 else "dryer"
         machine2_id = json["appliance_desc_key2"]
@@ -111,10 +115,18 @@ def _parse_laundry_object_json(json: JSON) -> list[LaundryMachine]:
 
         return [
             LaundryMachine(
-                name=machine1_name, id=machine1_id, status=machine1_status, type=machine1_type, time_left=time_left1
+                name=machine1_name,
+                id=machine1_id,
+                status=machine1_status,
+                type=machine1_type,
+                time_left=time_left1,
             ),
             LaundryMachine(
-                name=machine2_name, id=machine2_id, status=machine2_status, type=machine2_type, time_left=time_left2
+                name=machine2_name,
+                id=machine2_id,
+                status=machine2_status,
+                type=machine2_type,
+                time_left=time_left2,
             ),
         ]
     elif json["type"] in ("washFL", "dry"):  # Only washers/only dryers
@@ -125,10 +137,18 @@ def _parse_laundry_object_json(json: JSON) -> list[LaundryMachine]:
         unavailable = machine_status in ("Out of service", "Offline")
         time_left = None if unavailable else json["time_remaining"]
         machines = [
-            LaundryMachine(name=machine_name, id=machine_id, status=machine_status, type=machine_type, time_left=time_left)
+            LaundryMachine(
+                name=machine_name,
+                id=machine_id,
+                status=machine_status,
+                type=machine_type,
+                time_left=time_left,
+            )
         ]
 
-        if "type2" in json:  # Double machine (two washers/two dryers), add second component separately
+        if (
+            "type2" in json
+        ):  # Double machine (two washers/two dryers), add second component separately
             machine_type = "washer" if json["type2"] == "washFL" else "dryer"
             machine_name = json["appliance_desc2"]
             machine_id = json["appliance_desc_key2"]
@@ -136,7 +156,13 @@ def _parse_laundry_object_json(json: JSON) -> list[LaundryMachine]:
             unavailable = machine_status in ("Out of service", "Offline")
             time_left = None if unavailable else json["time_remaining2"]
             machines.append(
-                LaundryMachine(name=machine_name, id=machine_id, status=machine_status, type=machine_type, time_left=time_left)
+                LaundryMachine(
+                    name=machine_name,
+                    id=machine_id,
+                    status=machine_status,
+                    type=machine_type,
+                    time_left=time_left,
+                )
             )
 
         return machines

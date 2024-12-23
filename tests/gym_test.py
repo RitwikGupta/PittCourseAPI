@@ -15,7 +15,12 @@ class GymTest(unittest.TestCase):
 
         gym_info = gym.get_all_gyms_info()
         expected_info = [
-            gym.Gym(name="Baierl Rec Center", last_updated="07/09/2024 09:05 AM", current_count=100, percent_full=50),
+            gym.Gym(
+                name="Baierl Rec Center",
+                last_updated="07/09/2024 09:05 AM",
+                current_count=100,
+                percent_full=50,
+            ),
             gym.Gym(
                 name="Bellefield Hall: Fitness Center & Weight Room",
                 last_updated="07/09/2024 09:05 AM",
@@ -23,16 +28,36 @@ class GymTest(unittest.TestCase):
                 percent_full=0,
             ),
             gym.Gym(name="Bellefield Hall: Court & Dance Studio"),
-            gym.Gym(name="Trees Hall: Fitness Center", last_updated="07/09/2024 09:05 AM", current_count=70, percent_full=58),
-            gym.Gym(name="Trees Hall: Courts", last_updated="07/09/2024 09:05 AM", current_count=20, percent_full=33),
+            gym.Gym(
+                name="Trees Hall: Fitness Center",
+                last_updated="07/09/2024 09:05 AM",
+                current_count=70,
+                percent_full=58,
+            ),
+            gym.Gym(
+                name="Trees Hall: Courts",
+                last_updated="07/09/2024 09:05 AM",
+                current_count=20,
+                percent_full=33,
+            ),
             gym.Gym(
                 name="Trees Hall: Racquetball Courts & Multipurpose Room",
                 last_updated="07/09/2024 09:05 AM",
                 current_count=10,
                 percent_full=25,
             ),
-            gym.Gym(name="William Pitt Union", last_updated="07/09/2024 09:05 AM", current_count=25, percent_full=25),
-            gym.Gym(name="Pitt Sports Dome", last_updated="07/09/2024 09:05 AM", current_count=15, percent_full=20),
+            gym.Gym(
+                name="William Pitt Union",
+                last_updated="07/09/2024 09:05 AM",
+                current_count=25,
+                percent_full=25,
+            ),
+            gym.Gym(
+                name="Pitt Sports Dome",
+                last_updated="07/09/2024 09:05 AM",
+                current_count=15,
+                percent_full=20,
+            ),
         ]
 
         self.assertEqual(gym_info, expected_info)
@@ -43,7 +68,10 @@ class GymTest(unittest.TestCase):
 
         gym_info = gym.get_gym_info("Baierl Rec Center")
         expected_info = gym.Gym(
-            name="Baierl Rec Center", last_updated="07/09/2024 09:05 AM", current_count=100, percent_full=50
+            name="Baierl Rec Center",
+            last_updated="07/09/2024 09:05 AM",
+            current_count=100,
+            percent_full=50,
         )
         self.assertEqual(gym_info, expected_info)
 

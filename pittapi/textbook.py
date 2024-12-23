@@ -16,7 +16,9 @@ SUBJECTS_URL = BASE_URL + "compare/departments/?term={term_id}"
 COURSES_URL = BASE_URL + "compare/courses/?id={dept_id}&term_id={term_id}"
 BOOKS_URL = BASE_URL + "compare/books?id={section_id}"
 
-CURRENT_TERM_ID = 78104  # Term ID for fall 2024, TODO: figure out how this ID is generated
+CURRENT_TERM_ID = (
+    78104  # Term ID for fall 2024, TODO: figure out how this ID is generated
+)
 MAX_REQUEST_ATTEMPTS = 3
 
 sess = HTMLSession()
@@ -44,7 +46,9 @@ class CourseInfo:
         self.course_num = "0" * (4 - len(self.course_num)) + self.course_num
         if self.instructor:
             self.instructor = self.instructor.upper()
-        if self.section_num and (len(self.section_num) != 4 or not self.section_num.isdigit()):
+        if self.section_num and (
+            len(self.section_num) != 4 or not self.section_num.isdigit()
+        ):
             raise ValueError("Invalid section number")
 
 
@@ -73,9 +77,13 @@ def _update_headers() -> None:
         base_response: HTMLResponse = sess.get(BASE_URL)
         if base_response.status_code == 200:
             break
-        warnings.warn(f"Attempt {i + 1} to connect to textbook site failed, trying again")
+        warnings.warn(
+            f"Attempt {i + 1} to connect to textbook site failed, trying again"
+        )
     if base_response.status_code != 200:  # Request failed too many times
-        raise ConnectionError(f"Failed to connect to textbook site after {MAX_REQUEST_ATTEMPTS} attempts")
+        raise ConnectionError(
+            f"Failed to connect to textbook site after {MAX_REQUEST_ATTEMPTS} attempts"
+        )
 
     elements = base_response.html.find("meta")
     assert isinstance(elements, list)
@@ -85,7 +93,9 @@ def _update_headers() -> None:
             global request_headers
             request_headers = {"X-CSRF-Token": csrf_token}
             return
-    raise ConnectionError("Unable to find valid request credentials, cannot connect to textbook site")
+    raise ConnectionError(
+        "Unable to find valid request credentials, cannot connect to textbook site"
+    )
 
 
 def _update_subject_map() -> None:
@@ -93,20 +103,28 @@ def _update_subject_map() -> None:
         _update_headers()
 
     for i in range(MAX_REQUEST_ATTEMPTS):
-        subject_response = sess.get(SUBJECTS_URL.format(term_id=CURRENT_TERM_ID), headers=request_headers)
+        subject_response = sess.get(
+            SUBJECTS_URL.format(term_id=CURRENT_TERM_ID), headers=request_headers
+        )
         if subject_response.status_code == 200:
             break
-        warnings.warn(f"Attempt {i + 1} to retrieve list of subjects failed, trying again")
+        warnings.warn(
+            f"Attempt {i + 1} to retrieve list of subjects failed, trying again"
+        )
         _update_headers()  # Try again with new CSRF token
     if subject_response.status_code != 200:  # Request failed too many times
-        raise ConnectionError(f"Failed to retrieve list of subjects after {MAX_REQUEST_ATTEMPTS} attempts")
+        raise ConnectionError(
+            f"Failed to retrieve list of subjects after {MAX_REQUEST_ATTEMPTS} attempts"
+        )
 
     subject_json: list[dict[str, str]] = subject_response.json()
     global subject_map
     subject_map = {entry["name"]: entry["id"] for entry in subject_json}
 
 
-def _find_section_from_json(sections: list[dict[str, str]], instructor: str | None, section_num: str | None) -> str:
+def _find_section_from_json(
+    sections: list[dict[str, str]], instructor: str | None, section_num: str | None
+) -> str:
     if section_num:
         for section in sections:
             if section["name"] == section_num:
@@ -137,7 +155,10 @@ def _get_textbooks_for_ids(ids: list[str]) -> list[Textbook]:
     if not request_headers:
         _update_headers()
 
-    responses = grequests.imap(grequests.get(BOOKS_URL.format(section_id=id), headers=request_headers) for id in ids)
+    responses = grequests.imap(
+        grequests.get(BOOKS_URL.format(section_id=id), headers=request_headers)
+        for id in ids
+    )
     books = []
     for response in responses:
         for book_json in response.json():
@@ -150,11 +171,17 @@ def _get_textbooks_for_ids(ids: list[str]) -> list[Textbook]:
 
 
 def _get_textbooks_from_json(
-    course_json: list[dict[str, Any]], subject: str, course_num: str, instructor: str | None, section_num: str | None
+    course_json: list[dict[str, Any]],
+    subject: str,
+    course_num: str,
+    instructor: str | None,
+    section_num: str | None,
 ) -> list[Textbook]:
     for course in course_json:
         if course["id"] == subject + course_num:
-            section_id = _find_section_from_json(course["sections"], instructor, section_num)
+            section_id = _find_section_from_json(
+                course["sections"], instructor, section_num
+            )
             return _get_textbooks_for_ids([section_id])
     raise LookupError(f"{subject} {course_num} is not a valid course")
 
@@ -168,14 +195,21 @@ def get_textbooks_for_course(course: CourseInfo) -> list[Textbook]:
 
     for i in range(MAX_REQUEST_ATTEMPTS):
         course_response = sess.get(
-            COURSES_URL.format(dept_id=subject_map[course.subject], term_id=CURRENT_TERM_ID), headers=request_headers
+            COURSES_URL.format(
+                dept_id=subject_map[course.subject], term_id=CURRENT_TERM_ID
+            ),
+            headers=request_headers,
         )
         if course_response.status_code == 200:
             break
-        warnings.warn(f"Attempt {i} to retrieve list of {course.subject} courses failed, trying again")
+        warnings.warn(
+            f"Attempt {i} to retrieve list of {course.subject} courses failed, trying again"
+        )
         _update_headers()  # Try again with new CSRF token
     if course_response.status_code != 200:  # Request failed too many times
-        raise ConnectionError(f"Failed to retrieve list of {course.subject} courses from textbook site")
+        raise ConnectionError(
+            f"Failed to retrieve list of {course.subject} courses from textbook site"
+        )
 
     return _get_textbooks_from_json(
         course_json=course_response.json(),
@@ -199,14 +233,21 @@ def get_textbooks_for_courses(courses_info: list[CourseInfo]) -> list[Textbook]:
     for subject in subjects:
         for i in range(MAX_REQUEST_ATTEMPTS):
             course_response = sess.get(
-                COURSES_URL.format(dept_id=subject_map[subject], term_id=CURRENT_TERM_ID), headers=request_headers
+                COURSES_URL.format(
+                    dept_id=subject_map[subject], term_id=CURRENT_TERM_ID
+                ),
+                headers=request_headers,
             )
             if course_response.status_code == 200:
                 break
-            warnings.warn(f"Attempt {i} to retrieve list {subject} courses failed, trying again")
+            warnings.warn(
+                f"Attempt {i} to retrieve list {subject} courses failed, trying again"
+            )
             _update_headers()  # Try again with new CSRF token
         if course_response.status_code != 200:  # Request failed too many times
-            raise ConnectionError(f"Failed to retrieve list of {subject} courses from textbook site")
+            raise ConnectionError(
+                f"Failed to retrieve list of {subject} courses from textbook site"
+            )
 
         courses_for_subjects[subject] = course_response.json()
 

@@ -151,7 +151,9 @@ def get_subject_courses(subject: str) -> Subject:
     return Subject(subject_code=subject, courses=courses)
 
 
-def get_course_details(term: str | int, subject: str, course: str | int) -> CourseDetails:
+def get_course_details(
+    term: str | int, subject: str, course: str | int
+) -> CourseDetails:
     term = _validate_term(term)
     subject = _validate_subject(subject)
     course = _validate_course(course)
@@ -165,7 +167,11 @@ def get_course_details(term: str | int, subject: str, course: str | int) -> Cour
     credit_range = (json_response["units_minimum"], json_response["units_maximum"])
 
     requisites = None
-    if "offerings" in json_response and len(json_response["offerings"]) != 0 and "req_group" in json_response["offerings"][0]:
+    if (
+        "offerings" in json_response
+        and len(json_response["offerings"]) != 0
+        and "req_group" in json_response["offerings"][0]
+    ):
         requisites = json_response["offerings"][0]["req_group"]
 
     components = None
@@ -199,9 +205,13 @@ def get_course_details(term: str | int, subject: str, course: str | int) -> Cour
         status = section["enrl_stat_descr"]
 
         instructors = None
-        if len(section["instructors"]) != 0 and section["instructors"][0] != "To be Announced":
+        if (
+            len(section["instructors"]) != 0
+            and section["instructors"][0] != "To be Announced"
+        ):
             instructors = [
-                Instructor(name=instructor["name"], email=instructor["email"]) for instructor in section["instructors"]
+                Instructor(name=instructor["name"], email=instructor["email"])
+                for instructor in section["instructors"]
             ]
 
         meetings = None
@@ -272,7 +282,9 @@ def get_section_details(term: str | int, class_number: str | int) -> Section:
             date_range = meeting["date_range"].split(" - ")
 
             instructors = None
-            if len(meeting["instructors"]) != 0 and meeting["instructors"][0]["name"] not in ["To be Announced", "-"]:
+            if len(meeting["instructors"]) != 0 and meeting["instructors"][0][
+                "name"
+            ] not in ["To be Announced", "-"]:
                 instructors = []
                 for instructor in meeting["instructors"]:
                     name = instructor["name"]
@@ -333,7 +345,9 @@ def _validate_term(term: str | int) -> str:
     """Validates that the term entered follows the pattern that Pitt does for term codes."""
     if VALID_TERMS.match(str(term)):
         return str(term)
-    raise ValueError("Term entered isn't a valid Pitt term, must match regex " + TERM_REGEX)
+    raise ValueError(
+        "Term entered isn't a valid Pitt term, must match regex " + TERM_REGEX
+    )
 
 
 def _validate_subject(subject: str) -> str:
@@ -378,14 +392,18 @@ def _get_course_info(course_id: str) -> JSON:
 
 
 def _get_course_sections(course_id: str, term: str) -> JSON:
-    response: JSON = requests.get(COURSE_SECTIONS_API.format(id=course_id, term=term)).json()
+    response: JSON = requests.get(
+        COURSE_SECTIONS_API.format(id=course_id, term=term)
+    ).json()
     if len(response["sections"]) == 0:
         raise ValueError("Invalid course ID; course with that ID does not exist")
     return response
 
 
 def _get_section_details(term: str | int, section_id: str | int) -> JSON:
-    response: JSON = requests.get(SECTION_DETAILS_API.format(term=term, id=section_id)).json()
+    response: JSON = requests.get(
+        SECTION_DETAILS_API.format(term=term, id=section_id)
+    ).json()
     if "error" in response:
         raise ValueError("Invalid section ID; section with that ID does not exist")
     return response

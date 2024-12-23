@@ -62,7 +62,9 @@ class TextbookTest(unittest.TestCase):
         responses.reset()
 
     def mock_base_site_success(self):
-        responses.add(responses.GET, "https://pitt.verbacompare.com/", body=self.html_text)
+        responses.add(
+            responses.GET, "https://pitt.verbacompare.com/", body=self.html_text
+        )
 
     def mock_base_site_failure(self):
         responses.add(responses.GET, "https://pitt.verbacompare.com/", status=400)
@@ -76,7 +78,9 @@ class TextbookTest(unittest.TestCase):
 
     def mock_subject_map_failure(self):
         responses.add(
-            responses.GET, f"https://pitt.verbacompare.com/compare/departments/?term={textbook.CURRENT_TERM_ID}", status=400
+            responses.GET,
+            f"https://pitt.verbacompare.com/compare/departments/?term={textbook.CURRENT_TERM_ID}",
+            status=400,
         )
 
     def mock_cs_courses_success(self):
@@ -101,7 +105,11 @@ class TextbookTest(unittest.TestCase):
         )
 
     def mock_cs_0441_garrison_books_none(self):
-        responses.add(responses.GET, f"https://pitt.verbacompare.com/compare/books?id={CS_0441_GARRISON_SECTION_ID}", json=[])
+        responses.add(
+            responses.GET,
+            f"https://pitt.verbacompare.com/compare/books?id={CS_0441_GARRISON_SECTION_ID}",
+            json=[],
+        )
 
     def mock_math_courses_success(self):
         responses.add(
@@ -127,7 +135,12 @@ class TextbookTest(unittest.TestCase):
     def test_course_info(self):
         self.mock_base_site_success()
         self.mock_subject_map_success()
-        subject, course_num, instructor, section_num = "CS", "0441", "GARRISON III", "1245"
+        subject, course_num, instructor, section_num = (
+            "CS",
+            "0441",
+            "GARRISON III",
+            "1245",
+        )
 
         course = textbook.CourseInfo(subject, course_num, instructor, section_num)
 
@@ -139,7 +152,12 @@ class TextbookTest(unittest.TestCase):
     def test_course_info_convert_input(self):
         self.mock_base_site_success()
         self.mock_subject_map_success()
-        subject, course_num, instructor, section_num = "cs", "441", "garrison iii", "1245"
+        subject, course_num, instructor, section_num = (
+            "cs",
+            "441",
+            "garrison iii",
+            "1245",
+        )
 
         course = textbook.CourseInfo(subject, course_num, instructor, section_num)
 
@@ -163,40 +181,99 @@ class TextbookTest(unittest.TestCase):
     def test_course_info_invalid_subject(self):
         self.mock_base_site_success()
         self.mock_subject_map_success()
-        subject, course_num, instructor, section_num = "fake_subject", "0441", "GARRISON III", "1245"
+        subject, course_num, instructor, section_num = (
+            "fake_subject",
+            "0441",
+            "GARRISON III",
+            "1245",
+        )
 
-        self.assertRaises(LookupError, textbook.CourseInfo, subject, course_num, instructor, section_num)
+        self.assertRaises(
+            LookupError,
+            textbook.CourseInfo,
+            subject,
+            course_num,
+            instructor,
+            section_num,
+        )
 
     def test_course_info_invalid_course_num(self):
         self.mock_base_site_success()
         self.mock_subject_map_success()
-        subject, course_num, instructor, section_num = "cs", "abc", "GARRISON III", "1245"
+        subject, course_num, instructor, section_num = (
+            "cs",
+            "abc",
+            "GARRISON III",
+            "1245",
+        )
 
-        self.assertRaises(ValueError, textbook.CourseInfo, subject, course_num, instructor, section_num)
+        self.assertRaises(
+            ValueError,
+            textbook.CourseInfo,
+            subject,
+            course_num,
+            instructor,
+            section_num,
+        )
 
         course_num = "44111"
 
-        self.assertRaises(ValueError, textbook.CourseInfo, subject, course_num, instructor, section_num)
+        self.assertRaises(
+            ValueError,
+            textbook.CourseInfo,
+            subject,
+            course_num,
+            instructor,
+            section_num,
+        )
 
     def test_course_info_invalid_section_num(self):
         self.mock_base_site_success()
         self.mock_subject_map_success()
-        subject, course_num, instructor, section_num = "cs", "0441", "GARRISON III", "12456"
+        subject, course_num, instructor, section_num = (
+            "cs",
+            "0441",
+            "GARRISON III",
+            "12456",
+        )
 
-        self.assertRaises(ValueError, textbook.CourseInfo, subject, course_num, instructor, section_num)
+        self.assertRaises(
+            ValueError,
+            textbook.CourseInfo,
+            subject,
+            course_num,
+            instructor,
+            section_num,
+        )
 
     @mark.filterwarnings("ignore:Attempt")
     @responses.activate
     def test_course_info_failing_header_requests(self):
         self.mock_base_site_failure()
 
-        self.assertRaises(ConnectionError, textbook.CourseInfo, "CS", "0441", instructor="GARRISON III")
+        self.assertRaises(
+            ConnectionError,
+            textbook.CourseInfo,
+            "CS",
+            "0441",
+            instructor="GARRISON III",
+        )
 
     @responses.activate
     def test_course_info_no_headers(self):
-        responses.add(responses.GET, "https://pitt.verbacompare.com/", body="<!DOCTYPE html><html lang='en-US'></html>")
+        responses.add(
+            responses.GET,
+            "https://pitt.verbacompare.com/",
+            body="<!DOCTYPE html><html lang='en-US'></html>",
+        )
 
-        self.assertRaises(ConnectionError, textbook.CourseInfo, "CS", "0441", instructor="GARRISON III")
+        self.assertRaises(
+            ConnectionError,
+            textbook.CourseInfo,
+            "CS",
+            "0441",
+            instructor="GARRISON III",
+        )
 
     @mark.filterwarnings("ignore:Attempt")
     @responses.activate
@@ -204,7 +281,13 @@ class TextbookTest(unittest.TestCase):
         self.mock_base_site_success()
         self.mock_subject_map_failure()
 
-        self.assertRaises(ConnectionError, textbook.CourseInfo, "CS", "0441", instructor="GARRISON III")
+        self.assertRaises(
+            ConnectionError,
+            textbook.CourseInfo,
+            "CS",
+            "0441",
+            instructor="GARRISON III",
+        )
 
     def test_textbook_from_json(self):
         self.assertEqual(len(self.cs_0441_textbook_data), 1)
@@ -216,7 +299,10 @@ class TextbookTest(unittest.TestCase):
         self.assertEqual(textbook_info.author, "Redshelf Ia")
         self.assertIsNone(textbook_info.edition)
         self.assertEqual(textbook_info.isbn, "BSZWEWZWMZYJ")
-        self.assertEqual(textbook_info.citation, "<em>Ia Canvas Content</em> by Redshelf Ia. (ISBN: BSZWEWZWMZYJ).")
+        self.assertEqual(
+            textbook_info.citation,
+            "<em>Ia Canvas Content</em> by Redshelf Ia. (ISBN: BSZWEWZWMZYJ).",
+        )
 
     def test_textbook_from_json_all_empty(self):
         emptied_data: dict[str, Any] = self.cs_0441_textbook_data[0].copy()
@@ -248,7 +334,10 @@ class TextbookTest(unittest.TestCase):
         self.assertEqual(textbooks[0].author, "Redshelf Ia")
         self.assertIsNone(textbooks[0].edition)
         self.assertEqual(textbooks[0].isbn, "BSZWEWZWMZYJ")
-        self.assertEqual(textbooks[0].citation, "<em>Ia Canvas Content</em> by Redshelf Ia. (ISBN: BSZWEWZWMZYJ).")
+        self.assertEqual(
+            textbooks[0].citation,
+            "<em>Ia Canvas Content</em> by Redshelf Ia. (ISBN: BSZWEWZWMZYJ).",
+        )
 
     @responses.activate
     def test_get_textbooks_for_course_invalid_section_num(self):
@@ -278,7 +367,10 @@ class TextbookTest(unittest.TestCase):
         self.assertEqual(textbooks[0].author, "Redshelf Ia")
         self.assertIsNone(textbooks[0].edition)
         self.assertEqual(textbooks[0].isbn, "BSZWEWZWMZYJ")
-        self.assertEqual(textbooks[0].citation, "<em>Ia Canvas Content</em> by Redshelf Ia. (ISBN: BSZWEWZWMZYJ).")
+        self.assertEqual(
+            textbooks[0].citation,
+            "<em>Ia Canvas Content</em> by Redshelf Ia. (ISBN: BSZWEWZWMZYJ).",
+        )
 
     @responses.activate
     def test_get_textbooks_for_course_invalid_instructor(self):
@@ -364,7 +456,9 @@ class TextbookTest(unittest.TestCase):
         self.mock_subject_map_success()
         self.mock_cs_courses_success()
         responses.add(
-            responses.GET, f"https://pitt.verbacompare.com/compare/books?id={CS_0441_GARRISON_SECTION_ID}", json=[emptied_data]
+            responses.GET,
+            f"https://pitt.verbacompare.com/compare/books?id={CS_0441_GARRISON_SECTION_ID}",
+            json=[emptied_data],
         )
         course = textbook.CourseInfo("CS", "0441", instructor="GARRISON III")
 
@@ -405,7 +499,10 @@ class TextbookTest(unittest.TestCase):
         self.assertEqual(textbooks[1].author, "Redshelf Ia")
         self.assertIsNone(textbooks[1].edition)
         self.assertEqual(textbooks[1].isbn, "BSZWEWZWMZYJ")
-        self.assertEqual(textbooks[1].citation, "<em>Ia Canvas Content</em> by Redshelf Ia. (ISBN: BSZWEWZWMZYJ).")
+        self.assertEqual(
+            textbooks[1].citation,
+            "<em>Ia Canvas Content</em> by Redshelf Ia. (ISBN: BSZWEWZWMZYJ).",
+        )
 
     @mark.filterwarnings("ignore:Attempt")
     @responses.activate

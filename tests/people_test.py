@@ -40,7 +40,12 @@ class PeopleTest(unittest.TestCase):
 
     @responses.activate
     def test_people_get_person(self):
-        responses.add(responses.POST, people.PEOPLE_SEARCH_URL, body=self.ramirez_test_data, status=200)
+        responses.add(
+            responses.POST,
+            people.PEOPLE_SEARCH_URL,
+            body=self.ramirez_test_data,
+            status=200,
+        )
         ans = people.get_person("John C Ramirez")
         self.assertIsInstance(ans, list)
         self.assertTrue(ans[0]["name"] == "Ramirez, John C")
@@ -48,14 +53,24 @@ class PeopleTest(unittest.TestCase):
 
     @responses.activate
     def test_people_get_person_too_many(self):
-        responses.add(responses.POST, people.PEOPLE_SEARCH_URL, body=self.too_many_test_data, status=200)
+        responses.add(
+            responses.POST,
+            people.PEOPLE_SEARCH_URL,
+            body=self.too_many_test_data,
+            status=200,
+        )
         ans = people.get_person("Smith")
         self.assertIsInstance(ans, list)
         self.assertEqual(ans, [{"ERROR": "Too many people matched your criteria."}])
 
     @responses.activate
     def test_people_get_person_none(self):
-        responses.add(responses.POST, people.PEOPLE_SEARCH_URL, body=self.none_found_test_data, status=200)
+        responses.add(
+            responses.POST,
+            people.PEOPLE_SEARCH_URL,
+            body=self.none_found_test_data,
+            status=200,
+        )
         ans = people.get_person("Lebron Iverson James Jordan Kobe")
         self.assertIsInstance(ans, list)
         self.assertEqual(ans, [{"ERROR": "No one found."}])

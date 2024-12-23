@@ -62,7 +62,9 @@ class StudyRoomTest(unittest.TestCase):
             json=self.hillman_query,
             status=200,
         )
-        self.assertEqual(library.hillman_total_reserved(), {"Total Hillman Reservations": 4})
+        self.assertEqual(
+            library.hillman_total_reserved(), {"Total Hillman Reservations": 4}
+        )
 
     @responses.activate
     def test_reserved_hillman_times(self):

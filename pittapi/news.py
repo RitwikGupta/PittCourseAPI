@@ -31,7 +31,12 @@ NEWS_BY_CATEGORY_URL = (
 )
 PITT_BASE_URL = "https://www.pitt.edu"
 
-Category = Literal["features-articles", "accolades-honors", "ones-to-watch", "announcements-and-updates"]
+Category = Literal[
+    "features-articles",
+    "accolades-honors",
+    "ones-to-watch",
+    "announcements-and-updates",
+]
 Topic = Literal[
     "university-news",
     "health-and-wellness",
@@ -84,7 +89,12 @@ class Article(NamedTuple):
         article_description = article_subheading.text.strip()
         article_tags = [tag.text.strip() for tag in article_tags_list]
 
-        return cls(title=article_title, description=article_description, url=article_url, tags=article_tags)
+        return cls(
+            title=article_title,
+            description=article_description,
+            url=article_url,
+            tags=article_tags,
+        )
 
 
 def _get_page_articles(
@@ -98,10 +108,16 @@ def _get_page_articles(
     page_num_str = str(page_num) if page_num else ""
     response: HTMLResponse = sess.get(
         NEWS_BY_CATEGORY_URL.format(
-            category=category, topic_id=TOPIC_ID_MAP[topic], year=year_str, query=query, page_num=page_num_str
+            category=category,
+            topic_id=TOPIC_ID_MAP[topic],
+            year=year_str,
+            query=query,
+            page_num=page_num_str,
         )
     )
-    main_content: Element = response.html.xpath("/html/body/div/main/div/section", first=True)
+    main_content: Element = response.html.xpath(
+        "/html/body/div/main/div/section", first=True
+    )
     news_cards: list[Element] = main_content.find("div.news-card")
     page_articles = [Article.from_html(news_card) for news_card in news_cards]
     return page_articles

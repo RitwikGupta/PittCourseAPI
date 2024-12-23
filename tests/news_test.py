@@ -30,13 +30,21 @@ SAMPLE_PATH = Path() / "tests" / "samples"
 class NewsTest(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         unittest.TestCase.__init__(self, *args, **kwargs)
-        with (SAMPLE_PATH / "news_university_news_features_articles_page_0.html").open() as f:
+        with (
+            SAMPLE_PATH / "news_university_news_features_articles_page_0.html"
+        ).open() as f:
             self.university_news_features_articles_page_0 = f.read()
-        with (SAMPLE_PATH / "news_university_news_features_articles_page_1.html").open() as f:
+        with (
+            SAMPLE_PATH / "news_university_news_features_articles_page_1.html"
+        ).open() as f:
             self.university_news_features_articles_page_1 = f.read()
-        with (SAMPLE_PATH / "news_university_news_features_articles_fulbright.html").open() as f:
+        with (
+            SAMPLE_PATH / "news_university_news_features_articles_fulbright.html"
+        ).open() as f:
             self.university_news_features_articles_fulbright = f.read()
-        with (SAMPLE_PATH / "news_university_news_features_articles_2020.html").open() as f:
+        with (
+            SAMPLE_PATH / "news_university_news_features_articles_2020.html"
+        ).open() as f:
             self.university_news_features_articles_2020 = f.read()
 
     @responses.activate
@@ -82,7 +90,9 @@ class NewsTest(unittest.TestCase):
             body=self.university_news_features_articles_fulbright,
         )
 
-        university_news_articles = news.get_articles_by_topic("university-news", query=query)
+        university_news_articles = news.get_articles_by_topic(
+            "university-news", query=query
+        )
 
         self.assertEqual(len(university_news_articles), 3)
         self.assertEqual(
@@ -92,7 +102,12 @@ class NewsTest(unittest.TestCase):
                 description="The Fulbright U.S. Scholar Program offers faculty the opportunity "
                 "to teach and conduct research abroad.",
                 url="https://www.pitt.edu/pittwire/features-articles/faculty-fulbright-scholars-2024",
-                tags=["University News", "Innovation and Research", "Global", "Faculty"],
+                tags=[
+                    "University News",
+                    "Innovation and Research",
+                    "Global",
+                    "Faculty",
+                ],
             ),
         )
         self.assertEqual(
@@ -122,7 +137,9 @@ class NewsTest(unittest.TestCase):
             body=self.university_news_features_articles_2020,
         )
 
-        university_news_articles = news.get_articles_by_topic("university-news", year=year)
+        university_news_articles = news.get_articles_by_topic(
+            "university-news", year=year
+        )
 
         self.assertEqual(len(university_news_articles), 5)
         self.assertEqual(
@@ -159,7 +176,9 @@ class NewsTest(unittest.TestCase):
             body=self.university_news_features_articles_page_0,
         )
 
-        university_news_articles = news.get_articles_by_topic("university-news", max_num_results=num_results)
+        university_news_articles = news.get_articles_by_topic(
+            "university-news", max_num_results=num_results
+        )
 
         self.assertEqual(len(university_news_articles), num_results)
         self.assertEqual(
@@ -199,7 +218,9 @@ class NewsTest(unittest.TestCase):
             body=self.university_news_features_articles_page_1,
         )
 
-        university_news_articles = news.get_articles_by_topic("university-news", max_num_results=num_results)
+        university_news_articles = news.get_articles_by_topic(
+            "university-news", max_num_results=num_results
+        )
 
         self.assertEqual(len(university_news_articles), num_results)
         self.assertEqual(

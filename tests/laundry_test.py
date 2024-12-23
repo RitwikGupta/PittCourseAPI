@@ -49,7 +49,13 @@ class LaundryTest(unittest.TestCase):
         status = laundry.get_building_status(test_building)
         self.assertEqual(
             status,
-            BuildingStatus(building=test_building, free_washers=0, free_dryers=15, total_washers=14, total_dryers=21),
+            BuildingStatus(
+                building=test_building,
+                free_washers=0,
+                free_dryers=15,
+                total_washers=14,
+                total_dryers=21,
+            ),
         )
 
     @responses.activate
@@ -64,7 +70,10 @@ class LaundryTest(unittest.TestCase):
         machines = laundry.get_laundry_machine_statuses(test_building)
         self.assertEqual(len(machines), 35)
         for machine in machines:
-            if machine.status in ("Available", "Idle", "Ext. Cycle") or "remaining" in machine.status:
+            if (
+                machine.status in ("Available", "Idle", "Ext. Cycle")
+                or "remaining" in machine.status
+            ):
                 self.assertIsNotNone(machine.time_left)
             elif machine.status in ("Out of service", "Offline"):
                 self.assertIsNone(machine.time_left)
@@ -83,7 +92,13 @@ class LaundryTest(unittest.TestCase):
         status = laundry.get_building_status(test_building)
         self.assertEqual(
             status,
-            BuildingStatus(building=test_building, free_washers=1, free_dryers=1, total_washers=54, total_dryers=55),
+            BuildingStatus(
+                building=test_building,
+                free_washers=1,
+                free_dryers=1,
+                total_washers=54,
+                total_dryers=55,
+            ),
         )
 
     @responses.activate
@@ -98,7 +113,10 @@ class LaundryTest(unittest.TestCase):
         machines = laundry.get_laundry_machine_statuses(test_building)
         self.assertEqual(len(machines), 109)
         for machine in machines:
-            if machine.status in ("Available", "Idle", "Ext. Cycle") or "remaining" in machine.status:
+            if (
+                machine.status in ("Available", "Idle", "Ext. Cycle")
+                or "remaining" in machine.status
+            ):
                 self.assertIsNotNone(machine.time_left)
             elif machine.status in ("Out of service", "Offline"):
                 self.assertIsNone(machine.time_left)

@@ -22,7 +22,16 @@ from unittest.mock import MagicMock
 
 from pittapi import course
 
-from pittapi.course import Attribute, Course, CourseDetails, Instructor, Meeting, Section, SectionDetails, Subject
+from pittapi.course import (
+    Attribute,
+    Course,
+    CourseDetails,
+    Instructor,
+    Meeting,
+    Section,
+    SectionDetails,
+    Subject,
+)
 
 from tests.mocks.course_mocks import (
     mocked_subject_data,
@@ -37,7 +46,9 @@ from tests.mocks.course_mocks import (
 class CourseTest(unittest.TestCase):
     def setUp(self):
         course._get_subjects = MagicMock(return_value=mocked_subject_data)
-        course._get_section_details = MagicMock(return_value=mocked_section_details_data)
+        course._get_section_details = MagicMock(
+            return_value=mocked_section_details_data
+        )
 
     def test_validate_term(self):
         # If convert to string
@@ -87,7 +98,9 @@ class CourseTest(unittest.TestCase):
         self.assertTrue(isinstance(test_course, Course))
 
     def test_get_subject_courses_invalid(self):
-        course._get_subject_courses = MagicMock(return_value=mocked_courses_data_invalid)
+        course._get_subject_courses = MagicMock(
+            return_value=mocked_courses_data_invalid
+        )
 
         self.assertRaises(ValueError, course.get_subject_courses, "nonsense")
         course._get_subject_courses.assert_not_called()
@@ -95,7 +108,9 @@ class CourseTest(unittest.TestCase):
     def test_get_course_details(self):
         course._get_course_id = MagicMock(return_value="105611")
         course._get_course_info = MagicMock(return_value=mocked_course_info_data)
-        course._get_course_sections = MagicMock(return_value=mocked_course_sections_data)
+        course._get_course_sections = MagicMock(
+            return_value=mocked_course_sections_data
+        )
 
         course_sections = course.get_course_details("2231", "CS", "0007")
 
@@ -112,7 +127,9 @@ class CourseTest(unittest.TestCase):
         test_attribute = course_sections.attributes[0]
         self.assertTrue(isinstance(test_attribute, Attribute))
         self.assertEqual(test_attribute.attribute, "DSGE")
-        self.assertEqual(test_attribute.attribute_description, "*DSAS General Ed. Requirements")
+        self.assertEqual(
+            test_attribute.attribute_description, "*DSAS General Ed. Requirements"
+        )
         self.assertEqual(test_attribute.value, "ALG")
         self.assertEqual(test_attribute.value_description, "Algebra")
         test_section = course_sections.sections[0]
@@ -143,7 +160,9 @@ class CourseTest(unittest.TestCase):
         self.assertEqual(test_instructor.name, "Robert Fishel")
 
     def test_get_section_details(self):
-        course._get_section_details = MagicMock(return_value=mocked_section_details_data)
+        course._get_section_details = MagicMock(
+            return_value=mocked_section_details_data
+        )
 
         section_details = course.get_section_details("2231", "27815")
 

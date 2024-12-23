@@ -29,11 +29,21 @@ class Event(NamedTuple):
     meta: str
 
 
-ACADEMIC_CALENDAR_URL: str = "https://25livepub.collegenet.com/calendars/pitt-academic-calendar.json"
-GRADES_CALENDAR_URL: str = "https://25livepub.collegenet.com/calendars/pitt-grades-calendar.json"
-ENROLLMENT_CALENDAR_URL: str = "https://25livepub.collegenet.com/calendars/pitt-enrollment-calendar.json"
-COURSE_CALENDAR_URL: str = "https://25livepub.collegenet.com/calendars/pitt-courseclass-calendar.json"
-GRADUATION_CALENDAR_URL: str = "https://25livepub.collegenet.com/calendars/pitt-graduation-calendar.json"
+ACADEMIC_CALENDAR_URL: str = (
+    "https://25livepub.collegenet.com/calendars/pitt-academic-calendar.json"
+)
+GRADES_CALENDAR_URL: str = (
+    "https://25livepub.collegenet.com/calendars/pitt-grades-calendar.json"
+)
+ENROLLMENT_CALENDAR_URL: str = (
+    "https://25livepub.collegenet.com/calendars/pitt-enrollment-calendar.json"
+)
+COURSE_CALENDAR_URL: str = (
+    "https://25livepub.collegenet.com/calendars/pitt-courseclass-calendar.json"
+)
+GRADUATION_CALENDAR_URL: str = (
+    "https://25livepub.collegenet.com/calendars/pitt-graduation-calendar.json"
+)
 
 
 def _fetch_calendar_events(url: str) -> list[Event]:

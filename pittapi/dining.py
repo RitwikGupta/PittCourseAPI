@@ -80,7 +80,9 @@ def get_locations() -> dict[str, JSON]:
     return dining_locations
 
 
-def get_location_hours(location_name: str | None = None, date: datetime | None = None) -> dict[str, list[dict[str, int]]]:
+def get_location_hours(
+    location_name: str | None = None, date: datetime | None = None
+) -> dict[str, list[dict[str, int]]]:
     """Returns dictionary containing Opening and Closing times of locations open on date.
     - Ex:{'The Eatery': [{'start_hour': 7, 'start_minutes': 0, 'end_hour': 0, 'end_minutes': 0}]}
     - if location_name is None, returns times for all locations
@@ -108,19 +110,28 @@ def get_location_hours(location_name: str | None = None, date: datetime | None =
 
     if location_name is None:
         hours = {
-            location["name"]: day["hours"] for location in locations for day in location["week"] if day["date"] == date_str
+            location["name"]: day["hours"]
+            for location in locations
+            for day in location["week"]
+            if day["date"] == date_str
         }
         return hours
 
     for location in locations:
         if location["name"].upper() == location_name:
-            hours = {location["name"]: day["hours"] for day in location["week"] if day["date"] == date_str}
+            hours = {
+                location["name"]: day["hours"]
+                for day in location["week"]
+                if day["date"] == date_str
+            }
             return hours
 
     return {}
 
 
-def get_location_menu(location: str, date: datetime | None = None, period_name: str | None = None) -> JSON:
+def get_location_menu(
+    location: str, date: datetime | None = None, period_name: str | None = None
+) -> JSON:
     """Returns menu data for given dining location on given day/period
     - period_name used for locations with different serving periods(i.e. 'Breakfast','Lunch','Dinner','Late Night')
     - None -> Returns menu for first(or only) period at location
@@ -153,7 +164,9 @@ def get_location_menu(location: str, date: datetime | None = None, period_name: 
                 period_id = period["id"]
 
     menu_resp = requests.get(
-        MENU_URL.format(location_id=location_id, period_id=period_id, date_str=date_str),
+        MENU_URL.format(
+            location_id=location_id, period_id=period_id, date_str=date_str
+        ),
         headers=REQUEST_HEADERS,
     )
     menu: JSON = menu_resp.json()["menu"]
