@@ -113,7 +113,7 @@ def get_one_lab_data(lab_name: str) -> Lab:
         elif up == 3:
             out_of_service_computers += 1
         else:
-            raise LabAPIError(f"Unknown 'up' value for {computer_info["addr"]} in {name}: {up}")
+            raise LabAPIError(f"Unknown 'up' value for {computer_info['addr']} in {name}: {up}")
 
     return Lab(
         name,
