@@ -21,48 +21,20 @@ from __future__ import annotations
 
 import math
 from requests_html import Element, HTMLResponse, HTMLSession
-from typing import Literal, NamedTuple
+from typing import NamedTuple
 
 NUM_ARTICLES_PER_PAGE = 20
 
-NEWS_BY_CATEGORY_URL = (
-    "https://www.pitt.edu/pittwire/news/{category}?field_topics_target_id={topic_id}&field_article_date_value={year}"
+PITT_BASE_URL = "https://www.pitt.edu"
+PITTWIRE_URL = PITT_BASE_URL + "/pittwire"
+FEATURES_ARTICLES_URL = PITTWIRE_URL + "/news/features-articles"
+NEWS_BY_CATEGORY_URL = PITTWIRE_URL + (
+    "/news/{category}?field_topics_target_id={topic_id}&field_article_date_value={year}"
     "&title={query}&field_category_target_id=All&page={page_num}"
 )
-PITT_BASE_URL = "https://www.pitt.edu"
 
-Category = Literal["features-articles", "accolades-honors", "ones-to-watch", "announcements-and-updates"]
-Topic = Literal[
-    "university-news",
-    "health-and-wellness",
-    "technology-and-science",
-    "arts-and-humanities",
-    "community-impact",
-    "innovation-and-research",
-    "global",
-    "diversity-equity-and-inclusion",
-    "our-city-our-campus",
-    "teaching-and-learning",
-    "space",
-    "ukraine",
-    "sustainability",
-]
-
-TOPIC_ID_MAP: dict[Topic, int] = {
-    "university-news": 432,
-    "health-and-wellness": 2,
-    "technology-and-science": 391,
-    "arts-and-humanities": 4,
-    "community-impact": 6,
-    "innovation-and-research": 1,
-    "global": 9,
-    "diversity-equity-and-inclusion": 8,
-    "our-city-our-campus": 12,
-    "teaching-and-learning": 7,
-    "space": 440,
-    "ukraine": 441,
-    "sustainability": 470,
-}
+CATEGORY_URL_NAME_MAP: dict[str, str] | None = None
+TOPIC_ID_MAP: dict[str, int] | None = None
 
 sess = HTMLSession()
 
@@ -87,18 +59,49 @@ class Article(NamedTuple):
         return cls(title=article_title, description=article_description, url=article_url, tags=article_tags)
 
 
-def _get_page_articles(
-    topic: Topic,
-    category: Category,
-    query: str,
-    year: int | None,
-    page_num: int,
-) -> list[Article]:
+def _scrape_categories() -> dict[str, str]:
+    response: HTMLResponse = sess.get(PITTWIRE_URL)
+    category_menu: Element = response.html.find("div#block-views-block-category-menu-category-menu", first=True)
+    category_list: list[Element] = category_menu.find("ul.hamburger-menu-list li")
+    category_map: dict[str, str] = {}
+    for category in category_list:
+        category_link: Element = category.find("a", first=True)
+        category_url_name = category_link.attrs["href"].split("/")[-1]
+        category_map[category.text.strip()] = category_url_name
+    if not category_map:
+        raise RuntimeError("No categories found, please open a GitHub issue")
+    return category_map
+
+
+def _scrape_topics() -> dict[str, int]:
+    response: HTMLResponse = sess.get(FEATURES_ARTICLES_URL)
+    main_content: Element = response.html.xpath("/html/body/div/main/div/section", first=True)
+    topic_fieldset: Element = main_content.find("fieldset.form-item-field-topics-target-id", first=True)
+    topic_options: list[Element] = topic_fieldset.find("option")
+    topic_map: dict[str, int] = {}
+    for topic_option in topic_options:
+        if (topic_id := topic_option.attrs["value"].strip()) == "All":  # Skip placeholder "Topics" option
+            continue
+        topic_name = topic_option.text.strip()
+        topic_map[topic_name] = int(topic_id)
+    if not topic_map:
+        raise RuntimeError("No topics found, please open a GitHub issue")
+    return topic_map
+
+
+def _get_page_articles(topic: str, category: str, query: str, year: int | None, page_num: int) -> list[Article]:
+    assert CATEGORY_URL_NAME_MAP is not None
+    assert TOPIC_ID_MAP is not None
     year_str = str(year) if year else ""
     page_num_str = str(page_num) if page_num else ""
+
     response: HTMLResponse = sess.get(
         NEWS_BY_CATEGORY_URL.format(
-            category=category, topic_id=TOPIC_ID_MAP[topic], year=year_str, query=query, page_num=page_num_str
+            category=CATEGORY_URL_NAME_MAP[category],
+            topic_id=TOPIC_ID_MAP[topic],
+            year=year_str,
+            query=query,
+            page_num=page_num_str,
         )
     )
     main_content: Element = response.html.xpath("/html/body/div/main/div/section", first=True)
@@ -107,13 +110,39 @@ def _get_page_articles(
     return page_articles
 
 
+def get_categories() -> list[str]:
+    global CATEGORY_URL_NAME_MAP
+    if not CATEGORY_URL_NAME_MAP:
+        CATEGORY_URL_NAME_MAP = _scrape_categories()
+    return list(CATEGORY_URL_NAME_MAP.keys())
+
+
+def get_topics() -> list[str]:
+    global TOPIC_ID_MAP
+    if not TOPIC_ID_MAP:
+        TOPIC_ID_MAP = _scrape_topics()
+    return list(TOPIC_ID_MAP.keys())
+
+
 def get_articles_by_topic(
-    topic: Topic,
-    category: Category = "features-articles",
+    topic: str,
+    category: str = "Features & Articles",
     query: str = "",
     year: int | None = None,
     max_num_results: int = NUM_ARTICLES_PER_PAGE,
 ) -> list[Article]:
+    global TOPIC_ID_MAP
+    if not TOPIC_ID_MAP:
+        TOPIC_ID_MAP = _scrape_topics()
+    if topic not in TOPIC_ID_MAP:
+        raise ValueError(f"'{topic}' is not a valid topic, must be one of the following: {get_topics()}")
+
+    global CATEGORY_URL_NAME_MAP
+    if not CATEGORY_URL_NAME_MAP:
+        CATEGORY_URL_NAME_MAP = _scrape_categories()
+    if category not in CATEGORY_URL_NAME_MAP:
+        raise ValueError(f"'{category}' is not a valid category, must be one of the following: {get_categories()}")
+
     num_pages = math.ceil(max_num_results / NUM_ARTICLES_PER_PAGE)
 
     # Get articles sequentially and synchronously (i.e., not using grequests) because the news pages must stay in order
