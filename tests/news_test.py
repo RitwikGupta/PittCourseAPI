@@ -32,8 +32,12 @@ class NewsTest(unittest.TestCase):
         unittest.TestCase.__init__(self, *args, **kwargs)
         with (SAMPLE_PATH / "news_pittwire.html").open() as f:
             self.pittwire = f.read()
+        with (SAMPLE_PATH / "news_pittwire_no_categories.html").open() as f:
+            self.pittwire_no_categories = f.read()
         with (SAMPLE_PATH / "news_features_articles.html").open() as f:
             self.features_articles = f.read()
+        with (SAMPLE_PATH / "news_features_articles_no_topics.html").open() as f:
+            self.features_articles_no_topics = f.read()
         with (SAMPLE_PATH / "news_university_news_features_articles_page_0.html").open() as f:
             self.university_news_features_articles_page_0 = f.read()
         with (SAMPLE_PATH / "news_university_news_features_articles_page_1.html").open() as f:
@@ -45,28 +49,67 @@ class NewsTest(unittest.TestCase):
 
     @responses.activate
     def test_get_categories(self):
-        if not news.CATEGORY_URL_NAME_MAP:
-            responses.add(responses.GET, news.PITTWIRE_URL, body=self.pittwire)
+        news.get_categories.cache_clear()
+        news._scrape_categories.cache_clear()
+        responses.add(responses.GET, news.PITTWIRE_URL, body=self.pittwire)
 
         categories = news.get_categories()
 
-        self.assertEqual(len(categories), 4)
+        self.assertCountEqual(
+            categories, ["Features & Articles", "Accolades & Honors", "Ones to Watch", "Announcements and Updates"]
+        )
+
+    @responses.activate
+    def test_get_categories_missing(self):
+        news.get_categories.cache_clear()
+        news._scrape_categories.cache_clear()
+        responses.add(responses.GET, news.PITTWIRE_URL, body=self.pittwire_no_categories)
+
+        self.assertRaises(RuntimeError, news.get_categories)
 
     @responses.activate
     def test_get_topics(self):
-        if not news.TOPIC_ID_MAP:
-            responses.add(responses.GET, news.FEATURES_ARTICLES_URL, body=self.features_articles)
+        news.get_topics.cache_clear()
+        news._scrape_topics.cache_clear()
+        responses.add(responses.GET, news.FEATURES_ARTICLES_URL, body=self.features_articles)
 
         topics = news.get_topics()
 
-        self.assertEqual(len(topics), 13)
+        self.assertCountEqual(
+            topics,
+            [
+                "University News",
+                "Health and Wellness",
+                "Technology & Science",
+                "Arts and Humanities",
+                "Community Impact",
+                "Innovation and Research",
+                "Global",
+                "Diversity, Equity, and Inclusion",
+                "Our City/Our Campus",
+                "Teaching & Learning",
+                "Space",
+                "Ukraine",
+                "Sustainability",
+            ],
+        )
+
+    @responses.activate
+    def test_get_topics_missing(self):
+        news.get_topics.cache_clear()
+        news._scrape_topics.cache_clear()
+        responses.add(responses.GET, news.FEATURES_ARTICLES_URL, body=self.features_articles_no_topics)
+
+        self.assertRaises(RuntimeError, news.get_topics)
 
     @responses.activate
     def test_get_articles_by_topic(self):
-        if not news.CATEGORY_URL_NAME_MAP:
-            responses.add(responses.GET, news.PITTWIRE_URL, body=self.pittwire)
-        if not news.TOPIC_ID_MAP:
-            responses.add(responses.GET, news.FEATURES_ARTICLES_URL, body=self.features_articles)
+        news.get_categories.cache_clear()
+        news.get_topics.cache_clear()
+        news._scrape_categories.cache_clear()
+        news._scrape_topics.cache_clear()
+        responses.add(responses.GET, news.PITTWIRE_URL, body=self.pittwire)
+        responses.add(responses.GET, news.FEATURES_ARTICLES_URL, body=self.features_articles)
         responses.add(
             responses.GET,
             "https://www.pitt.edu/pittwire/news/features-articles?field_topics_target_id=432&field_article_date_value=&title="
@@ -101,10 +144,12 @@ class NewsTest(unittest.TestCase):
     @responses.activate
     def test_get_articles_by_topic_query(self):
         query = "fulbright"
-        if not news.CATEGORY_URL_NAME_MAP:
-            responses.add(responses.GET, news.PITTWIRE_URL, body=self.pittwire)
-        if not news.TOPIC_ID_MAP:
-            responses.add(responses.GET, news.FEATURES_ARTICLES_URL, body=self.features_articles)
+        news.get_categories.cache_clear()
+        news.get_topics.cache_clear()
+        news._scrape_categories.cache_clear()
+        news._scrape_topics.cache_clear()
+        responses.add(responses.GET, news.PITTWIRE_URL, body=self.pittwire)
+        responses.add(responses.GET, news.FEATURES_ARTICLES_URL, body=self.features_articles)
         responses.add(
             responses.GET,
             "https://www.pitt.edu/pittwire/news/features-articles?field_topics_target_id=432&field_article_date_value="
@@ -145,10 +190,12 @@ class NewsTest(unittest.TestCase):
     @responses.activate
     def test_get_articles_by_topic_year(self):
         year = 2020
-        if not news.CATEGORY_URL_NAME_MAP:
-            responses.add(responses.GET, news.PITTWIRE_URL, body=self.pittwire)
-        if not news.TOPIC_ID_MAP:
-            responses.add(responses.GET, news.FEATURES_ARTICLES_URL, body=self.features_articles)
+        news.get_categories.cache_clear()
+        news.get_topics.cache_clear()
+        news._scrape_categories.cache_clear()
+        news._scrape_topics.cache_clear()
+        responses.add(responses.GET, news.PITTWIRE_URL, body=self.pittwire)
+        responses.add(responses.GET, news.FEATURES_ARTICLES_URL, body=self.features_articles)
         responses.add(
             responses.GET,
             f"https://www.pitt.edu/pittwire/news/features-articles?field_topics_target_id=432&field_article_date_value={year}"
@@ -186,10 +233,12 @@ class NewsTest(unittest.TestCase):
     @responses.activate
     def test_get_articles_by_topic_less_than_one_page(self):
         num_results = 5
-        if not news.CATEGORY_URL_NAME_MAP:
-            responses.add(responses.GET, news.PITTWIRE_URL, body=self.pittwire)
-        if not news.TOPIC_ID_MAP:
-            responses.add(responses.GET, news.FEATURES_ARTICLES_URL, body=self.features_articles)
+        news.get_categories.cache_clear()
+        news.get_topics.cache_clear()
+        news._scrape_categories.cache_clear()
+        news._scrape_topics.cache_clear()
+        responses.add(responses.GET, news.PITTWIRE_URL, body=self.pittwire)
+        responses.add(responses.GET, news.FEATURES_ARTICLES_URL, body=self.features_articles)
         responses.add(
             responses.GET,
             "https://www.pitt.edu/pittwire/news/features-articles?field_topics_target_id=432&field_article_date_value=&title="
@@ -224,10 +273,12 @@ class NewsTest(unittest.TestCase):
     @responses.activate
     def test_get_articles_by_topic_multiple_pages(self):
         num_results = news.NUM_ARTICLES_PER_PAGE + 5
-        if not news.CATEGORY_URL_NAME_MAP:
-            responses.add(responses.GET, news.PITTWIRE_URL, body=self.pittwire)
-        if not news.TOPIC_ID_MAP:
-            responses.add(responses.GET, news.FEATURES_ARTICLES_URL, body=self.features_articles)
+        news.get_categories.cache_clear()
+        news.get_topics.cache_clear()
+        news._scrape_categories.cache_clear()
+        news._scrape_topics.cache_clear()
+        responses.add(responses.GET, news.PITTWIRE_URL, body=self.pittwire)
+        responses.add(responses.GET, news.FEATURES_ARTICLES_URL, body=self.features_articles)
         responses.add(
             responses.GET,
             "https://www.pitt.edu/pittwire/news/features-articles?field_topics_target_id=432&field_article_date_value=&title="
@@ -272,18 +323,22 @@ class NewsTest(unittest.TestCase):
 
     @responses.activate
     def test_get_articles_by_topic_invalid_category(self):
-        if not news.CATEGORY_URL_NAME_MAP:
-            responses.add(responses.GET, news.PITTWIRE_URL, body=self.pittwire)
-        if not news.TOPIC_ID_MAP:
-            responses.add(responses.GET, news.FEATURES_ARTICLES_URL, body=self.features_articles)
+        news.get_categories.cache_clear()
+        news.get_topics.cache_clear()
+        news._scrape_categories.cache_clear()
+        news._scrape_topics.cache_clear()
+        responses.add(responses.GET, news.PITTWIRE_URL, body=self.pittwire)
+        responses.add(responses.GET, news.FEATURES_ARTICLES_URL, body=self.features_articles)
 
         self.assertRaises(ValueError, news.get_articles_by_topic, "University News", "Invalid Category")
 
     @responses.activate
     def test_get_articles_by_topic_invalid_topic(self):
-        if not news.CATEGORY_URL_NAME_MAP:
-            responses.add(responses.GET, news.PITTWIRE_URL, body=self.pittwire)
-        if not news.TOPIC_ID_MAP:
-            responses.add(responses.GET, news.FEATURES_ARTICLES_URL, body=self.features_articles)
+        news.get_categories.cache_clear()
+        news.get_topics.cache_clear()
+        news._scrape_categories.cache_clear()
+        news._scrape_topics.cache_clear()
+        responses.add(responses.GET, news.PITTWIRE_URL, body=self.pittwire)
+        responses.add(responses.GET, news.FEATURES_ARTICLES_URL, body=self.features_articles)
 
         self.assertRaises(ValueError, news.get_articles_by_topic, "Invalid Topic")

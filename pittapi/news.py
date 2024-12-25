@@ -19,6 +19,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 from __future__ import annotations
 
+from functools import cache
 import math
 from requests_html import Element, HTMLResponse, HTMLSession
 from typing import NamedTuple
@@ -32,9 +33,6 @@ NEWS_BY_CATEGORY_URL = PITTWIRE_URL + (
     "/news/{category}?field_topics_target_id={topic_id}&field_article_date_value={year}"
     "&title={query}&field_category_target_id=All&page={page_num}"
 )
-
-CATEGORY_URL_NAME_MAP: dict[str, str] | None = None
-TOPIC_ID_MAP: dict[str, int] | None = None
 
 sess = HTMLSession()
 
@@ -59,6 +57,7 @@ class Article(NamedTuple):
         return cls(title=article_title, description=article_description, url=article_url, tags=article_tags)
 
 
+@cache
 def _scrape_categories() -> dict[str, str]:
     response: HTMLResponse = sess.get(PITTWIRE_URL)
     category_menu: Element = response.html.find("div#block-views-block-category-menu-category-menu", first=True)
@@ -73,6 +72,7 @@ def _scrape_categories() -> dict[str, str]:
     return category_map
 
 
+@cache
 def _scrape_topics() -> dict[str, int]:
     response: HTMLResponse = sess.get(FEATURES_ARTICLES_URL)
     main_content: Element = response.html.xpath("/html/body/div/main/div/section", first=True)
@@ -90,15 +90,15 @@ def _scrape_topics() -> dict[str, int]:
 
 
 def _get_page_articles(topic: str, category: str, query: str, year: int | None, page_num: int) -> list[Article]:
-    assert CATEGORY_URL_NAME_MAP is not None
-    assert TOPIC_ID_MAP is not None
+    topic_id_map = _scrape_topics()
+    category_url_name_map = _scrape_categories()
     year_str = str(year) if year else ""
     page_num_str = str(page_num) if page_num else ""
 
     response: HTMLResponse = sess.get(
         NEWS_BY_CATEGORY_URL.format(
-            category=CATEGORY_URL_NAME_MAP[category],
-            topic_id=TOPIC_ID_MAP[topic],
+            category=category_url_name_map[category],
+            topic_id=topic_id_map[topic],
             year=year_str,
             query=query,
             page_num=page_num_str,
@@ -110,18 +110,16 @@ def _get_page_articles(topic: str, category: str, query: str, year: int | None, 
     return page_articles
 
 
+@cache
 def get_categories() -> list[str]:
-    global CATEGORY_URL_NAME_MAP
-    if not CATEGORY_URL_NAME_MAP:
-        CATEGORY_URL_NAME_MAP = _scrape_categories()
-    return list(CATEGORY_URL_NAME_MAP.keys())
+    category_url_name_map = _scrape_categories()
+    return list(category_url_name_map.keys())
 
 
+@cache
 def get_topics() -> list[str]:
-    global TOPIC_ID_MAP
-    if not TOPIC_ID_MAP:
-        TOPIC_ID_MAP = _scrape_topics()
-    return list(TOPIC_ID_MAP.keys())
+    topic_id_map = _scrape_topics()
+    return list(topic_id_map.keys())
 
 
 def get_articles_by_topic(
@@ -131,16 +129,12 @@ def get_articles_by_topic(
     year: int | None = None,
     max_num_results: int = NUM_ARTICLES_PER_PAGE,
 ) -> list[Article]:
-    global TOPIC_ID_MAP
-    if not TOPIC_ID_MAP:
-        TOPIC_ID_MAP = _scrape_topics()
-    if topic not in TOPIC_ID_MAP:
+    topic_id_map = _scrape_topics()
+    if topic not in topic_id_map:
         raise ValueError(f"'{topic}' is not a valid topic, must be one of the following: {get_topics()}")
 
-    global CATEGORY_URL_NAME_MAP
-    if not CATEGORY_URL_NAME_MAP:
-        CATEGORY_URL_NAME_MAP = _scrape_categories()
-    if category not in CATEGORY_URL_NAME_MAP:
+    category_url_name_map = _scrape_categories()
+    if category not in category_url_name_map:
         raise ValueError(f"'{category}' is not a valid category, must be one of the following: {get_categories()}")
 
     num_pages = math.ceil(max_num_results / NUM_ARTICLES_PER_PAGE)
