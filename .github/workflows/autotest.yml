@@ -40,5 +40,7 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Format with black
         run: black --line-length=127 --check --diff .
+      - name: Type check with mypy
+        run: mypy --ignore-missing-imports --strict --install-types --non-interactive pittapi/
       - name: Run all tests with pytest
         run: pytest --cov=pittapi tests/
