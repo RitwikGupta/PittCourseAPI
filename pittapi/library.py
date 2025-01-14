@@ -20,8 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 from __future__ import annotations
 
 import requests
-from html.parser import HTMLParser
-from typing import Any
+from typing import Any, NamedTuple
 
 LIBRARY_URL = (
     "https://pitt.primo.exlibrisgroup.com/primaws/rest/pub/pnxs"
@@ -31,44 +30,63 @@ LIBRARY_URL = (
     "&scope=MyInst_and_CI&searchInFulltextUserSelection=false&skipDelivery=Y&sort=rank&tab=Everything"
     "&vid=01PITT_INST:01PITT_INST"
 )
-
 STUDY_ROOMS_URL = (
     "https://pitt.libcal.com/spaces/bookings/search"
     "?lid=917&gid=1558&eid=0&seat=0&d=1&customDate=&q=&daily=0&draw=1&order%5B0%5D%5Bcolumn%5D=1&order%5B0%5D%5Bdir%5D=asc"
     "&start=0&length=25&search%5Bvalue%5D=&_=1717907260661"
 )
 
-
 QUERY_START = "&q=any,contains,"
 
 sess = requests.session()
 
 
-class HTMLStrip(HTMLParser):
-    def __init__(self):
-        super().__init__()
-        self.reset()
-        self.data = []
+class Document(NamedTuple):
+    # Field names must exactly match key names in JSON data
+    title: list[str] | None = None
+    language: list[str] | None = None
+    subject: list[str] | None = None
+    format: list[str] | None = None
+    type: list[str] | None = None
+    isbns: list[str] | None = None
+    description: list[str] | None = None
+    publisher: list[str] | None = None
+    edition: list[str] | None = None
+    genre: list[str] | None = None
+    place: list[str] | None = None
+    creator: list[str] | None = None
+    version: list[str] | None = None
+    creationdate: list[str] | None = None
 
-    def handle_data(self, d: str) -> None:
-        self.data.append(d)
 
-    def get_data(self) -> str:
-        return "".join(self.data)
+class QueryResult(NamedTuple):
+    num_results: int
+    num_pages: int
+    docs: list[Document]
 
 
-def get_documents(query: str, page: int = 1) -> dict[str, Any]:
+class Reservation(NamedTuple):
+    room: str
+    reserved_from: str
+    reserved_until: str
+
+
+def get_documents(query: str) -> QueryResult:
     """Return ten resource results from the specified page"""
     parsed_query = query.replace(" ", "+")
     full_query = LIBRARY_URL + QUERY_START + parsed_query
     resp = sess.get(full_query)
     resp_json = resp.json()
 
-    results = _extract_results(resp_json)
+    results = QueryResult(
+        num_results=resp_json["info"]["total"],
+        num_pages=resp_json["info"]["last"],
+        docs=_filter_documents(resp_json["docs"]),
+    )
     return results
 
 
-def get_document_by_bookmark(bookmark: str) -> dict[str, Any]:
+def get_document_by_bookmark(bookmark: str) -> QueryResult:
     """Return resource referenced by bookmark"""
     payload = {"bookMark": bookmark}
     resp = sess.get(LIBRARY_URL, params=payload)
@@ -78,92 +96,50 @@ def get_document_by_bookmark(bookmark: str) -> dict[str, Any]:
         for error in resp_json.get("errors"):
             if error["code"] == "invalid.bookmark.format":
                 raise ValueError("Invalid bookmark")
-    results = _extract_results(resp_json)
+    results = QueryResult(
+        num_results=resp_json["info"]["total"],
+        num_pages=resp_json["info"]["last"],
+        docs=_filter_documents(resp_json["docs"]),
+    )
     return results
 
 
-def _strip_html(html: str) -> str:
-    strip = HTMLStrip()
-    strip.feed(html)
-    return strip.get_data()
-
-
-def _extract_results(json: dict[str, Any]) -> dict[str, Any]:
-    results = {
-        "total_results": json["info"]["total"],
-        "pages": json["info"]["last"],
-        "docs": _extract_documents(json["docs"]),
-    }
-    return results
-
-
-def _extract_documents(documents: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    new_docs = []
-    keep_keys = {
-        "title",
-        "language",
-        "subject",
-        "format",
-        "type",
-        "isbns",
-        "description",
-        "publisher",
-        "edition",
-        "genre",
-        "place",
-        "creator",
-        "edition",
-        "version",
-        "creationdate",
-    }
+def _filter_documents(documents: list[dict[str, Any]]) -> list[Document]:
+    new_docs: list[Document] = []
 
     for doc in documents:
-        new_doc = {}
-        for key in set(doc["pnx"]["display"].keys()) & keep_keys:
-            new_doc[key] = doc["pnx"]["display"][key]
-        new_docs.append(new_doc)
+        filtered_doc = {key: vals for key, vals in doc["pnx"]["display"].items() if key in Document._fields}
+        new_docs.append(Document(**filtered_doc))
 
     return new_docs
 
 
-def _extract_facets(facet_fields: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
-    facets: dict[str, list[dict[str, Any]]] = {}
-    for facet in facet_fields:
-        facets[facet["display_name"]] = []
-        for count in facet["counts"]:
-            facets[facet["display_name"]].append({"value": count["value"], "count": count["count"]})
-
-    return facets
-
-
-def hillman_total_reserved() -> dict[str, int]:
+def hillman_total_reserved() -> int:
     """Returns a simple count dictionary of the total amount of reserved rooms appointments"""
-    count = {}
     resp = requests.get(STUDY_ROOMS_URL)
-    resp = resp.json()
-    # Total records is kept track of by default in the JSON
-    total_records = resp["recordsTotal"]
+    resp_json = resp.json()
+    total_records: int = resp_json["recordsTotal"]  # Total records is kept track of by default in the JSON
 
     # Note: this must align with the amount of entries in reserved times function; renamed for further clarification
-    count["Total Hillman Reservations"] = total_records
-    return count
+    return total_records
 
 
-def reserved_hillman_times() -> list[dict[str, str | list[str]]]:
+def reserved_hillman_times() -> list[Reservation]:
     """Returns a list of dictionaries of reserved rooms in Hillman with their respective times"""
     resp = requests.get(STUDY_ROOMS_URL)
-    resp = resp.json()
-    data = resp["data"]
+    resp_json = resp.json()
+    data = resp_json["data"]
 
     if data is None:
         return []
 
     # Note: there can be multiple reservations in the same room, so we must use a list of maps and not a singular map
     bookings = [
-        {
-            "Room": reservation["itemName"],
-            "Reserved": [reservation["from"], reservation["to"]],
-        }
+        Reservation(
+            room=reservation["itemName"],
+            reserved_from=reservation["from"],
+            reserved_until=reservation["to"],
+        )
         for reservation in data
     ]
     return bookings
