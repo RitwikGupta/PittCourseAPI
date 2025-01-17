@@ -24,14 +24,7 @@ from pittapi import course
 
 from pittapi.course import Attribute, Course, CourseDetails, Instructor, Meeting, Section, SectionDetails, Subject
 
-from tests.mocks.course_mocks import (
-    mocked_subject_data,
-    mocked_courses_data,
-    mocked_courses_data_invalid,
-    mocked_course_info_data,
-    mocked_course_sections_data,
-    mocked_section_details_data,
-)
+from tests.samples.course_mocks import *
 
 
 class CourseTest(unittest.TestCase):
